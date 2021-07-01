@@ -1,0 +1,216 @@
+﻿@model IEnumerable<WaterDelivery.ViewModels.ProductHomeViewModel>
+@{
+    ViewBag.Title = "AllProducts";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<style>
+    .ModalImg {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">تفاصيل المنتج</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label>الصورة</label>
+                    </div>
+                    <div class="col-6">
+                        <img id="ModalProductImg" class="ModalImg" src="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>اسم المنتج</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalProductName"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>سعر المنتج</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalPrice"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>الوصف</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalDescription"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>الخصائص</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalSpecification"></label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+
+    <div class="sec-padd">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/SiteHome/Index"> الرئيسية</a></li>
+
+                <li class="breadcrumb-item active" aria-current="page">  @ViewBag.CategoryName</li>
+            </ol>
+        </nav>
+        <div class="filter-result">
+
+
+            @foreach (var product in Model)
+            {
+                <div class="product-box ">
+                    <div class="top-img" style="cursor:pointer;" onclick="GetInfo(@product.ProductId)">
+                        <img src="@product.ProductImg">
+                    </div>
+                    <div class="info">
+                        <p> <a @*href="product-details.html"*@ class="ProductName">@product.ProductName</a>  </p>
+                        <div class="info-bottom">
+                            <div class="price">
+                                @product.Price  رس
+                                @*<span class="del">
+                                        150 رس
+                                    </span>*@
+                            </div>
+
+
+                            <div class="info-qty d-flex">
+                                <a onclick="InCreasee(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
+                                    <i class="icofont-plus"></i>
+                                </a>
+                                <div class="qty-val" id="qty-val-@product.ProductId">@product.QtyCart</div>
+                                <input id="num-@product.ProductId" type="hidden" name="count" value="">
+                                <a onclick="InCreasee(@product.ProductId ,2)" class="qty-down" id="qty-down-@product.ProductId">
+                                    <i class="icofont-minus"></i>
+                                </a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    @if (@product.IsFavourite)
+                    {
+                        <span class="icon-fav active" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                            <i class="fa fa-heart " aria-hidden="true"></i>
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="icon-fav" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </span>
+                    }
+
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+
+
+
+
+        function GetInfo(e) {
+            debugger;
+
+            $.ajax({
+                url: "/SiteHome/GetProductInfo",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    productId: e
+                },
+                success: function (result) {
+                    if (result.key == 1) {
+                        $('#ModalProductImg')[0].setAttribute('src', `${result.data.img}`);
+                        $('#ModalProductName')[0].innerText = result.data.name;
+                        $('#ModalPrice')[0].innerText = result.data.price;
+                        $('#ModalDescription')[0].innerText = result.data.description;
+                        $('#ModalSpecification')[0].innerText = result.data.specification;
+
+                        $('#exampleModal').modal('toggle');
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+
+
+            //var info = $(e).closest('.product-box').find('.info');
+
+            ////$('#ModalProductName').text=
+            //$('#ModalProductName')[0].innerText = $(e).closest('.product-box').find('.info').find('.ProductName')[0].innerText;
+            //$('#ModalPrice')[0].innerText = $(e).closest('.product-box').find('.info').find('.price')[0].innerText;
+
+
+
+            ////price
+
+            
+        }
+
+        function AddOrRemoveFavorite(id) {
+
+            $.ajax({
+                url: "/SiteHome/AddOrRemoveFavorite",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    productId: id
+                },
+                success: function (result) {
+                    if (result.key == 1) {
+                        toastr.success(result.msg);
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+    </script>
+}

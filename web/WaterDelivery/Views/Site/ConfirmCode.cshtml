@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmCode";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="login-content">
+    <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
+    <h4 class="title-form">   استرجاع الحساب</h4>
+    <div class="input-group">
+        
+        <input type="text" id="Code" placeholder="  ادخل الكود الخاص بك   " class="form-control">
+
+    </div>
+
+    <a @*href="newpassword.html"*@ onclick="ConfirmCode()" class="btn-site w-100">   ارسال   </a>
+
+</div>
+
+
+@section Scripts {
+    <script>
+
+        function ConfirmCode() {
+
+            var Code = $("#Code").val();
+           
+            if ($("#Code").val() == "") {
+                toastr.error("من فضلك ادخل كود التحقق ");
+                ScrollItem("#Code");
+                return false;
+            }        
+            var fd = new FormData();
+
+            fd.append("Code", Code);
+         
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: "POST",
+                url: "/Site/ChkConfirmCode",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                    if (data.key == 0) {
+                        toastr.error(data.msg);
+                        return false;
+                    }
+                    else if (data.key == 1) {
+                        toastr.success(data.msg);
+                        setTimeout(function () {
+                            window.location.href = "/SiteHome/Index";
+                        }, 3000);
+                    }
+                }
+            });
+        }
+
+    </script>
+
+}

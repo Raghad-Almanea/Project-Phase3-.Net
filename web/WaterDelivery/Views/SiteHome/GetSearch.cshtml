@@ -1,0 +1,51 @@
+﻿@model WaterDelivery.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "GetSearch";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="sec-padd">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"> الرئيسية</a></li>
+
+                <li class="breadcrumb-item active" aria-current="page">  @Model.category_name</li>
+            </ol>
+        </nav>
+        <div class="filter-result">
+
+            <div class="product-box ">
+                <a class="top-img">
+                     
+                        <img src="@Model.img">
+                   
+                </a>
+                <div class="info">
+                    <p> <a> @Model.name</a>  </p>
+                    <div class="info-bottom">
+                        <div class="price">
+                            @Model.price  رس
+
+                        </div>
+
+                        <div class="info-qty d-flex">
+                            <a onclick="InCreasee(@Model.Id ,1)" class="qty-up " id="qty-up-@Model.Id">
+                                <i class="icofont-plus"></i>
+                            </a>
+                            <div class="qty-val" id="qty-val-@Model.Id">@Model.all_qty</div>
+                            <input id="num-@Model.Id" type="hidden" name="count" value="">
+                            <a onclick="InCreasee(@Model.Id ,2)" class="qty-down" id="qty-down-@Model.Id">
+                                <i class="icofont-minus"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

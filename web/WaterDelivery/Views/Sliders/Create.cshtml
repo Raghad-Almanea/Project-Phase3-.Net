@@ -1,0 +1,95 @@
+﻿@model WaterDelivery.Models.TableDb.Slider
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+    string Msg = ViewBag.Msg;
+
+}
+<input type="hidden" value="@Msg" id="Msg" />
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">اضافة إعلان جديد</h2>
+
+            <div class="row">
+
+                @using (Html.BeginForm("Create", "Sliders", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("صورة الاعلان", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="FileName" id="FileName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("نوع الاعلان", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="type" name="type" class="form-control">
+                                    <option value="-1">اختر نوع الاعلان</option>
+                                    <option value="1">سلايدر</option>
+                                    <option value="2">مساحة اعلانية</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="اضافة" onclick="Validtion()" class="btn-new-style" />
+                                <input type="submit" id="btnSave" style="display:none" value="اضافة" class="btn" />
+                            </div>
+                        </div>
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black m-b-5" })
+                        </div>
+                    </div>
+                }
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            if ($("#Msg").val() != "") {
+                toastr.error($("#Msg").val());
+
+            }
+
+        })
+        function Validtion() {
+            var flg = true;
+
+            if ($("#FileName").val() == "") {
+                toastr.error('من فضلك ادخل صورة الاعلان ');
+                $("#FileName").focus();
+                flg = false;
+                return false;
+            } if ($("#type").val() == -1) {
+                toastr.error('من فضلك نوع الاعلان ');
+                $("#type").focus();
+                flg = false;
+                return false;
+            }
+
+            if (flg == true) {
+                $("#btnSave").click();
+            }
+        }
+
+    </script>
+}
+

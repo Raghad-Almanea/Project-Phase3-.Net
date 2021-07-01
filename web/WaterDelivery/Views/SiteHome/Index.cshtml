@@ -1,0 +1,343 @@
+﻿@model WaterDelivery.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<style>
+    .ModalImg {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+    
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">تفاصيل المنتج</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label>الصورة</label>
+                    </div>
+                    <div class="col-6">
+                        <img id="ModalProductImg" class="ModalImg" src="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>اسم المنتج</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalProductName"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>سعر المنتج</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalPrice"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>الوصف</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalDescription"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label>الخصائص</label>
+                    </div>
+                    <div class="col-6">
+                        <label id="ModalSpecification"></label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="header-slider">
+        <div class="owl-carousel owl-theme ">
+            @if (Model.Sliders.Any())
+            {
+                foreach (var item in Model.Sliders)
+                {
+
+                    if (item.type == 1)
+                    {
+                        <div class="item">
+                            <img src="@item.Img">
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    @foreach (var category in Model.Categorys.Take(1))
+    {
+        <div class="sec-padd">
+            <h3 class="sec-title">
+                @category.Name
+
+
+                @*<a href="/SiteHome/AllProducts/@category.Id">
+                        كل المنتجات
+                        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                    </a>*@
+            </h3>
+            <div class="filter-result row">
+
+                @foreach (var product in category.Products.Take(5))
+                {
+                    <div class="col-md-3">
+                        <div class="product-box ">
+                            <div class="top-img" style="cursor:pointer;" onclick="GetInfo(@product.ProductId)">
+                                <img src="@product.ProductImg">
+                            </div>
+                            <div class="info">
+                                <p> <a @*href="product-details.html"*@ class="ProductName">@product.ProductName</a>  </p>
+                                <div class="info-bottom">
+                                    <div class="price">
+                                        @product.Price  رس
+                                        @*<span class="del">
+                                                150 رس
+                                            </span>*@
+                                    </div>
+
+                                    <div class="info-qty d-flex">
+                                        <a onclick="InCreasee(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
+                                            <i class="icofont-plus"></i>
+                                        </a>
+                                        <div class="qty-val" id="qty-val-@product.ProductId">@product.QtyCart</div>
+                                        <input id="num-@product.ProductId" type="hidden" name="count" value="">
+                                        <a onclick="InCreasee(@product.ProductId ,2)" class="qty-down" id="qty-down-@product.ProductId">
+                                            <i class="icofont-minus"></i>
+                                        </a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            @if (@product.IsFavourite)
+                            {
+                                <span class="icon-fav active" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                                    <i class="fa fa-heart " aria-hidden="true"></i>
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="icon-fav" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                </span>
+                            }
+
+
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+            <div class="text-center">
+                @*<a href="/SiteHome/AllProducts/@category.Id" class="btn-site"> المزيد</a>*@
+                <a href="/SiteHome/AllProducts" class="btn-site"> المزيد</a>
+            </div>
+
+        </div>
+    }
+
+
+    <div class="adv sec-padd">
+        <a href="#">
+            <img src="@Model.Sliders.Where(x=>x.type ==2).Select(x=>x.Img).FirstOrDefault()">
+        </a>
+    </div>
+
+
+    @foreach (var category in Model.Categorys.Skip(1))
+    {
+        <div class="sec-padd">
+            <h3 class="sec-title">
+                @category.Name
+                <a href="/SiteHome/AllProducts/@category.Id">
+                    كل المنتجات
+                    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                </a>
+            </h3>
+            <div class="filter-result">
+
+                @foreach (var product in category.Products)
+                {
+                    <div class="product-box ">
+                        <div class="top-img" style="cursor:pointer;" onclick="GetInfo(@product.ProductId)">
+                            <img src="@product.ProductImg">
+                        </div>
+                        <div class="info">
+                            <p> <a @*href="product-details.html"*@ class="ProductName">@product.ProductName</a>  </p>
+                            <div class="info-bottom">
+                                <div class="price">
+                                    @product.Price  رس
+                                    @*<span class="del">
+                                            150 رس
+                                        </span>*@
+                                </div>
+
+                                <div class="info-qty d-flex">
+                                    <a onclick="InCreasee(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
+                                        <i class="icofont-plus"></i>
+                                    </a>
+                                    <div class="qty-val" id="qty-val-@product.ProductId">@product.QtyCart</div>
+                                    <input id="num-@product.ProductId" type="hidden" name="count" value="">
+                                    <a onclick="InCreasee(@product.ProductId ,2)" class="qty-down" id="qty-down-@product.ProductId">
+                                        <i class="icofont-minus"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @if (@product.IsFavourite)
+                        {
+                            <span class="icon-fav active" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                                <i class="fa fa-heart " aria-hidden="true"></i>
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="icon-fav" onclick="AddOrRemoveFavorite(@product.ProductId)">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </span>
+                        }
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    <script>
+
+        function GetInfo(e) {
+            debugger;
+
+            $.ajax({
+                url: "/SiteHome/GetProductInfo",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    productId: e
+                },
+                success: function (result) {
+                    if (result.key == 1) {
+                        $('#ModalProductImg')[0].setAttribute('src', `${result.data.img}`);
+                        $('#ModalProductName')[0].innerText = result.data.name;
+                        $('#ModalPrice')[0].innerText = result.data.price;
+                        $('#ModalDescription')[0].innerText = result.data.description;
+                        $('#ModalSpecification')[0].innerText = result.data.specification;
+
+                        $('#exampleModal').modal('toggle');
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+
+
+            //var info = $(e).closest('.product-box').find('.info');
+
+            ////$('#ModalProductName').text=
+            //$('#ModalProductName')[0].innerText = $(e).closest('.product-box').find('.info').find('.ProductName')[0].innerText;
+            //$('#ModalPrice')[0].innerText = $(e).closest('.product-box').find('.info').find('.price')[0].innerText;
+
+
+
+            ////price
+
+        }
+
+        function AddOrRemoveFavorite(id) {
+
+            $.ajax({
+                url: "/SiteHome/AddOrRemoveFavorite",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    productId: id
+                },
+                success: function (result) {
+                    if (result.key == 1) {
+                        toastr.success(result.msg);
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+
+                                            //function InCreasee(productID, count) {
+                                            //    //debugger;
+                                            //    if (count == 1) {
+                                            //        var qtyval = parseInt($('#qty-val-' + productID).text());
+                                            //        qtyval = qtyval + 1;
+                                            //        $('#qty-val-' + productID).text(qtyval);
+
+                                            //        $.post("/SiteHome/AddCart", { productId: productID, type : 1 }, function (data) {
+                                            //            if (data.key == 1) {
+                                            //                toastr.success(data.msg);
+                                            //            } else {
+                                            //                toastr.warning(data.msg);
+                                            //            }
+                                            //        }, "json");
+                                            //    }
+                                            //    else {
+                                            //        var qtyval = parseInt($('#qty-val-' + productID).text());
+                                            //        qtyval = qtyval - 1;
+                                            //        $('#qty-val-' + productID).text(qtyval < 0 ? 0 : qtyval);
+                                            //        $.post("/SiteHome/AddCart", { productId: productID , type: 2 }, function (data) {
+                                            //            if (data.key == 1) {
+                                            //                toastr.success(data.msg);
+                                            //            } else {
+                                            //                toastr.warning(data.msg);
+                                            //            }
+                                            //        }, "json");
+                                            //    }
+                                            //}
+
+    </script>
+}
+

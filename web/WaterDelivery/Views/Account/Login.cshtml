@@ -1,0 +1,43 @@
+﻿@using WaterDelivery.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "../Shared/_Layout2.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal m-t-20", role = "form" }))
+{
+
+    <div class="text-center">
+        <h4 class="new-title font-bold m-b-30">تسجيل دخول</h4>
+    </div>
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+
+        <div class="col-md-12">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "البريد الالكترونى" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="col-md-12">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "كلمة المرور" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <p>
+            @Html.ActionLink("هل نسيت كلمة المرور؟", "ForgotPassword", new { @class = "form-span" })
+        </p>
+    </div>
+
+    <div class="form-group">
+        <div class="  col-md-12">
+            <input type="submit" value="دخول" class=" btn-new-style " />
+        </div>
+    </div>
+
+
+}

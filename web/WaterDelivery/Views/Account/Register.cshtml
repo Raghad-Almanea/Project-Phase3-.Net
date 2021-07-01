@@ -1,0 +1,155 @@
+﻿@model WaterDelivery.Models.RegisterViewModel
+@using WaterDelivery.ViewModels;
+@{
+    ViewBag.Title = "Register";
+    Layout = "../Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+            @*<h4 class="header-title m-t-0 m-b-30" style="text-align:center"></h4>*@
+            <div class="row">
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+                <h2 style="text-align:center">اضافة مستخدم</h2>
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("البريد الالكترونى", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("اسم  المستخدم", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("صورة شخصية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="Img" id="Img" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("المدينة", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <select id="FkCity" name="city" class=" form-control">
+                                @if (ViewBag.ListCities != null)
+                                {
+                                    foreach (var item in ViewBag.ListCities as List<CityViewModel>)
+                                    {
+                                        <option id="@item.Id" value="@item.Id">@item.city_name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("كلمة المرور", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(" تاكيد كلمة المرور  ", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class=" col-md-12">
+                            <input type="submit" value="اضافة" onclick="Validtion()" class="btn-new-style" />
+
+                        </div>
+                    </div>
+
+                }
+                <div>
+                    @Html.ActionLink("العودة الى الرئيسية", "Index", "Permissions", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
+                </div>
+                <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+        function Validtion() {
+            debugger;
+            var flg = true;
+            if ($("#Email").val() == "") {
+                toastr.error('من فضلك  ادخل البريد الالكترونى');
+                $("#Email").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#Password").val() == "") {
+                toastr.error("من فضلك ادخل   كلمة المرور ");
+                $("#Password").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#Password").val().length < 6) {
+                toastr.error("يجب الا تقل  كلمة المرور عن  ستة احرف ");
+                $("#Password").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#ConfirmPassword").val() == "") {
+                toastr.error("من فضلك ادخل تاكيد كلمة المرور ");
+                $("#ConfirmPassword").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#Password").val() != $("#ConfirmPassword").val()) {
+                toastr.error("كلمتا المرور غير متطابقتان ");
+                $("#ConfirmPassword").focus();
+                flg = false;
+                return false;
+            }
+
+            if (flg == true) {
+                $("#btnSave").click();
+                $.ajax({
+                    url: "/Account/Register",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        Email: $("#Email").val(),
+                        Password: $("#Password").val()
+
+                    }, success: function (result) {
+                        debugger;
+                        if (result.key == 1) {
+                            window.location.href = "Permissions/Index";
+                        } else {
+                            toastr.error("البريد الالكترونى مسجل من قبل ");
+                            $("#Email").focus();
+
+
+                        }
+
+                    },
+                    failure: function (info) {
+
+                    }
+                })
+            }
+        }
+    </script>
+}

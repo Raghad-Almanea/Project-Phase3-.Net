@@ -1,0 +1,97 @@
+﻿@model WaterDelivery.Models.TableDb.Slider
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+    string Msg = ViewBag.Msg;
+
+}
+<input type="hidden" value="@Msg" id="Msg" />
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">تعديل</h2>
+
+            <div class="row">
+
+                @using (Html.BeginForm("Edit", "Sliders", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.IsActive)
+                        <div class="form-group">
+                            @Html.Label("صورة القديمة", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <img src="@Model.FileName" width="100px" height="100px" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("صورة الجديدة", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="FileName" id="FileName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("نوع الاعلان", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="type" name="type" class="form-control">
+                                   
+                                    @if (@Model.type == 1)
+                                    {
+                                        <option value="1" selected="selected">سلايدر</option>
+                                        <option value="2">مساحة اعلانية</option>
+                                    } 
+                                    @if (@Model.type == 2)
+                                    {
+                                        <option value="1">سلايدر</option>
+                                        <option value="2" selected="selected">مساحة اعلانية</option>
+                                    }
+                                   
+                                </select>
+                            </div>
+                        </div>
+                     
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="حفظ" onclick="Validtion()" class="btn-new-style" />
+                                <input type="submit" id="btnSave" style="display:none" value="حفظ" class="btn btn-default" />
+                            </div>
+                        </div>
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black m-b-5" })
+                        </div>
+                    </div>
+                }
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section scripts
+{
+    <script>
+          $(document).ready(function () {
+            if ($("#Msg").val() != "") {
+                toastr.error($("#Msg").val());
+
+            }
+        })
+        function Validtion() {
+            var flg = true;
+
+            if (flg == true) {
+                $("#btnSave").click();
+            }
+        }
+    </script>
+}

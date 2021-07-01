@@ -1,0 +1,304 @@
+﻿ @model IEnumerable<WaterDelivery.ViewModels.ProductViewModel>
+
+    @{
+        ViewBag.Title = "Products";
+        Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+
+        var mainId = ViewBag.MainId ?? 0;
+        var subId = ViewBag.SubId ?? 0;
+    }
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <h4 class="header-title m-t-0 m-b-30"></h4>
+                <div class="row">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>التصنيف الرئيسي</h4>
+                            <select id="mainCat" name="mainCat" class="form-control" onchange="GetByMainCat()">
+                                <option value="0">الكل</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h4>التصنيف الفرعي</h4>
+                            <select id="subCat" name="subCat" class="form-control" onchange="GetByMainCat()">
+                                <option value="0">الكل</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <!-- -------------------------------------------------------------------------------------------------- -->
+
+                    <p>
+                        @Html.ActionLink("اضافة منتج جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                    </p>
+
+
+                    <h2 style="text-align:center">المنتجات</h2>
+
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">
+                                    الاسم
+                                </th>
+                                <th style="text-align:center">
+                                    الصورة
+                                </th>
+                                @*<th style="text-align:center">
+                                        الفرع
+                                    </th>*@
+                                <th style="text-align:center">
+                                    التصنيف الرئيسى
+                                </th>
+                                <th style="text-align:center">
+                                    التصنيف الفرعى
+                                </th>
+                                <th style="text-align:center">
+                                    السعر
+                                </th>
+                                <th style="text-align:center">
+                                    الوصف
+                                </th>
+                                <th style="text-align:center">
+                                    الكمية
+                                </th>
+                                <th style="text-align:center">
+                                    الحالة
+                                </th>
+                                <th style="text-align:center">
+                                    تغيير الحالة
+                                </th>
+                                <th style="text-align:center">
+                                    تعديل
+                                </th>
+                                <th style="text-align:center">
+                                    حذف
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.name
+                                    </td>
+                                    <td>
+                                        <img src="@item.img" height="50" width="60" />
+                                    </td>
+                                    @*<td>
+                                            @item.branch_name
+                                        </td>*@
+                                    <td>
+                                        @item.maincategory_name
+                                    </td>
+
+                                    <td>
+                                        @item.category_name
+                                    </td>
+                                    <td>
+                                        @item.price
+                                    </td>
+                                    <td>
+                                        @item.description
+                                    </td>
+                                    <td>
+                                        @item.all_qty
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.is_active == true)
+                                            {
+                                                <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                            }
+                                            else
+                                            {
+                                                <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                            }
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <input type="button" value="تغير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                    </td>
+                                    <td>
+                                        <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div><!-- end row -->
+            </div>
+        </div><!-- end col -->
+    </div>
+
+    @section scripts{
+        <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            var html = '';
+            debugger;
+            // GetMainCategories
+            $.ajax({
+                url: "/Products/GetMainCategories",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.categories.length; i++) {
+                        debugger;
+                        if (@mainId == data.categories[i].id) {
+                            html += '<option value="' +
+                                data.categories[i].id +
+                                '" selected="selected">' +
+                                data.categories[i].name +
+                                '</option>';
+                        } else {
+                            html += '<option value="' + data.categories[i].id + '">' + data.categories[i].name + '</option>';
+                        }
+
+                    }
+
+                    $('#mainCat').append(html);
+                },
+                failure: function (info) {
+
+                }
+            });
+
+            ajaxFun();
+        });
+
+
+        function Validtion(id) {
+            $.ajax({
+                url: "/Products/ChangeState",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (result) {
+
+                    if (result.data == true) {
+                        $('#' + id).css('color', 'green');
+                        $('#' + id).html('مفعل');
+                    } else if (result.data == false) {
+                        $('#' + id).css('color', 'red');
+                        $('#' + id).html('غير مفعل');
+
+                    }
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+
+        // GetByMainCat
+        function GetByMainCat() {
+            debugger;
+            var mainId = $("#mainCat").val();
+            var subId = $("#subCat").val();
+            if (mainId == "0") {
+                window.location.assign(window.location.origin + "/Products/Index");
+            }
+            window.location.assign(window.location.origin + "/Products/Index?mainCat=" + mainId + "&subCat=" + subId);
+
+        }
+
+        function Delete(id) {
+            Swal.fire({
+                title: 'هل انت متاكد من حذف هذا المنتج ؟',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'اغلاق',
+                confirmButtonText: 'حذف',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "/Products/Delete",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            id: id
+                        }, success: function (result) {
+                            if (result.key = 1) {
+                                Swal.fire({
+                                    position: 'success',
+                                    type: 'success',
+                                    title: 'تم الحذف بنجاح..',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                            $("#" + id).closest("tr").remove();
+                        },
+                        failure: function (info) {
+
+                        }
+                    })
+                }
+            })
+        }
+
+
+        async function ajaxFun() {
+            debugger;
+            await ajaxFuns();
+
+        }
+
+
+        function ajaxFuns() {
+            debugger;
+
+            // get all subCategories
+            $.ajax({
+                url: "/Products/GetsubCategoriesFilter",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    mainCat: @mainId
+                },
+                success: function (data) {
+                    debugger;
+                    if (data.key == 1) {
+                        var html = '';
+                        for (var i = 0; i < data.categories.length; i++) {
+                            if (@subId == data.categories[i].Id) {
+                                html += `<option value='${data.categories[i].Id}' data-val='${data.categories[i].fk_cat}' selected>${data.categories[i].name}</option>`;
+                            } else {
+                                html += `<option value='${data.categories[i].Id}' data-val='${data.categories[i].fk_cat}' >${data.categories[i].name}</option>`;
+                            }
+                        }
+
+                        $('#subCat').append(html);
+                    }
+                },
+                failure: function (info) {
+
+                }
+            });
+
+        }
+
+        </script>
+    }
+

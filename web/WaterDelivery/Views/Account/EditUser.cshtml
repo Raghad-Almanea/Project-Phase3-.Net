@@ -1,0 +1,129 @@
+﻿@model WaterDelivery.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "../Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+            @*<h4 class="header-title m-t-0 m-b-30" style="text-align:center"></h4>*@
+            <div class="row">
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+                <h2 style="text-align:center">تعديل بيانات المستخدم</h2>
+
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="form-group row">
+                    @Html.Label("البريد الالكترونى", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.Label("اسم  المستخدم", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.Label("تعديل كلمة المرور", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        <a href="~/Manage/ChangePassword" class="btn btn-default btn-block">تعديل الباسورد</a>
+                    </div>
+                </div>
+                @if (Model.Img != null)
+                {
+                    <div class="form-group row">
+                        @Html.Label("الصورة القديمه", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <img width="70px" src="~/Content/Img/User/@Model.Img" />
+                        </div>
+                    </div>
+                }
+                <div class="form-group row">
+                    @Html.Label("صورة ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" name="Img" id="Img" class="form-control" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <div class=" col-md-12">
+                        <input type="button" value="حفظ" onclick="Validtion()" class="btn-new-style" />
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    @Html.ActionLink("العودة الى الرئيسية", "Index", "Home", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
+                </div>
+                <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/notify.js"></script>
+    <script>
+
+
+        function Validtion() {
+            var fd = new FormData();
+            var files = $("#Img").get(0).files;
+            if (files.length > 0) {
+                fd.append("Img", files[0]);
+            }
+            var flg = true;
+            if ($("#Email").val() == "") {
+                $("#Email").notify("من فضلك  ادخل البريد الالكترونى   ");
+                $("#Email").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#FullName").val() == "") {
+                $("#FullName").notify("من فضلك  ادخل اسم  المستخدم   ");
+                $("#FullName").focus();
+                flg = false;
+                return false;
+            }
+            fd.append("Email", $("#Email").val());
+            fd.append("FullName", $("#FullName").val());
+            fd.append("Id", '@Model.Id');
+
+
+            if (flg == true) {
+                $.ajax({
+                    url: "/Account/UpdateUser",
+                    type: "POST",
+                    dataType: "json",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(result) {
+                        if (result.key == 1) {
+                            window.location.href = "/Home/Index";
+                        } else if (result.key == 0) {
+                            $("#Email").notify("البريد الالكترونى مسجل من قبل ");
+                            $("#Email").focus();
+                        }
+
+                    },
+                    failure: function(info) {
+
+                    }
+                });
+            }
+        }
+    </script>
+}

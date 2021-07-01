@@ -1,0 +1,398 @@
+﻿@model WaterDelivery.ViewModels.ProfileViewModel
+@using WaterDelivery.Models.TableDb
+@using WaterDelivery.ViewModels
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    Setting setting = ViewBag.Setting;
+}
+
+<div class="container">
+    <input type="hidden" id="UserId" value="@Model.Id" />
+
+    <div class="sec-padd like-page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"> الرئيسية</a></li>
+
+                <li class="breadcrumb-item active" aria-current="page">  حسابي</li>
+            </ol>
+        </nav>
+        <div class="profile-page ">
+
+            <div class="row">
+                <div class="col-md-2 padd-0">
+                    <div class="text-center">
+                        <div class="imgs-block">
+                            <label class="label-img">
+                                <input type="file" name="image" id="image" accept="image/*" class="input-img">
+                                <img src="@Model.Img" alt="">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+
+                            </label>
+
+                            <div class="upload-area"></div>
+                        </div>
+                    </div>
+
+                    <div class="box-right">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">  الاعدادات</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="contact" aria-selected="false"> تغيير كلمة المرور</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="Portfolio-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="Portfolio" aria-selected="false">المحفظه</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-red" href="/SiteHome/Logout">  تسجيل خروج    </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-10">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="box">
+                                <div class="row profile-form">
+                                    <div class="col-md-6">
+                                        <label> الاسم </label>
+                                        <input type="text" id="Name" class="input-form" placeholder="" value="@Model.Name">
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label> رقم الجوال </label>
+
+                                        <input onkeypress="return isNumberKey(event)" type="text" id="Phone" class="input-form" value="@Model.Phone">
+
+                                    </div>
+                                    @*<div class="col-md-6">
+                                            <label>    البريد الالكتروني </label>
+
+                                            <input type="email" class="input-form" value=" aait@aait.sa">
+
+                                        </div>*@
+
+                                    @*<div class="col-md-12">
+                                            <select id="CityId" name="CityId" placeholder="    " class="form-control">
+                                                @foreach (var item in ViewBag.Cities as List<CityViewModel>)
+                                                {
+                                                    if (item.Id == Model.City_Id)
+                                                    {
+                                                        <option selected value="@item.Id">@item.city_name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.city_name</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>*@
+
+
+                                    <div class="col-md-12">
+                                        @*<button  class="btn-site "> حفظ</button>*@
+                                        <input type="button" onclick="EditProfile()" class="btn-site" value="حفظ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="box">
+                                <div class="row profile-form justify-content-center">
+                                    <div class="col-md-6">
+                                        <label for=""> كلمة المرور القديمة</label>
+                                        <input type="password" class="input-form" id="OldPassword" placeholder="كلمة المرور القديمة ">
+                                        <label for=""> كلمة المرور الجديدة</label>
+
+                                        <input type="password" class="input-form" id="NewPassword" placeholder="كلمة المرور الجديدة ">
+                                        <label for="">   تاكيد كلمة المرور الجديدة</label>
+
+                                        <input type="password" class="input-form" id="Confirmpassword" placeholder=" تاكيد كلمة المرور الجديدة ">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button onclick="EditPassword()" class="btn-site "> حفظ</button>
+                                        @*<input  type="button" onclick="EditPassword()" class="btn-site" value="حفظ" />*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab3" class="tab-pane fade" role="tabpanel" aria-labelledby="Portfolio-tab">
+
+                            <div class="box text-center p-3">
+
+                                <img src="~/Content/Site/imgs/wallet (3).png" />
+
+                                <p class="m-3">
+                                    كل @setting.PointsPerRiyal نقطة = 1 ريال
+
+                                </p>
+
+                                <div class="d-flex justify-content-around the_Portfolio">
+
+                                    <div>
+                                        <h5>المحفظة</h5>
+                                        <span id="wallet">@Model.Wallet </span> ر.س
+                                    </div>
+
+                                    <div>
+                                        <h5>رصيد النقاط</h5>
+                                        <span id="point">@Model.Points</span>
+                                    </div>
+
+
+                                </div>
+
+                                <button class="btn-site " onclick="ConvertPointsToWalletCash(@Model.Points)">تحويل النقاط</button>
+
+
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+
+                            <div class="box new-Code">
+                                <img src="imgs/aaa.PNG" alt="">
+                                <h3 class="text-blue">
+                                    الرمز الترويجي الخاص بك
+                                </h3>
+                                <div class="code-box">
+                                    #########
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="address-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> اضافة عنوان  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-form">
+                    <input type="text" class="input-form" placeholder="الاسم">
+                    <input type="text" class="input-form" placeholder="الموقع علي الخريطه">
+                    <input type="text" class="input-form" placeholder=" العنوان">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="input-form" placeholder=" رقم البناية    ">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="input-form" placeholder=" رقم الشقة ">
+                        </div>
+                    </div>
+
+                    <input type="text" class="input-form" placeholder=" رقم الجوال">
+                    <button class="btn-site w-100" data-dismiss="modal"> حفظ</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+        function ConvertPointsToWalletCash(points) {
+
+            $.ajax({
+                url: "/SiteHome/ConvertPointsToWalletCash",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    points: points
+                },
+                success: function (result) {
+                    if (result.key == 0) {
+                        toastr.error(result.msg);
+                    }
+                    if (result.key == 1) {
+                        toastr.success(result.msg);
+                        $("#wallet").html(result.wallet);
+                        $("#point").html(result.points);
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+        function EditProfile() {
+
+            var files = $("#image").get(0).files;
+            var Id = $("#UserId").val();
+            var Name = $("#Name").val();
+            var Phone = $("#Phone").val();
+            var CityId = $("#CityId").val();
+
+
+            var fd = new FormData();
+
+            if (files.length > 0) {
+                fd.append("Img", files[0]);
+            }
+
+
+            fd.append("Id", Id);
+            fd.append("Name", Name);
+            fd.append("Phone", Phone);
+            fd.append("CityId", 2);
+
+
+            if ($("#Name").val() == "") {
+                toastr.error("من فضلك ادخل اسم المستخدم ");
+                ScrollItem("#Name");
+                return false;
+            }
+
+
+            if ($("#Phone").val() == "") {
+                toastr.error("من فضلك ادخل رقم الجوال ");
+                ScrollItem("#Phone");
+                return false;
+            }
+
+            if (Phone.length < 10) {
+                toastr.error("يجب الا رقم الهاتف 10 ارقام ");
+                ScrollItem("#Phone");
+                return false;
+            }
+
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: "POST",
+                data: fd,
+                url: "/SiteHome/EditProfile",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.key == 0) {
+                        toastr.error(data.msg);
+                        return false;
+                    }
+                    else if (data.key == 1) {
+                        toastr.success("تم التعديل بنجاح.. ");
+                        setTimeout(function () { window.location.reload(); }, 3000);
+                    }
+                }
+            });
+
+        }
+
+        function EditPassword() {
+            var Id = $("#UserId").val();
+            var OldPassword = $("#OldPassword").val();
+            var NewPassword = $("#NewPassword").val();
+            var Confirmpassword = $("#Confirmpassword").val();
+
+
+            if ($("#OldPassword").val() == "") {
+                toastr.error("من فضلك ادخل كلمة المرور القديمة ");
+                return false;
+            }
+
+
+            if ($("#NewPassword").val() == "") {
+                toastr.error("من فضلك ادخل كلمة المرور الجديدة ");
+                ScrollItem("#NewPassword");
+                return false;
+            }
+
+
+            if (NewPassword.length < 6) {
+                toastr.error("يرجى الا تقل كلمة المرور عن 6 ارقام ");
+                return false;
+            }
+
+            if ($("#Confirmpassword").val() == "") {
+                toastr.error("من فضلك ادخل كلمة تاكيد المرور الجديدة ");
+                return false;
+            }
+
+
+            if ($("#Confirmpassword").val() != $("#NewPassword").val()) {
+                toastr.error("كلمتا المرور غير متطابقتين");
+                return false;
+            }
+
+            var fd = new FormData();
+
+            fd.append("OldPassword", OldPassword);
+            fd.append("NewPassword", NewPassword);
+            fd.append("Id", Id);
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: "POST",
+                url: "/SiteHome/EditPassword",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.key == 0) {
+                        toastr.error(data.msg);
+                        return false;
+                    }
+                    else if (data.key == 1) {
+                        toastr.success(data.msg);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                }
+            });
+        }
+
+    </script>
+}

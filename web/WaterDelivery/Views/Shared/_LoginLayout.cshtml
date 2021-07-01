@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="ar">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Site/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Site/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Site/css/animate.css">
+    <link rel="stylesheet" href="~/Content/Site/css/icofont.min.css">
+    <!-- plugins CSS -->
+    <link rel="stylesheet" href="~/Content/Site/plugins/owl-carousel/css/owl.carousel.min.css">
+
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="~/Content/Site/css/style.css">
+    <!-- <link rel="stylesheet" href="css/style-ltr.css"> -->
+    <!-- title logo -->
+    <link rel="icon" href="~/Content/Site/imgs/logo.png" type="image/x-icon" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <!-- App title -->
+    <title>Laptops</title>
+</head>
+
+<body>
+
+    <div class="login-page">
+        @RenderBody()
+    </div>
+
+
+
+
+
+
+    <!--========================== Start Loading Page ======================-->
+
+    <div class="loader">
+        <img src="~/Content/Site/imgs/logo.png" alt="">
+    </div>
+
+    <!--========================= End Loading Page =========================-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Content/Site/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/Site/js/popper.min.js"></script>
+    <script src="~/Content/Site/js/bootstrap.min.js"></script>
+    <script src="~/Content/Site/js/wow.min.js"></script>
+
+    <!-- plugins JS -->
+    <script src="~/Content/Site/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+
+    
+
+    <!-- my JS -->
+    <script src="~/Content/Site/js/main.js"></script>
+    <script>new WOW().init();</script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000
+            }
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

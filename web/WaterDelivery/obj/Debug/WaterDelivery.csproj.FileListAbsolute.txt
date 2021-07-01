@@ -1,0 +1,293 @@
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/WaterDelivery.dll.config
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/WaterDelivery.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/WaterDelivery.pdb
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csc.exe
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csc.exe.config
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csc.rsp
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csi.exe
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csi.exe.config
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/csi.rsp
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CSharp.Core.targets
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Managed.Core.targets
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.VisualBasic.Core.targets
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Win32.Primitives.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.AppContext.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Collections.Immutable.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Console.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.DiagnosticSource.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.FileVersionInfo.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.StackTrace.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Globalization.Calendars.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.IO.Compression.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.IO.Compression.ZipFile.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.IO.FileSystem.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.IO.FileSystem.Primitives.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Net.Http.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Net.Sockets.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Reflection.Metadata.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Algorithms.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Encoding.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Primitives.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.X509Certificates.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Text.Encoding.CodePages.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Threading.Tasks.Extensions.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.ValueTuple.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.ReaderWriter.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XmlDocument.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XPath.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XPath.XDocument.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/vbc.exe
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/vbc.exe.config
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/vbc.rsp
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/VBCSCompiler.exe
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/roslyn/VBCSCompiler.exe.config
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Antlr3.Runtime.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/EntityFramework.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/EntityFramework.SqlServer.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Core.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Owin.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Host.SystemWeb.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Cookies.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Facebook.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Google.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.OAuth.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Twitter.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Web.Infrastructure.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Newtonsoft.Json.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Owin.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/PagedList.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Helpers.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Mvc.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Optimization.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Razor.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Deployment.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Razor.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/WebGrease.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/EntityFramework.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/EntityFramework.SqlServer.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/PagedList.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Helpers.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Mvc.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Optimization.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.Razor.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Deployment.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Razor.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Newtonsoft.Json.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Antlr3.Runtime.pdb
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Core.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Owin.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Host.SystemWeb.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Facebook.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Cookies.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Google.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Twitter.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.OAuth.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.AssemblyReference.cache
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.InitialDB.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.tblFooterDescriptionToSetting.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddPhone2andAAddressToSetting.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddtitleToSetting.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.vatsetting.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory2.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.test.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.is_paied.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddEnToSettingModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.CatLang.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddWalletToClient.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendNotifyModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel1.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixCoponModels.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddFavoriteModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixFavoriteModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendSettingAndClientModel.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkCity.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUser.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUserEditProvider.resources
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.GenerateResource.cache
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.CoreCompileInputs.cache
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.CopyComplete
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.dll
+F:/Work Other/e-commerce/new 4/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.pdb
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/WaterDelivery.dll.config
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/WaterDelivery.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/WaterDelivery.pdb
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csc.exe
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csc.exe.config
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csc.rsp
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csi.exe
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csi.exe.config
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/csi.rsp
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.CSharp.Core.targets
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Managed.Core.targets
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.VisualBasic.Core.targets
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/Microsoft.Win32.Primitives.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.AppContext.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Collections.Immutable.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Console.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.DiagnosticSource.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.FileVersionInfo.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Diagnostics.StackTrace.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Globalization.Calendars.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.IO.Compression.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.IO.Compression.ZipFile.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.IO.FileSystem.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.IO.FileSystem.Primitives.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Net.Http.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Net.Sockets.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Reflection.Metadata.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Runtime.InteropServices.RuntimeInformation.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Algorithms.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Encoding.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.Primitives.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Security.Cryptography.X509Certificates.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Text.Encoding.CodePages.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Threading.Tasks.Extensions.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.ValueTuple.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.ReaderWriter.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XmlDocument.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XPath.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/System.Xml.XPath.XDocument.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/vbc.exe
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/vbc.exe.config
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/vbc.rsp
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/VBCSCompiler.exe
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/roslyn/VBCSCompiler.exe.config
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Antlr3.Runtime.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/EntityFramework.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/EntityFramework.SqlServer.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Core.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Owin.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Host.SystemWeb.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Cookies.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Facebook.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Google.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.OAuth.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Twitter.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Web.Infrastructure.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Newtonsoft.Json.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Owin.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/PagedList.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Helpers.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Mvc.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Optimization.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Razor.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Deployment.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Razor.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/WebGrease.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/EntityFramework.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/EntityFramework.SqlServer.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/PagedList.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Helpers.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Mvc.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Optimization.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.Razor.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Deployment.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/System.Web.WebPages.Razor.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Newtonsoft.Json.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Antlr3.Runtime.pdb
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Core.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.Owin.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Host.SystemWeb.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Facebook.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Cookies.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Google.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.Twitter.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.Owin.Security.OAuth.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.AssemblyReference.cache
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.InitialDB.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.tblFooterDescriptionToSetting.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddPhone2andAAddressToSetting.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddtitleToSetting.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.vatsetting.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory2.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.test.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.is_paied.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddEnToSettingModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.CatLang.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddWalletToClient.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendNotifyModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel1.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixCoponModels.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddFavoriteModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixFavoriteModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendSettingAndClientModel.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkCity.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUser.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUserEditProvider.resources
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.GenerateResource.cache
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.CoreCompileInputs.cache
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.CopyComplete
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.dll
+F:/Work Other/e-commerce/new 4 copy/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.pdb
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csprojAssemblyReference.cache
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.InitialDB.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.tblFooterDescriptionToSetting.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddPhone2andAAddressToSetting.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddtitleToSetting.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.vatsetting.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.subcategory2.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.test.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.is_paied.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddEnToSettingModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.CatLang.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddWalletToClient.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendNotifyModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendProductModel1.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixCoponModels.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.AddFavoriteModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.FixFavoriteModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.ExtendSettingAndClientModel.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkCity.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUser.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.Migrations.addFkUserEditProvider.resources
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.GenerateResource.cache
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.csproj.CoreCompileInputs.cache
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.dll
+/Users/raghad/Documents/Mashropkm/WaterDelivery/obj/Debug/WaterDelivery.pdb

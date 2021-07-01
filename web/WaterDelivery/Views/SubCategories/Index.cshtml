@@ -1,0 +1,198 @@
+﻿@model IEnumerable<WaterDelivery.Models.TableDb.SubCategory>
+@using WaterDelivery.Models;
+@{
+    ViewBag.Title = "Index";
+    ApplicationDbContext db = new ApplicationDbContext();
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+    var mainId = ViewBag.MainId ?? 0;
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30"></h4>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>التصنيف الرئيسي</h4>
+                        <select id="mainCat" name="mainCat" class="form-control" onchange="GetByMainCat()">
+                            <option value="0">الكل</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+                <p>
+                    @Html.ActionLink("اضافة تصنيف فرعي جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                </p>
+                <h2 style="text-align:center">التصنيفات الفرعية</h2>
+
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">
+                                التصنيف الرئيسي
+                            </th>
+                            <th style="text-align:center">
+                                الاسم باللغة العربية
+                            </th>
+                            <th style="text-align:center">
+                                الاسم باللغة الانجليزية
+                            </th>
+                            <th style="text-align:center">
+                                الصوره
+                            </th>
+
+                            <th style="text-align:center">
+                                الحالة
+                            </th>
+
+                            <th style="text-align:center">
+                                تغيير الحالة
+                            </th>
+                            <th style="text-align:center">
+                                تعديل
+                            </th>
+                            @*<th style="text-align:center">
+            حذف
+        </th>*@
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @{
+                                    var maincatNmae = db.Category.Where(x => x.Id == item.fk_cat).Select(x => x.name).FirstOrDefault();
+                                }
+                                @maincatNmae
+                            </td>
+                            <td>
+                                @item.name
+                            </td>
+                            <td>
+                                @item.name_en
+                            </td>
+                            <td>
+                                <img src="@item.img" height="60" width="60" />
+                            </td>
+
+
+                            <td>
+                                @{
+                                    if (item.is_active == true)
+                                    {
+                                        <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                    }
+                                    else
+                                    {
+                                        <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                    }
+                                }
+                            </td>
+
+
+
+                            <td>
+                                <input type="button" value="تغيير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                            </td>
+                            @*<td>
+            <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+        </td>*@
+
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+
+
+
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var html = '';
+            $.ajax({
+                url: "/SubCategories/GetMainCategories",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    for (var i = 0; i < data.categories.length; i++) {
+                        if (@mainId == data.categories[i].id) {
+                            html += '<option value="' +
+                                data.categories[i].id +
+                                '" selected="selected">' +
+                                data.categories[i].name +
+                                '</option>';
+                        } else {
+                            html += '<option value="' + data.categories[i].id + '">' + data.categories[i].name + '</option>';
+                        }
+
+                    }
+
+                    $('#mainCat').append(html);
+                },
+                failure: function (info) {
+
+                }
+            });
+
+
+        });
+
+
+        function Validtion(id) {
+            $.ajax({
+                url: "/SubCategories/ChangeState",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (result) {
+
+                    if (result.data == true) {
+                        $('#' + id).css('color', 'green');
+                        $('#' + id).html('مفعل');
+                    } else if (result.data == false) {
+                        $('#' + id).css('color', 'red');
+                        $('#' + id).html('غير مفعل');
+
+                    }
+                    location.reload();
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+        function GetByMainCat() {
+            var mainId = $("#mainCat").val();
+            if (mainId == "0") {
+                window.location.assign(window.location.origin + "/SubCategories/Index");
+            }
+            window.location.assign(window.location.origin + "/SubCategories/Index?mainCat=" + mainId);
+
+        }
+
+        
+
+    </script>
+}

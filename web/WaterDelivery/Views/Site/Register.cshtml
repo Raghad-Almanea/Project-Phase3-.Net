@@ -1,0 +1,176 @@
+﻿@using WaterDelivery.ViewModels
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+    <div class="login-content">
+        <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
+        <h4 class="title-form">تسجيل  جديد</h4>
+        <div class="input-group">
+            <input type="text" id="Name" name="Name" placeholder="الاسم  " class="form-control">
+
+        </div>
+
+        @*<div class="input-group">
+            <input type="text" id="Email" name="Email" placeholder="البريد الالكتروني" class="form-control">
+
+        </div>*@
+
+        <div class="input-group">
+            <input onkeypress="return isNumberKey(event)" type="text" min="0" id="Phone" name="Phone" placeholder=" رقم الجوال  " class="form-control">
+        </div>
+
+
+        @*<div class="input-group">
+            <select id="CityId" name="CityId" placeholder="  اختر المدينة  " class="form-control">
+                <option value="0" disabled selected>اختر المدينة</option>
+                @foreach (var item in ViewBag.Cities as List<CityViewModel>)
+                {
+                    <option value="@item.Id">@item.city_name</option>
+
+                }
+            </select>
+
+        </div>*@
+
+
+        <div class="input-group">
+            <input type="password" id="Password" name="Password" placeholder=" كلمة المرور  " class="form-control">
+
+        </div>
+        <div class="input-group">
+            <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="  تأكيد كلمة  المرور " class="form-control">
+
+        </div>
+        <div class="input-group">
+            <input type="checkbox" id="chk" name="chk">
+            <label for="chk " class="d-flex">الموافقة على <a href="~/SiteHome/Conditions" class="like-line m-auto">الشروط والاحكام</a>  </label>
+        </div>
+
+        <a @*href="active-phone.html"*@ onclick="Register()" class="btn-site w-100">    تسجيل </a>
+        <a href="~/Site/Login" class="like-line m-auto">  تسجيل دخول     </a>
+    </div>
+
+@section Scripts {
+    <script>
+
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }   
+
+
+
+        function Register() {
+
+
+            var Name = $("#Name").val();
+            //var Email = $("#Email").val();
+            var Phone = $("#Phone").val();
+            //var CityId = $("#CityId").val();
+            var Password = $("#Password").val();
+            var ConfirmPassword = $("#ConfirmPassword").val();
+
+
+
+
+            if ($("#Name").val() == "") {
+                toastr.error("من فضلك ادخل اسم المستخدم ");
+                ScrollItem("#Name");
+                return false;
+            }
+
+            if ($("#Email").val() == "") {
+                toastr.error("من فضلك ادخل البريد الالكترونى ");
+                ScrollItem("#Email");
+                return false;
+            }
+
+            if ($("#Phone").val() == "") {
+                toastr.error("من فضلك ادخل رقم الهاتف ");
+                ScrollItem("#Phone");
+                return false;
+            }
+
+
+            if (Phone.length < 10) {
+                toastr.error("يرجى الا يقل رقم الهاتف عن 10 ارقام ");
+                ScrollItem("#Phone");
+                return false;
+            }
+
+            //if ($("#CityId").val() == 0) {
+            //    toastr.error("من فضلك اختر المدينة ");
+            //    ScrollItem("#CityId");
+            //    return false;
+            //}
+           
+
+            if ($("#Password").val() == "") {
+                toastr.error("من فضلك ادخل كلمة المرور ");
+                ScrollItem("#Password");
+                return false;
+            }
+
+            if (Password.length < 6) {
+                toastr.error("يرجى الا تقل كلمة المرور عن 6 ارقام ");
+                ScrollItem("#Phone");
+                return false;
+            }
+
+            if ($("#ConfirmPassword").val() == "") {
+                toastr.error("من فضلك ادخل كلمة المرور ");
+                ScrollItem("#ConfirmPassword");
+                return false;
+            }
+
+            if (Password != ConfirmPassword) {
+                toastr.error("كلمتا المرور غير متطابقتين");
+                ScrollItem("#ConfirmPassword");
+                return false;
+            }
+
+            if ($("#chk").prop('checked') == false) {
+              
+                toastr.error("يرجى الموافقة على الشروط والأحكام");
+                return false;
+            }
+
+            var fd = new FormData();
+
+            fd.append("Name", Name);
+            fd.append("Phone", Phone);
+            fd.append("CityId", 2);
+            fd.append("Password", Password);
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: "POST",
+                url: "/Site/Register",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.key == 0) {
+                        toastr.error(data.msg);                
+                        return false;
+                    }                
+                    else if (data.key == 1) {                    
+                        toastr.success(data.msg);   
+                        setTimeout(function () {
+                            //window.location.href = "/SiteHome/Index";
+                            window.location.href = "/Site/ActivePhone";
+                        }, 3000);
+                    }
+                }
+            });
+        }
+       
+    </script>
+
+}

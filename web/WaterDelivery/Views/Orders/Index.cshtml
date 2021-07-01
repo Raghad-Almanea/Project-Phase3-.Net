@@ -1,0 +1,570 @@
+﻿@model IEnumerable<WaterDelivery.ViewModels.OrderViewModel>
+
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30"></h4>
+            <div class="row">
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+                <h2 style="text-align:center">الطلبات</h2>
+                @*<select id="branches" class="form-control" style="margin: 10px" onchange="GetOrdersByBranch()">
+                        <option value="0">اختر فرع</option>
+                    </select>*@
+
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">
+                                رقم الطلب
+                            </th>
+                            <th style="text-align:center">
+                                اسم المستخدم
+                            </th>
+                            <th style="text-align:center">
+                                رقم الهاتف
+                            </th>
+                            <th style="text-align:center">
+                                اسم المندوب
+                            </th>
+                            <th style="text-align:center">
+                                وقت الطلب
+                            </th>
+                            <th style="text-align:center">
+                                وقت التوصيل
+                            </th>
+                            <th style="text-align:center">
+                                العنوان
+                            </th>
+                            <th style="text-align:center">
+                                الموقع
+                            </th>
+                            <th style="text-align:center">
+                                تفاصيل الطلب
+                            </th>
+                            <th style="text-align:center">
+                                قيمة الطلب
+                            </th>
+                            <th style="text-align:center">
+                                حالة الطلب
+                            </th>
+                            <th style="text-align:center">
+                                تغير حاله الطلب
+                            </th>
+                            @*<th style="text-align:center">
+                                    حذف
+                                </th>*@
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center" id="tableBody">
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.user_name
+                                </td>
+                                <td>
+                                    @item.user_phone
+                                </td>
+                                <td>
+                                    @item.mandoob_name
+                                </td>
+                                <td>
+                                    @item.date_time
+                                </td>
+                                <td>
+                                    @item.date
+                                </td>
+                                <td>
+                                    @item.address
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary btn-rounded" id="open@(item.Id)" onclick="showMap(@item.Id);" data-toggle="modal" data-target="#mapModal" data-lat="@item.lat" data-long="@item.lng">اظهار الموقع</button>
+                                </td>
+                                <td>
+                                    <input type="button" onclick="ShowOrderDetails('@item.Id')" value="عرض" class="btn btn-info btn-rounded" />
+                                </td>
+                                <td>
+                                    @item.total
+                                </td>
+                                @if (@item.order_status == 1)
+                                {
+                                    <td>
+                                        جديد
+                                    </td>
+                                }
+                                else if (@item.order_status == 2)
+                                {
+                                    <td>
+                                        تم الموافقة على الطلب من قبل المندوب
+                                    </td>
+                                }
+                                else if (@item.order_status == 3)
+                                {
+                                    <td>
+                                        تم تجهيز الطلب
+                                    </td>
+                                }
+                                else if (@item.order_status == 4)
+                                {
+                                    <td>
+                                        المندوب قام بايصال الطلب
+                                    </td>
+                                }
+                                else if (@item.order_status == 5)
+                                {
+                                    <td>
+                                        العميل استلم الطلب
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @*قام المندوب بتوصيل الطلب*@
+                                        المندوب قام بايصال الطلب
+                                    </td>
+                                }
+
+
+                                @if (item.order_status == 2)
+                                {
+                                    <td>
+                                        <input type="button" value="تجهيز الطلب" class="btn btn-danger btn-rounded" id="@item.Id" onclick="ChangeStutes('@item.Id')" />
+                                    </td>
+
+                                }
+                                else if (item.order_status == 1)
+                                {
+                                    <td>
+                                        <label style="color:red">يظهر الزر بعد موافقة المندوب  على الطلب</label>
+                                    </td>
+                                }
+                                else if (item.order_status > 1 && item.order_status < 6)
+                                {
+                                    <td>
+                                        <label style="color:orange">تم تجهيز الطلب وفى انتظار انهائه من قبل المندوب</label>
+                                    </td>
+                                }
+                                else if (item.order_status == 6)
+                                {
+                                    <td>
+                                        <label style="color:green">تم انهاء الطلب</label>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <label style="color:green">تم تقييم المندوب</label>
+                                    </td>
+                                }
+                                @*@if (@item.order_status == 4)
+                                    {
+                                        <td>
+                                            منتهي
+                                        </td>
+                                    }*@
+
+                                @*<td>
+                                        <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+                                    </td>*@
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+<div class="modal fade" id="productsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="text-align:center;color:#096621;font-size:20px">بيانات المنتجات</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+
+                        <th style="text-align:center">
+                            اسم المنتج
+                        </th>
+                        <th style="text-align: center">
+                            صورة المنتج
+                        </th>
+                        <th style="text-align: center">
+                            سعر المنتج
+                        </th>
+                        <th style="text-align: center">
+                            الكمية
+                        </th>
+                        <th style="text-align:center">
+                            التصنيف الرئيسى
+                        </th>
+                        <th style="text-align:center">
+                            التصنيف الفرعى
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="productDetails" style="text-align:center"></tbody>
+
+            </table>
+            <!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">اغلاق</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">الموقع</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="map" style="height: 354px; width:713px;"> </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            //var html = '';
+            //$.ajax({
+            //    url: "/Orders/GetBranches",
+            //    type: "GET",
+            //    dataType: "json",
+            //    success: function (data) {
+            //        for (var i = 0; i < data.length; i++) {
+            //            html += '<option value="' + data[i].Id + '">' + data[i].name + '</option>';
+            //        }
+
+            //        $('#branches').append(html);
+            //    },
+            //    failure: function (info) {
+
+            //    }
+            //});
+
+            //GetOrdersByBranch();
+        });
+
+        //function Filter(value) {
+        //    var table = $('#datatable-responsive').DataTable();
+        //    table.search(value).draw();
+        //}
+
+        function GetOrdersByBranch() {
+            var table2 = $('#datatable-responsive').DataTable();
+            table2.destroy();
+            var html = '';
+            var id = $('#branches :selected').val();
+            var value = $('#branches :selected').html();
+            if (value == "اختر فرع") {
+                value = '';
+            }
+            $.ajax({
+                url: "/Orders/GetOrdersByBranch",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: 1 /*id*/
+                },
+                success: function (data) {
+                    if (data.length > 0) {
+
+
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            html += '<tr>';
+                            html += '<td>' + data[i].Id + '</td>';
+                            html += '<td>' + data[i].user_name + '</td>';
+                            html += '<td>' + data[i].user_phone + '</td>';
+                            html += '<td>' + data[i].address + '</td>';
+                            html += '<td>' + data[i].branch_name + '</td>';
+                            html += '<td>' +
+                                '<input type="button" onclick="ShowOrderDetails(' +
+                                data[i].Id +
+                                ')" value="عرض" class="btn btn-info" />' +
+                                '</td>';
+                            html += '<td>' + data[i].total + '</td>';
+
+                            if (data[i].order_status == 1) {
+                                html += '<td>جديد</td>';
+                            }
+                            if (data[i].order_status == 2) {
+                                html += '<td>تم الموافقة عليه</td>';
+                            }
+                            if (data[i].order_status == 3) {
+                                html += '<td>المندوب فى طريقه اليك</td>';
+                            }
+                            if (data[i].order_status == 4) {
+                                html += '<td>منتهي</td>';
+                            }
+
+
+                            if (data[i].is_active == true) {
+                                html += '<td>' +
+                                    '<label id="data[i].Id" style="color:green;font-size: 17px;">مفعل</label>' +
+                                    '</td>';
+                            } else {
+                                html += '<td>' +
+                                    '<label id="data[i].Id" style="color:red;font-size: 17px;">غير مفعل</label>' +
+                                    '</td>';
+                            }
+
+                            html += '<td>' +
+                                '<input type="button" value="تغير الحالة" onclick="Validtion(' +
+                                data[i].Id +
+                                ')" class="btn btn-purple btn-rounded" />' +
+                                '</td>';
+
+                            html += '</tr>';
+                        }
+
+                        //Filter(value);
+
+                        $('#tableBody').empty();
+                        $('#tableBody').append(html);
+                        var table1 = $('#datatable-responsive').DataTable({
+                            "language": {
+                                "sProcessing": "جارٍ التحميل...",
+                                "sLengthMenu": "أظهر _MENU_ مدخلات",
+                                "sZeroRecords": "لم يعثر على أية سجلات",
+                                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                                "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                                "sInfoPostFix": "",
+                                "sSearch": "ابحث:",
+                                "sUrl": "",
+                                "oPaginate": {
+                                    "sFirst": "الأول",
+                                    "sPrevious": "السابق",
+                                    "sNext": "التالي",
+                                    "sLast": "الأخير"
+                                }
+                            }
+                        });
+                        table1.draw();
+
+                    }
+                    else {
+                        var table2 = $('#datatable-responsive').DataTable();
+
+                        table2.destroy();
+
+                        $('#datatable-responsive').DataTable({
+                            paging: false,
+                            searching: false,
+                            info: false
+                        });
+
+                        html += '<tr>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<td> لايوجد  </td>';
+                        html += '<tr>';
+                        $('#tableBody').empty();
+                        $('#tableBody').append(html);
+                    }
+
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+        function ChangeStutes(id) {
+            $.ajax({
+                url: "/Orders/ChangeStateOrder",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (result) {
+
+                    location.reload();
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+        function Validtion(id) {
+            $.ajax({
+                url: "/Orders/ChangeState",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (result) {
+
+                    if (result.data == true) {
+                        $('#' + id).css('color', 'green');
+                        $('#' + id).html('مفعل');
+                    } else if (result.data == false) {
+                        $('#' + id).css('color', 'red');
+                        $('#' + id).html('غير مفعل');
+
+                    }
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+        function ShowOrderDetails(id) {
+            var html = '';
+            $.ajax({
+                url: "/Orders/ShowOrderDetails",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data.length == 0) {
+                        html += '<tr>';
+                        html += '<td>لا يوجد</td>';
+                        html += '<td>لا يوجد</td>';
+                        html += '<td>لا يوجد</td>';
+                        html += '<td>لا يوجد</td>';
+                        html += '<td>لا يوجد</td>';
+                        html += '<td>لا يوجد</td>';
+                        html += '</tr>';
+                    } else {
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<tr>';
+                            html += '<td>' + data[i].product_name + '</td>';
+                            html += '<td>' +
+                                '<img src="' +
+                                data[i].product_img +
+                                '" height="50px" width="60px" />' +
+                                '</td>';
+                            html += '<td>' + data[i].price + '</td>';
+                            html += '<td>' + data[i].qty + '</td>';
+                            html += '<td>' + data[i].main_category_name + '</td>';
+                            html += '<td>' + data[i].category_name + '</td>';
+
+                            html += '<tr>';
+                            //
+                        }
+                    }
+
+
+                    $("#productDetails").html(html);
+                    $('#productsModal').modal('show');
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+
+        function initMap(myLoc) {
+            var marker = new google.maps.Marker({
+                position: myLoc
+            });
+            var opt = {
+                center: myLoc,
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map"), opt);
+            marker.setMap(map);
+        };
+
+
+
+        function showMap(id) {
+            var lat = $('#open' + id).data('lat');
+            var long = $('#open' + id).data('long');
+            initMap(new google.maps.LatLng(lat, long));
+        }
+
+
+
+                                                //function Delete(id) {
+                                                //    Swal.fire({
+                                                //        title: 'هل انت متاكد من حذف هذا الصنف ؟',
+                                                //        type: 'warning',
+                                                //        showCancelButton: true,
+                                                //        confirmButtonColor: '#d33',
+                                                //        cancelButtonColor: '#3085d6',
+                                                //        cancelButtonText: 'اغلاق',
+                                                //        confirmButtonText: 'حذف',
+                                                //    }).then((result) => {
+                                                //        if (result.value) {
+                                                //            $.ajax({
+                                                //                url: "/Categories/Delete",
+                                                //                type: "POST",
+                                                //                dataType: "json",
+                                                //                data: {
+                                                //                    id: id
+                                                //                }, success: function (result) {
+                                                //                    if (result.key = 1) {
+                                                //                        Swal.fire({
+                                                //                            position: 'success',
+                                                //                            type: 'success',
+                                                //                            title: 'تم الحذف بنجاح..',
+                                                //                            showConfirmButton: false,
+                                                //                            timer: 1500
+                                                //                        })
+                                                //                    }
+                                                //                    $("#" + id).closest("tr").remove();
+                                                //                },
+                                                //                failure: function (info) {
+
+                                                //                }
+                                                //            })
+                                                //        }
+                                                //    })
+                                                //}
+
+
+    </script>
+}

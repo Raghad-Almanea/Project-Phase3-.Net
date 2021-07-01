@@ -1,0 +1,274 @@
+﻿@model WaterDelivery.ViewModels.CreateProductViewModel
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">اضافة منتج جديد</h2>
+
+            <div class="row">
+
+                @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("اسم المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("صورة المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="img" id="img" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("سعر المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="text" name="price" id="price" min="0" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("وصف المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="text" name="description" id="description" min="0" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("مواصفات المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <textarea type="text" name="specification" id="specification" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("كمية المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="number" name="all_qty" id="all_qty" min="0" class="form-control" />
+                            </div>
+                        </div>
+
+                        @*<div class="form-group" style="display:none">
+                                @Html.Label("الفرع", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <select id="fk_branch" name="fk_branch" class="form-control">
+                                        <option value="-1">اختر فرع</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.Label("التصنيف الرئيسى", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="fk_cat" name="fk_cat" class="form-control">
+                                    <option value="-1">اختر تصنيف</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("التصنيف الفرعى", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="fk_categoryID" name="fk_categoryID" class="form-control">
+                                    <option value="-1">اختر تصنيف</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class=" col-md-12">
+                                <input type="button" value="اضافة" onclick="Validtion()" class=" btn-new-style" />
+                                <input type="submit" id="btnSave" style="display:none" value="اضافة" class="btn btn-new-style" />
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn btn-black btn-rounded w-md waves-effect waves-light m-b-5" })
+
+                        </div>
+
+                    </div>
+                }
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+@section Scripts {
+    <script>
+        function Validtion() {
+            var flg = true;
+
+            if ($("#name").val() == "") {
+                toastr.error('من فضلك ادخل اسم المنتج');
+                $("#name").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#img").val() == "") {
+                toastr.error('من فضلك ادخل صورة المنتج ');
+                $("#img").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#price").val() == "") {
+                toastr.error('من فضلك ادخل سعر المنتج ');
+                $("#price").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#price").val() < 1) {
+                toastr.error('من فضلك ادخل سعر المنتج اكبر من 1');
+                $("#price").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#all_qty").val() == "") {
+                toastr.error('من فضلك ادخل كمية المنتج ');
+                $("#all_qty").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#all_qty").val() < 0) {
+                toastr.error('من فضلك ادخل كمية المنتج اكبر من 0');
+                $("#all_qty").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#fk_cat").val() < 0 || $("#fk_cat").val() < '') {
+                toastr.error('من فضلك اختر التصنيف الرئيسى');
+                $("#fk_cat").focus();
+                flg = false;
+                return false;
+            }
+            if ($("#fk_categoryID").val() < 0 || $("#fk_categoryID").val() < '') {
+                toastr.error('من فضلك اختر التصنيف الفرعى');
+                $("#fk_categoryID").focus();
+                flg = false;
+                return false;
+            }
+
+
+            if ($("#fk_categoryID").val() == -1) {
+                toastr.error('من فضلك اختر تصنيف ');
+                $("#fk_categoryID").focus();
+                flg = false;
+                return false;
+            }
+
+            if (flg == true) {
+                $("#btnSave").click();
+            }
+        }
+
+        let options;
+        $(document).ready(function () {
+            //$.ajax({
+            //    url: "/Products/GetBranches",
+            //    type: "GET",
+            //    dataType: "json",
+            //    success: function (data) {
+            //        var html = '';
+            //        for (var i = 0; i < data.length; i++) {
+            //            html += '<option value="' + data[i].Id + '">' + data[i].name + '</option>';
+            //        }
+
+            //        $('#fk_branch').append(html);
+            //    },
+            //    failure: function (info) {
+
+            //    }
+            //});
+
+            var fk_cat = '';
+
+            ajaxFun();
+
+
+            async function ajaxFun() {
+                debugger;
+                await ajaxFuns();
+
+            }
+
+
+            // filter from first main to sub
+            // get first dropdown and bind change event handler
+
+            //var options = $("#fk_categoryID").html();
+
+            $('#fk_cat').change(function () {
+                debugger;
+                var value = $("#fk_cat :selected").val()
+                $("#fk_categoryID").html(options);
+                if (value == "-1") return;
+                $(`#fk_categoryID :not([data-val=${value}])`).remove();
+
+            });
+
+
+
+        });
+
+        function ajaxFuns() {
+
+
+            // get all MainCategories
+            $.ajax({
+                url: "/SubCategories/GetMainCategories",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    for (var i = 0; i < data.categories.length; i++) {
+
+                        fk_cat += `<option value='${data.categories[i].id}'>${data.categories[i].name}</option>`;
+
+                    }
+
+                    setTimeout(function () {
+                        options = $("#fk_categoryID").html();
+                    }, 100)
+
+                    $('#fk_cat').append(fk_cat);
+                },
+                failure: function (info) {
+
+                }
+            });
+
+            // get all subCategories
+            $.ajax({
+                url: "/Products/GetsubCategories",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    console.log(data);
+                    var html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += `<option value='${data[i].Id}' data-val='${data[i].fk_cat}' >${data[i].name}</option>`;
+                    }
+
+                    $('#fk_categoryID').append(html);
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+    </script>
+
+}

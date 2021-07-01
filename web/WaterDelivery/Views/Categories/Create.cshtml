@@ -1,0 +1,90 @@
+﻿@model WaterDelivery.Models.TableDb.Category
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box" style="padding: 80px 20px 40px;">
+
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">اضافة تصنيف جديد</h2>
+
+            <div class="row">
+
+                @using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("اسم التصنيف باللغه العربية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("اسم التصنيف باللغه الانجليزية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.name_en, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name_en, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        @Html.Label("صورة التصنيف", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="img" id="img" class="form-control" />
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="  col-md-12">
+                            <input type="button" value="اضافة" onclick="Validtion()" class="btn-new-style" />
+                            <input type="submit" id="btnSave" style="display:none" value="اضافة" class="btn-new-style" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="  col-md-12 text-center">
+                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black" })
+
+                        </div>
+                    </div>
+
+                </div>
+                        }
+
+                        <!-- -------------------------------------------------------------------------------------------------- -->
+                    </div><!-- end row -->
+                </div>
+    </div><!-- end col -->
+</div>
+@section Scripts {
+    <script>
+        function Validtion() {
+            var flg = true;
+
+            if ($("#name").val() == "") {
+                toastr.error('من فضلك ادخل اسم التصنيف');
+                $("#name").focus();
+                flg = false;
+                return false;
+            }
+            //if ($("#img").val() == "") {
+            //    toastr.error('من فضلك ادخل صورة التصنيف ');
+            //    $("#img").focus();
+            //    flg = false;
+            //    return false;
+            //}
+
+            if (flg == true) {
+                $("#btnSave").click();
+            }
+        }
+    </script>
+
+}
+
+
+

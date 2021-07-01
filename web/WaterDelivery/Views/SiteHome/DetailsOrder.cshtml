@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WaterDelivery.ViewModels.OrderInfoViewModel>
+@{
+    ViewBag.Title = "DetailsOrder";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="container">
+    <div class="sec-padd cart-page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/SiteHome/Index"> الرئيسية</a></li>
+
+                <li class="breadcrumb-item" aria-current="page"><a href="/SiteHome/MyOrders">   الطلبات</a></li>
+                <li class="breadcrumb-item active" aria-current="page">   رقم الطلب : @ViewBag.OrderNumber</li>
+            </ol>
+        </nav>
+
+        <div class="cart-box">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6">
+                        <div class="cart-item">
+                            <img src="@item.Img">
+                            <div class="cart-info">
+                                <h5 class="name"> @item.Name</h5>
+                            </div>
+                            <div>
+                                @*<h6 class="text-gray"> رقم الطلب </h6>
+                                    <h6 class="text-blue"> 12344 </h6>*@
+                                <h5 class="name text-blue">  @item.Price رس </h5>
+
+                                <h6 class="text-gray"> الكميه </h6>
+                                <h6 class="span-box">  @item.Qty </h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @if (ViewBag.Ordertype == 1)
+        {
+            <div class="text-center d-flex justify-content-center">
+                <a href="~/SiteHome/EditOrder/@ViewBag.OrderNumber" class="btn-site m-10"> تعديل الطلب</a>
+            
+                <a  class="btn-site  btn-red m-10" data-toggle="modal" data-target="#checkmodal"> حذف الطلب</a>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="checkmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  " role="document">
+        <div class="modal-content">
+
+            <div class="modal-body checkedbody ">
+
+                @*<img src="~/Content/Site/imgs/checked.png">*@
+                <img src="~/Content/Site/imgs/close.png" />
+                @*<h4> شكرا لك</h4>*@
+                <h5> هل انت متاكد من حذف هذا الطلب؟ </h5>
+                <a class="btn-site btn-red" onclick="DeleteOrder(@ViewBag.OrderNumber)"> حذف </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function DeleteOrder(id) {
+            $.post("/SiteHome/DeleteOrder", {  orderId :@ViewBag.OrderNumber  }, function (data) {
+                if (data.key == 1) {
+                    $('#checkmodal').modal('hide');
+                    toastr.success(data.msg);
+                    setTimeout(function () {
+                        window.location.href = "/SiteHome/Index";
+                    }, 3000);
+                } else {
+                    toastr.warning(data.msg);
+                }
+            });
+        }
+    </script>
+}
+

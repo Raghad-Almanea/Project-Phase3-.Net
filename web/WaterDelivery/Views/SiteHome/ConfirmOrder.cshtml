@@ -1,0 +1,425 @@
+﻿@model WaterDelivery.ViewModels.CostOrderViewModel
+@using WaterDelivery.ViewModels
+@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="check-page sec-padd">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"> الرئيسية</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> <a href="~/Views/SiteHome/MyOrders.cshtml">  السله</a></li>
+                <li class="breadcrumb-item active" aria-current="page">  تنفيذ الطلب</li>
+            </ol>
+        </nav>
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="cart-box">
+                    <h6 class="text-blue font-15">  اختار الموقع  </h6>
+                    <div class="form-group d-flex">
+                        <label for="">موقعك الحالي</label>
+                        <input id="ChkLocation" type="checkbox">
+                    </div>
+                    <div class="form-group d-flex">
+                        <label for="">موقع  اخر</label>
+                        <button id="btn" data-toggle="modal" data-target="#map-modal">
+                            <i class="fa fa-map-marker"></i>
+                        </button>
+                    </div>
+
+                    <div class="form-group d-flex">
+                        <input id="Address2" type="text" placeholder="موقع اخر" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="previousLocation" class="form-control" aria-placeholder="موقع سابق">
+
+                            @if ((int)ViewBag.PerviousAddress.Count == 0)
+                            {
+                                <option value="0" disabled selected>لايوجد مواقع سابقة</option>
+                            }
+                            else
+                            {
+                                <option selected value="0"> موقع سابق </option>
+                                foreach (var item in ViewBag.PerviousAddress as List<AddressViewModel>)
+                                {
+                                    <option value="@item.Id">@item.address</option>
+                                }
+                            }
+
+                            @*<option selected value="0"> موقع سابق </option>
+                                <option> 1</option>
+                                <option> 1</option>*@
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="Payment-method">
+
+                    <h6>طريقه الدفع</h6>
+
+                    <div id="p1">
+
+                        <label class="d-flex justify-content-between align-items-center">
+                            <span class="d-flex align-items-center">
+                                <img src="~/Content/Site/imgs/money.png" />
+                                <span class="d-flex flex-column m-3">
+
+                                    <span>نقدا</span>
+                                    <span class="text-gray">الدفع عند الاستلام</span>
+
+                                </span>
+
+
+                            </span>
+
+                            <input type="radio" name="p1" value="1" id="payment1" checked/>
+
+                        </label>
+
+
+                        @*<label class="d-flex justify-content-between align-items-center">
+                            <span class="d-flex align-items-center">
+                                <img src="~/Content/Site/imgs/wallet.png" />
+                                <span class="d-flex flex-column m-3">
+
+                                    <span>المحفظه</span>
+                                    <span class="text-gray">الدفع بالمحفظه</span>
+
+                                </span>
+
+
+                            </span>
+
+                            <input type="radio" name="p1" id="payment2" value="2" />
+
+                        </label>*@
+
+
+                        @*<button class="btn-site m-auto">تأكيد</button>*@
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="col-md-3 padd-0">
+
+                <div class="cart-summery">
+                    <ul>
+                        <li>
+                            <label>     السعر الأجمالى  </label>
+                            <span class="">
+                                @Model.total ر.س
+                            </span>
+                        </li>
+                        <li>
+                            <label>     ضريبة القيمة المضافة  </label>
+                            <span class="">
+                                @Model.vat %
+                            </span>
+                        </li>
+                        <li>
+                            <label> رسوم الشحن </label>
+                            <span class="">
+                                @Model.Delivery ر.س
+                            </span>
+                        </li>
+                        <li>
+                            <label> المجموع  </label>
+                            <span class="">
+                                @Model.net_total ر.س
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ConfirmOrder_btnradio">
+
+                    <h6>أوقات التوصيل</h6>
+
+                    <div class="d-flex justify-content-around flex-wrap flex-column align-items-center" id="delivary_time">
+
+                        <label>
+                            <input id="delivary_time1" name="delivary_time" type="radio" value="8 صباحا - 3 مساء" />
+                            <span class="lay"></span>
+                            <span>8 صباحا - 3 مساء</span>
+
+                        </label>
+                        <label>
+                            <input id="delivary_time2" name="delivary_time" type="radio" value="3 مساء - 10 مساء" />
+                            <span class="lay"></span>
+                            <span>3 مساء - 10 مساء</span>
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="text-center">
+            <a onclick="AddOrder()" class="btn-site w-60" @*data-toggle="modal" data-target="#checkmodal"*@>  تنفيذ طلبك</a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Models -->
+
+
+<div class="modal fade" id="map-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">       تحديد الموقع  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="map" style="width: 100%; height: 400px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="checkmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  " role="document">
+        <div class="modal-content">
+
+            <div class="modal-body checkedbody ">
+
+                <img src="~/Content/Site/imgs/checked.png">
+                <h4> شكرا لك</h4>
+                <h5> تم إتمام العملية بنجاح</h5>
+                <a class="btn-site" href="/SiteHome/Index"> إستمر بالتسوق </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="Lat" />
+<input type="hidden" id="Lng" />
+<input type="hidden" id="Address" />
+
+
+<input type="hidden" id="Lat2" />
+<input type="hidden" id="Lng2" />
+@*<input type="hidden" id="Address2" />*@
+
+
+
+@section Scripts {
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/locationpicker.jquery.js"></script>*@
+
+
+
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5uC_mExFIMSehvCgsjegxcF7mTpKmI4w&callback=initMap&language=ar"></script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_oSewQNaoaW8F2_WxAC5eFwoeaZYpOHE&callback=initMap&language=ar"></script>
+    <script src="~/Scripts/locationpicker.jquery.js"></script>
+
+    <script>
+
+        //$(document).ready(function () {
+        //    $("#btn").prepend('<label class="login-label">' + $("#Address2").val()+'</label>');
+        //});
+
+
+        $(document).ready(function () {
+            $('input[type="checkbox"]').click(function () {
+                if ($(this).prop("checked") == true) {
+                    CurrentLocation();
+                    $("#previousLocation").val(0);
+                    $("#previousLocation").prop("disabled", true);
+
+                }
+                else if ($(this).prop("checked") == false) {
+                    $("#Lat").val("");
+                    $("#Lng").val("");
+                    $("#Address").val("");
+                    $("#previousLocation").prop("disabled", false);
+                }
+            });
+        });
+
+
+        function initMap() {
+            var latlng = new google.maps.LatLng(24.694970, 46.724130);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 10,
+                disableDefaultUI: true,
+                animation: google.maps.Animation.DROP,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+        }
+
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                /* geolocation is available */
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    $('#map').locationpicker({
+                        location: {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        },
+                        radius: 50,
+                        zoom: 13,
+                        scrollwheel: false,
+                        zoomControl: true,
+                        inputBinding: {
+                            latitudeInput: $("#Lat2"),
+                            longitudeInput: $("#Lng2"),
+                            locationNameInput: $('#Address2')
+                        }
+                    });
+                });
+            }, 3000);
+        });
+
+        function CurrentLocation() {
+            var currgeocoder;
+
+            //Set geo location  of lat and long
+
+            navigator.geolocation.getCurrentPosition(function (position, html5Error) {
+
+                geo_loc = processGeolocationResult(position);
+                currLatLong = geo_loc.split(",");
+                initializeCurrent(currLatLong[0], currLatLong[1]);
+
+            });
+
+            //Get geo location result
+
+            function processGeolocationResult(position) {
+                html5Lat = position.coords.latitude; //Get latitude
+                html5Lon = position.coords.longitude; //Get longitude
+                html5TimeStamp = position.timestamp; //Get timestamp
+                html5Accuracy = position.coords.accuracy; //Get accuracy in meters
+                return (html5Lat).toFixed(8) + ", " + (html5Lon).toFixed(8);
+            }
+
+            //Check value is present or not & call google api function
+
+            function initializeCurrent(latcurr, longcurr) {
+                currgeocoder = new google.maps.Geocoder();
+                //console.log(latcurr + "-- ######## --" + longcurr);
+
+                $("#Lat").val(latcurr);
+                $("#Lng").val(longcurr);
+
+                if (latcurr != '' && longcurr != '') {
+                    var myLatlng = new google.maps.LatLng(latcurr, longcurr);
+                    return getCurrentAddress(myLatlng);
+                }
+            }
+
+            //Get current address
+
+            function getCurrentAddress(location) {
+                currgeocoder.geocode({
+                    'location': location
+                }, function (results, status) {
+
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        $("#Address").val(results[0].formatted_address);
+                    }
+                    // else {
+                    //    alert('Geocode was not successful for the following reason: ' + status);
+                    //}
+                });
+            }
+        }
+
+        function AddOrder() {
+
+            //alert($("#previousLocation").val());
+            var Lat = "";
+            var Lng = "";
+            var Address = "";
+            var previousLocationId = 0;
+            var paymentType = $('input[name=p1]:checked').val();
+            if (paymentType == null) {
+                toastr.error("من فضلك اختر طريقة الدفع");
+                return false;
+            }
+            var deliveryTime = $('input[name=delivary_time]:checked').val();
+            if (deliveryTime == null) {
+                toastr.error("من فضلك اختر وقت التوصيل");
+                return false;
+            }
+
+            var chkpreviousLocation = $("#previousLocation option:selected").val();
+
+            if ($("#ChkLocation").prop('checked') == true) {
+                Lat = $("#Lat").val();
+                Lng = $("#Lng").val();
+                Address = $("#Address").val();
+                $("#previousLocation").val(0);
+            }
+            else if (/*$("#previousLocation").val() != 0 ||*/ chkpreviousLocation != 0) {
+                previousLocationId = $("#previousLocation").val();
+            }
+            else {
+                Lat = $("#Lat2").val();
+                Lng = $("#Lng2").val();
+                Address = $("#Address2").val();
+            }
+
+            var fd = new FormData();
+
+            fd.append("Lat", Lat);
+            fd.append("Lng", Lng);
+            fd.append("Address", Address);
+            fd.append("previousLocationId", previousLocationId);
+            fd.append("paymentType", paymentType);
+            fd.append("deliveryTime", deliveryTime);
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: "POST",
+                url: "/SiteHome/AddOrder",
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.key == 0) {
+                        toastr.error(data.msg);
+                        return false;
+                    }
+                    else if (data.key == 1) {
+                        $('#checkmodal').modal('show');
+                        toastr.success(data.msg);
+                        //setTimeout(function () {
+                        //    window.location.href = "/SiteHome/Index";
+                        //}, 3000);
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+}

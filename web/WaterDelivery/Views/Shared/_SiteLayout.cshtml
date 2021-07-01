@@ -1,0 +1,422 @@
+﻿@using WaterDelivery.Models
+@using WaterDelivery.Controllers.Api
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+    var Setting = db.Setting.FirstOrDefault();
+
+    HttpCookie reqCookies = Request.Cookies["userInfo"];
+
+}
+@*int UserId;
+        bool IsAuthenticated = false;
+        var user = null;
+    }*@
+@*@{
+        if (Request.Cookies["userInfo"] != null)
+        {
+
+            string Values = Request.Cookies["UserId"].Value;
+
+            bool success = Int32.TryParse(Values, out UserId);
+            if (success)
+            {
+                UserId = Convert.ToInt32(Values);
+                user = db.Client.Where(x => x.id == UserId).FirstOrDefault();
+                if (user != null)
+                {
+                    IsAuthenticated = true;
+                }
+            }
+            else
+            {
+                UserId = 0;
+            }
+
+        }
+    }*@
+
+
+<!doctype html>
+<html lang="ar">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/Site/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/Site/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/Site/css/animate.css">
+    <link rel="stylesheet" href="~/Content/Site/css/icofont.min.css">
+
+    <!-- plugins CSS -->
+    <link rel="stylesheet" href="~/Content/Site/plugins/owl-carousel/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="~/Content/Site/css/style.css">
+    <!-- <link rel="stylesheet" href="css/style-ltr.css"> -->
+    <!-- title logo -->
+    <link rel="icon" href="~/Content/Site/imgs/logo.png" type="image/x-icon" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    @*<title> WaterDelivery </title>*@
+    <title>Laptops</title>
+
+    <style>
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+        * we use height instead, but this forces the menu to always be this tall
+        */
+        * html .ui-autocomplete {
+            height: 200px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Start header  -->
+    <header>
+        <!-- Start Navbar-->
+        <div class="menu">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-1 col-4">
+                        <div class="logo">
+                            <a href="/SiteHome/Index">
+                                <img src="~/Content/Site/imgs/logo.png" width="200" />
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="top-nav d-flex justify-content-between">
+                            <li>
+                                <a href="~/SiteHome/Index"> الرئيسية</a>
+                            </li>
+                            @if (reqCookies != null)
+                            {
+                                <li>
+                                    <a href="~/SiteHome/MyOrders">  طلباتي</a>
+                                </li>
+                                <li>
+                                    <a href="~/SiteHome/MyFavorites">  المفضلة</a>
+                                </li>
+
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="col-md-5 padd-0 ">
+                        <div class="top-search">
+                            <input type="text" id="autosearch" class="form-control  autosearch" placeholder="ابحث  هنا  ">
+                            <button>
+                                <i class="icofont-search"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-8 d-flex justify-content-md-between justify-content-sm-start padd-0">
+
+                        @if (reqCookies == null)
+                        {
+                            <div class="dropdown">
+                                <a class="toplink-flex dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @*<img src="~/Content/Site/imgs/person.png" alt="">*@
+                                    <img src="~/Content/Img/User/generic-user.png" alt="">
+
+                                    <div>
+                                        <h6> مرحباً ، تسجيل دخول</h6>
+                                        <h5> حسابي</h5>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
+                                    <p class="text-blue"> </p>
+                                    <a class="btn-site" href="/Site/login">
+                                        تسجيل الدخول
+                                    </a>
+                                    <p class="text-gray"> لاتمتلك حساب</p>
+                                    <a href="/Site/Register" class="text-blue"> انشى حساب الان</a>
+
+                                </div>
+                            </div>
+                        }
+
+                        @if (reqCookies != null)
+                        {
+                            int UserId = 0;
+                            string Values = BaseController.Decrypt(reqCookies["UserId"].ToString());
+
+                            bool success = Int32.TryParse(Values, out UserId);
+                            if (success)
+                            {
+                                UserId = Convert.ToInt32(Values);
+                                var user = db.Client.Where(x => x.id == UserId).FirstOrDefault();
+                                if (user != null)
+                                {
+                                    <div class="dropdown">
+                                        <a class="toplink-flex dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="@user.img" alt="">
+                                            <div>
+                                                <h6> مرحباً ،@user.user_name</h6>
+                                                <h5> حسابي</h5>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
+
+                                            <li>
+                                                <a href="/SiteHome/MyProfile">
+                                                    الحساب
+
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/SiteHome/Logout" class="text-red">
+                                                    تسجيل خروج
+
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <a class="toplink-flex" href="/SiteHome/Cart">
+                                        <img src="~/Content/Site/imgs/shopping-cart.png" alt="">
+                                        <div>
+                                            <h6>    عربة التسوق    </h6>
+                                            <h5> <span id="cart-price">0</span> ر.س</h5>
+                                        </div>
+                                        <span id="cart-count" class="cart-num">
+                                            0
+                                        </span>
+                                    </a>
+                                }
+                            }
+
+
+                        }
+                        <!-- after login -->
+                        <!--
+                           <div class="dropdown">
+                            <a class="toplink-flex dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <img src="imgs/profile.png" alt="">
+                             <div>
+                                <h6> مرحباً ، تسجيل دخول</h6>
+                                <h5> حسابي</h5>
+                             </div>
+                            </a>
+                            <ul class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
+
+                                <li>
+                                    <a href="profile.html">
+                                     الحساب
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="login.html" class="text-red">
+                                         تسجيل خروج
+
+                                    </a>
+                                </li>
+
+                            </ul>
+                          </div>
+                        -->
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Navbar-->
+    </header>
+    <!-- end header -->
+    <!-- Start body-content -->
+    <section class="body-content">
+        @RenderBody()
+    </section>
+    <!-- end body-content -->
+    <!-- start footer-->
+
+
+    <!-- end footer -->
+    <!--========================== Start Loading Page ======================-->
+
+    <div class="loader">
+        <img src="~/Content/Site/imgs/logo.png" alt="">
+    </div>
+    <div class="ajaxloader">
+        <div class="ring"></div>
+    </div>
+    <!--========================= End Loading Page =========================-->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Content/Site/js/jquery-3.2.1.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script src="~/Content/Site/js/popper.min.js"></script>
+    <script src="~/Content/Site/js/bootstrap.min.js"></script>
+    <script src="~/Content/Site/js/wow.min.js"></script>
+
+    <!-- plugins JS -->
+    <script src="~/Content/Site/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+
+
+
+    <!-- my JS -->
+    <script src="~/Content/Site/js/main.js"></script>
+
+    <script>new WOW().init();</script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000
+            }
+        });
+    </script>
+
+    <script>
+
+
+        var availableTags = [];
+        var myarray2 = [];
+        $(function () {
+            $.ajax({
+                url: "/SiteHome/Search",
+                type: "Get",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.Products.length; i++) {
+                        availableTags.push({ id: data.Products[i].Id, value: data.Products[i].name });
+                    }
+                }
+            })
+
+            //console.log(availableTags);
+
+            $(".autosearch").autocomplete({
+                source: availableTags,
+                minLength: 1,
+                select: function (event, ui) {
+                    location.assign("/SiteHome/GetSearch/" + ui.item.id);
+                }
+            });
+
+
+        });
+
+        $(document).ready(function () {
+            GetCartCount();
+            GetCountNotify();
+        });
+
+
+
+        function GetCartCount() {
+            $.post("/SiteHome/GetCartCount", { lang: "ar" }, function (data) {
+                if (data.key == 1) {
+                    $('#cart-count').html(data.count);
+                    $('#cart-price').html(data.price);
+                }
+            });
+        }
+
+        function GetCountNotify() {
+            $.post("/SiteHome/GetCountNotify", { lang: "ar" }, function (data) {
+                if (data.key == 1) {
+                    $('#countNotify').html(data.count);
+                }
+            });
+        }
+
+
+        function InCreasee(productID, count) {
+            //debugger;
+            if (count == 1) {
+                var qtyval = parseInt($('#qty-val-' + productID).text());
+                qtyval = qtyval + 1;
+                $('#qty-val-' + productID).text(qtyval);
+
+                $.post("/SiteHome/AddCart", { productId: productID, type: 1 }, function (data) {
+                    if (data.key == 1) {
+                        toastr.success(data.msg);
+                        GetCartCount();
+                    } else {
+                        toastr.warning(data.msg);
+                        GetCartCount();
+                    }
+                }, "json");
+            }
+            else {
+                var qtyval = parseInt($('#qty-val-' + productID).text());
+                qtyval = qtyval - 1;
+                $('#qty-val-' + productID).text(qtyval < 0 ? 0 : qtyval);
+                $.post("/SiteHome/AddCart", { productId: productID, type: 2 }, function (data) {
+                    if (data.key == 1) {
+                        toastr.success(data.msg);
+                        GetCartCount();
+                    } else {
+                        toastr.warning(data.msg);
+                        GetCartCount();
+                    }
+                }, "json");
+            }
+        }
+
+    </script>
+
+    <script>
+
+        $(document).ajaxStart(function () {
+            $(".ajaxloader").css("display", "block");
+            $(".ajaxloader .ring").css("display", "block");
+        });
+        $(document).ajaxStop(function () {
+            $(".ajaxloader").fadeOut(700, function () {
+
+                $(".ring").delay(1000).fadeOut(700);
+
+                $("body").css("overflow-y", "auto");
+            });
+        });
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

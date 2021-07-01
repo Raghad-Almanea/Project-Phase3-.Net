@@ -1,0 +1,198 @@
+﻿@model IEnumerable<WaterDelivery.Models.TableDb.Slider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30"></h4>
+            <div class="row">
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+
+                <p>
+                    @Html.ActionLink("اضافة اعلان جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                </p>
+                <h2 style="text-align:center">الاعلانات</h2>
+
+                <table id="datatable-responsiveSliders" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">
+                                الصورة
+                            </th>
+                            <th style="text-align:center">
+                                نوع الاعلان
+                            </th>
+
+
+                            <th style="text-align:center">
+                                الحالة
+                            </th>
+                            <th style="text-align:center">
+                                تغيير الحالة
+                            </th>
+                            <th style="text-align:center">
+                                تعديل
+                            </th>
+                            @*<th style="text-align:center">
+                                    حذف
+                                </th>*@
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.FileName" height="50" width="60" />
+                                </td>
+                                <td>
+                                    @if (item.type == 1)
+                                    {
+                                        <p>سلايدر</p>
+                                    }
+                                    @if (item.type == 2)
+                                    {
+                                        <p>مساحة اعلانية</p>
+                                    }
+                                </td>
+
+                                <td>
+                                    @{
+                                        if (item.IsActive == true)
+                                        {
+                                            <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                        }
+                                        else
+                                        {
+                                            <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    <input type="button" value="تغيير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                                </td>
+                                <td>
+                                    @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                </td>
+                                @*<td>
+                                        <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+                                    </td>*@
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section scripts{
+    <script>
+
+
+        $(document).ready(function () {
+
+            $('#datatable-responsiveSliders').DataTable({
+                dom: 'frtip',
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                },
+                //"order": [[0, "desc"]]
+                "order": []
+
+
+            });
+
+        })
+
+        function Validtion(id) {
+            $.ajax({
+                url: "/Sliders/ChangeState",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function (result) {
+
+                    if (result.data == true) {
+                        $('#' + id).css('color', 'green');
+                        $('#' + id).html('مفعل');
+                    } else if (result.data == false) {
+                        $('#' + id).css('color', 'red');
+                        $('#' + id).html('غير مفعل');
+
+                    }
+                    location.reload();
+                },
+                failure: function (info) {
+
+                }
+            });
+        }
+
+
+                //function Delete(id) {
+                //    Swal.fire({
+                //        title: 'هل انت متاكد من حذف هذا الصنف ؟',
+                //        type: 'warning',
+                //        showCancelButton: true,
+                //        confirmButtonColor: '#d33',
+                //        cancelButtonColor: '#3085d6',
+                //        cancelButtonText: 'اغلاق',
+                //        confirmButtonText: 'حذف',
+                //    }).then((result) => {
+                //        if (result.value) {
+                //            $.ajax({
+                //                url: "/Categories/Delete",
+                //                type: "POST",
+                //                dataType: "json",
+                //                data: {
+                //                    id: id
+                //                }, success: function (result) {
+                //                    if (result.key = 1) {
+                //                        Swal.fire({
+                //                            position: 'success',
+                //                            type: 'success',
+                //                            title: 'تم الحذف بنجاح..',
+                //                            showConfirmButton: false,
+                //                            timer: 1500
+                //                        })
+                //                    }
+                //                    $("#" + id).closest("tr").remove();
+                //                },
+                //                failure: function (info) {
+
+                //                }
+                //            })
+                //        }
+                //    })
+                //}
+
+
+    </script>
+}

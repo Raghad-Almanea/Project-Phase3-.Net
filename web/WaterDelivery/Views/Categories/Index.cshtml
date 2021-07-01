@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WaterDelivery.Models.TableDb.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Dashboard_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30"></h4>
+            <div class="row">
+
+                <!-- -------------------------------------------------------------------------------------------------- -->
+
+                <p>
+                    @Html.ActionLink("اضافة تصنيف جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                </p>
+                <h2 style="text-align:center">التصنيفات</h2>
+
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">
+                                الاسم باللغة العربية
+                            </th>
+                            <th style="text-align:center">
+                                الاسم باللغة الانجليزية
+                            </th>
+                            @*<th style="text-align:center">
+                                الصورة
+                            </th>*@
+                            <th style="text-align:center">
+                                الحالة
+                            </th>
+                            <th style="text-align:center">
+                                تغيير الحالة
+                            </th>
+                            <th style="text-align:center">
+                                تعديل
+                            </th>
+                            @*<th style="text-align:center">
+            حذف
+        </th>*@
+                        </tr>
+                    </thead>
+                    <tbody style="text-align:center">
+
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @item.name
+                            </td>
+                            <td>
+                                @item.name_en
+                            </td>
+                            @*<td>
+                                <img src="@item.img" height="50" width="60" />
+                            </td>*@
+                            <td>
+                                @{
+                                    if (item.is_active == true)
+                                    {
+                                        <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                    }
+                                    else
+                                    {
+                                        <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                <input type="button" value="تغيير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                            </td>
+                            @*<td>
+            <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+        </td>*@
+
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div><!-- end row -->
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section scripts{
+    <script>
+
+        function Validtion(id) {
+            $.ajax({
+                url: "/Categories/ChangeState",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function(result) {
+
+                    if (result.data == true) {
+                        $('#' + id).css('color', 'green');
+                        $('#' + id).html('مفعل');
+                    } else if (result.data == false) {
+                        $('#' + id).css('color', 'red');
+                        $('#' + id).html('غير مفعل');
+
+                    }
+                },
+                failure: function(info) {
+
+                }
+            });
+        }
+
+
+
+        //function Delete(id) {
+        //    Swal.fire({
+        //        title: 'هل انت متاكد من حذف هذا الصنف ؟',
+        //        type: 'warning',
+        //        showCancelButton: true,
+        //        confirmButtonColor: '#d33',
+        //        cancelButtonColor: '#3085d6',
+        //        cancelButtonText: 'اغلاق',
+        //        confirmButtonText: 'حذف',
+        //    }).then((result) => {
+        //        if (result.value) {
+        //            $.ajax({
+        //                url: "/Categories/Delete",
+        //                type: "POST",
+        //                dataType: "json",
+        //                data: {
+        //                    id: id
+        //                }, success: function (result) {
+        //                    if (result.key = 1) {
+        //                        Swal.fire({
+        //                            position: 'success',
+        //                            type: 'success',
+        //                            title: 'تم الحذف بنجاح..',
+        //                            showConfirmButton: false,
+        //                            timer: 1500
+        //                        })
+        //                    }
+        //                    $("#" + id).closest("tr").remove();
+        //                },
+        //                failure: function (info) {
+
+        //                }
+        //            })
+        //        }
+        //    })
+        //}
+
+
+    </script>
+}

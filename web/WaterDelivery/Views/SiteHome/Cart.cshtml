@@ -1,0 +1,137 @@
+﻿@model IEnumerable<WaterDelivery.ViewModels.CartViewModel>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<section class="body-content">
+    <div class="container">
+        <div class="sec-padd cart-page">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/SiteHome/Index"> الرئيسية</a></li>
+
+                    <li class="breadcrumb-item active" aria-current="page">  السلة</li>
+                </ol>
+            </nav>
+
+            @if (Model.Count() > 0)
+            {
+                <div class="cart-box">
+                    <div class="row">
+
+                        @foreach (var product in Model)
+                        {
+                            <div id="parnet-@product.ProductId" class="col-md-6">
+                                <div class="cart-item">
+                                    <img src="@product.Img">
+                                    <div class="cart-info">
+                                        <h5 class="name"> @product.Name</h5>
+                                        <h5 class="name">  @product.Price رس </h5>
+                                    </div>
+                                    <div>
+                                        
+                                        <button onclick="DeleteProduct(@product.ProductId)" class="cart-fav">
+                                            <i class="fa fa-trash-o text-red"></i>
+                                            حذف
+                                        </button>
+
+                                        <h6 class="text-gray"> الكمية </h6>
+
+                                        <div class="info-qty d-flex">
+                                            <a onclick="InCrease(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
+                                                <i class="icofont-plus"></i>
+                                            </a>
+                                            <div class="qty-val" id="qty-val-@product.ProductId">@product.Qty</div>
+                                            <input id="num-@product.ProductId" type="hidden" name="count" value="">
+                                            <a onclick="InCrease(@product.ProductId ,2)" class="qty-down" id="qty-down-@product.ProductId">
+                                                <i class="icofont-minus"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+                    <a href="~/SiteHome/ConfirmOrder" class="btn-site w-60"> تنفيذ طلبك</a>
+                </div>
+            }
+            else
+            {
+                <div class="empty-box">
+                    <h5> لا يوجد منتجات بالسلة</h5>
+                    <img src="~/Content/Site/imgs/empty.png" />
+
+                </div>
+            }
+
+
+
+
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script>
+
+        function InCrease(productID, count) {
+            //debugger;
+            if (count == 1) {
+                var qtyval = parseInt($('#qty-val-' + productID).text());
+                qtyval = qtyval + 1;
+                $('#qty-val-' + productID).text(qtyval);
+
+                $.post("/SiteHome/AddCart", { productId: productID, type: 1 }, function (data) {
+                    if (data.key == 1) {
+                        toastr.success(data.msg);
+                        GetCartCount();
+
+                    } else {
+                        toastr.warning(data.msg);
+                        GetCartCount();
+                    }
+                }, "json");
+            }
+            else {
+                var qtyval = parseInt($('#qty-val-' + productID).text());
+                qtyval = qtyval - 1;
+                $('#qty-val-' + productID).text(qtyval < 0 ? 0 : qtyval);
+                $.post("/SiteHome/AddCart", { productId: productID, type: 2 }, function (data) {
+                    if (data.key == 1) {
+                        toastr.success(data.msg);
+                        GetCartCount();
+                    } else {
+                        toastr.warning(data.msg);
+                        GetCartCount();
+                    }
+                }, "json");
+            }
+        }
+
+        function DeleteProduct(id)
+        {
+            $.post("/SiteHome/DeleteProduct", { productId: id }, function (data) {
+                if (data.key == 1) {
+                    toastr.success(data.msg);
+                    $("#parnet-" + id).remove();
+                    GetCartCount();
+                    if (data.CountCart == 0) {
+                        window.location.reload();
+                    }
+                } else {
+                    toastr.warning(data.msg);
+                }
+            }, "json");
+           
+        }
+
+
+    </script>
+}
+
