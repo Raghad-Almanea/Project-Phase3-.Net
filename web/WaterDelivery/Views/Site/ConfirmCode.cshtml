@@ -6,14 +6,14 @@
 
 <div class="login-content">
     <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
-    <h4 class="title-form">   استرجاع الحساب</h4>
+    <h4 class="title-form">   Account recovery</h4>
     <div class="input-group">
         
-        <input type="text" id="Code" placeholder="  ادخل الكود الخاص بك   " class="form-control">
+        <input type="text" id="Code" placeholder="  Enter your code   " class="form-control">
 
     </div>
 
-    <a @*href="newpassword.html"*@ onclick="ConfirmCode()" class="btn-site w-100">   ارسال   </a>
+    <a @*href="newpassword.html"*@ onclick="ConfirmCode()" class="btn-site w-100">   SEND   </a>
 
 </div>
 
@@ -26,7 +26,7 @@
             var Code = $("#Code").val();
            
             if ($("#Code").val() == "") {
-                toastr.error("من فضلك ادخل كود التحقق ");
+                toastr.error("Please enter the verification code ");
                 ScrollItem("#Code");
                 return false;
             }        

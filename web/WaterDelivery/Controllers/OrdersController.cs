@@ -85,27 +85,27 @@ namespace WaterDelivery.Controllers
                 notify.fk_user = order.fk_userID;
                 notify.order_id = id;
                 notify.order_type = (int)Order_type.dashborad_Ready;
-                notify.text = "تم تجهيز الطلب رقم " + id;
+                notify.text = "Order No. has been processed " + id;
                 notify.type = 1;
                 context.Notify.Add(notify);
                 context.SaveChanges();
-                BaseController.SendPushNotification(order.fk_userID, order.Id, (int)Order_type.dashborad_Ready, "تم تجهيز الطلب رقم  " + id, 1);
+                BaseController.SendPushNotification(order.fk_userID, order.Id, (int)Order_type.dashborad_Ready, " Order No. has been processed" + id, 1);
                 Notify notify1 = new Notify();
                 notify1.date = DateTime.Now;
                 notify1.fk_provider = (int)order.fk_providerID;
                 notify1.order_id = id;
                 notify1.order_type = (int)Order_type.dashborad_Ready;
-                notify1.text = "تم تجهيز الطلب رقم " + id;
+                notify1.text = "Order No. has been processed " + id;
                 notify.type = 2;
                 context.Notify.Add(notify1);
                 context.SaveChanges();
-                BaseController.SendPushNotification((int)order.fk_providerID, order.Id, (int)Order_type.dashborad_Ready, "تم تجهيز الطلب رقم  " + id, 1);
+                BaseController.SendPushNotification((int)order.fk_providerID, order.Id, (int)Order_type.dashborad_Ready, "Order No. has been processed  " + id, 1);
                 return Json(new { key = 1, data = "" }, JsonRequestBehavior.AllowGet);
             }
             if (order.type == (int)Order_type.New)
             {
 
-                return Json(new { key = 1, data = "لا يمكن تجهيز طلب لم يوافق عليه المندوب بعد" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, data = "It is not possible to process a request that has not yet been approved by the delegate" }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { key = 1, data = "" }, JsonRequestBehavior.AllowGet);
 

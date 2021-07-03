@@ -14,9 +14,9 @@
     <div class="sec-padd like-page">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"> الرئيسية</a></li>
+                <li class="breadcrumb-item"><a href="index.html"> Home</a></li>
 
-                <li class="breadcrumb-item active" aria-current="page">  حسابي</li>
+                <li class="breadcrumb-item active" aria-current="page">  my account</li>
             </ol>
         </nav>
         <div class="profile-page ">
@@ -39,21 +39,21 @@
                     <div class="box-right">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">  الاعدادات</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-selected="true">  setting</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="contact" aria-selected="false"> تغيير كلمة المرور</a>
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" id="Portfolio-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="Portfolio" aria-selected="false">المحفظه</a>
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="contact" aria-selected="false"> change password</a>
                             </li>
 
 
                             <li class="nav-item">
-                                <a class="nav-link text-red" href="/SiteHome/Logout">  تسجيل خروج    </a>
+                                <a class="nav-link" id="Portfolio-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="Portfolio" aria-selected="false">walet</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-red" href="/SiteHome/Logout">  logout    </a>
                             </li>
                         </ul>
                     </div>
@@ -66,12 +66,12 @@
                             <div class="box">
                                 <div class="row profile-form">
                                     <div class="col-md-6">
-                                        <label> الاسم </label>
+                                        <label> name </label>
                                         <input type="text" id="Name" class="input-form" placeholder="" value="@Model.Name">
 
                                     </div>
                                     <div class="col-md-6">
-                                        <label> رقم الجوال </label>
+                                        <label> phone number </label>
 
                                         <input onkeypress="return isNumberKey(event)" type="text" id="Phone" class="input-form" value="@Model.Phone">
 
@@ -102,7 +102,7 @@
 
                                     <div class="col-md-12">
                                         @*<button  class="btn-site "> حفظ</button>*@
-                                        <input type="button" onclick="EditProfile()" class="btn-site" value="حفظ" />
+                                        <input type="button" onclick="EditProfile()" class="btn-site" value="save" />
                                     </div>
                                 </div>
                             </div>
@@ -113,17 +113,17 @@
                             <div class="box">
                                 <div class="row profile-form justify-content-center">
                                     <div class="col-md-6">
-                                        <label for=""> كلمة المرور القديمة</label>
-                                        <input type="password" class="input-form" id="OldPassword" placeholder="كلمة المرور القديمة ">
-                                        <label for=""> كلمة المرور الجديدة</label>
+                                        <label for=""> Old Password</label>
+                                        <input type="password" class="input-form" id="OldPassword" placeholder="Old Password ">
+                                        <label for="">  new Password</label>
 
-                                        <input type="password" class="input-form" id="NewPassword" placeholder="كلمة المرور الجديدة ">
-                                        <label for="">   تاكيد كلمة المرور الجديدة</label>
+                                        <input type="password" class="input-form" id="NewPassword" placeholder="Old Password ">
+                                        <label for="">   confirm new Password</label>
 
-                                        <input type="password" class="input-form" id="Confirmpassword" placeholder=" تاكيد كلمة المرور الجديدة ">
+                                        <input type="password" class="input-form" id="Confirmpassword" placeholder=" confirm new Password ">
                                     </div>
                                     <div class="col-md-12">
-                                        <button onclick="EditPassword()" class="btn-site "> حفظ</button>
+                                        <button onclick="EditPassword()" class="btn-site "> save </button>
                                         @*<input  type="button" onclick="EditPassword()" class="btn-site" value="حفظ" />*@
                                     </div>
                                 </div>
@@ -144,19 +144,19 @@
                                 <div class="d-flex justify-content-around the_Portfolio">
 
                                     <div>
-                                        <h5>المحفظة</h5>
-                                        <span id="wallet">@Model.Wallet </span> ر.س
+                                        <h5>wallet</h5>
+                                        <span id="wallet">@Model.Wallet </span> SR
                                     </div>
 
                                     <div>
-                                        <h5>رصيد النقاط</h5>
+                                        <h5>POINTS</h5>
                                         <span id="point">@Model.Points</span>
                                     </div>
 
 
                                 </div>
 
-                                <button class="btn-site " onclick="ConvertPointsToWalletCash(@Model.Points)">تحويل النقاط</button>
+                                <button class="btn-site " onclick="ConvertPointsToWalletCash(@Model.Points)">Transfer points</button>
 
 
 
@@ -200,27 +200,27 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> اضافة عنوان  </h5>
+                <h5 class="modal-title" id="exampleModalLabel"> add a ADDRESS  </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="profile-form">
-                    <input type="text" class="input-form" placeholder="الاسم">
-                    <input type="text" class="input-form" placeholder="الموقع علي الخريطه">
-                    <input type="text" class="input-form" placeholder=" العنوان">
+                    <input type="text" class="input-form" placeholder="NAME">
+                    <input type="text" class="input-form" placeholder="Location on the map">
+                    <input type="text" class="input-form" placeholder=" ADDRESS">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" class="input-form" placeholder=" رقم البناية    ">
+                            <input type="text" class="input-form" placeholder=" building number    ">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="input-form" placeholder=" رقم الشقة ">
+                            <input type="text" class="input-form" placeholder=" Apartment number ">
                         </div>
                     </div>
 
-                    <input type="text" class="input-form" placeholder=" رقم الجوال">
-                    <button class="btn-site w-100" data-dismiss="modal"> حفظ</button>
+                    <input type="text" class="input-form" placeholder=" Mobile number">
+                    <button class="btn-site w-100" data-dismiss="modal"> SAVE</button>
                 </div>
             </div>
 
@@ -288,20 +288,20 @@
 
 
             if ($("#Name").val() == "") {
-                toastr.error("من فضلك ادخل اسم المستخدم ");
+                toastr.error("Please enter your username ");
                 ScrollItem("#Name");
                 return false;
             }
 
 
             if ($("#Phone").val() == "") {
-                toastr.error("من فضلك ادخل رقم الجوال ");
+                toastr.error("Please enter your PHONE NUMBER ");
                 ScrollItem("#Phone");
                 return false;
             }
 
             if (Phone.length < 10) {
-                toastr.error("يجب الا رقم الهاتف 10 ارقام ");
+                toastr.error("Phone number should not be 10 digits ");
                 ScrollItem("#Phone");
                 return false;
             }
@@ -321,7 +321,7 @@
                         return false;
                     }
                     else if (data.key == 1) {
-                        toastr.success("تم التعديل بنجاح.. ");
+                        toastr.success("Edited successfully.. ");
                         setTimeout(function () { window.location.reload(); }, 3000);
                     }
                 }
@@ -337,31 +337,31 @@
 
 
             if ($("#OldPassword").val() == "") {
-                toastr.error("من فضلك ادخل كلمة المرور القديمة ");
+                toastr.error("Please enter the old password ");
                 return false;
             }
 
 
             if ($("#NewPassword").val() == "") {
-                toastr.error("من فضلك ادخل كلمة المرور الجديدة ");
+                toastr.error("Please enter the new password ");
                 ScrollItem("#NewPassword");
                 return false;
             }
 
 
             if (NewPassword.length < 6) {
-                toastr.error("يرجى الا تقل كلمة المرور عن 6 ارقام ");
+                toastr.error("Please, the password should not be less than 6 digits ");
                 return false;
             }
 
             if ($("#Confirmpassword").val() == "") {
-                toastr.error("من فضلك ادخل كلمة تاكيد المرور الجديدة ");
+                toastr.error("Please enter the new confirmation password ");
                 return false;
             }
 
 
             if ($("#Confirmpassword").val() != $("#NewPassword").val()) {
-                toastr.error("كلمتا المرور غير متطابقتين");
+                toastr.error("Please enter the new confirmation password");
                 return false;
             }
 

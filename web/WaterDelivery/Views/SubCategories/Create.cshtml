@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>إضافة تصنيف فرعى</h2>
+<h2>Add subcategory</h2>
 
 
 @using (Html.BeginForm("Create", "SubCategories", FormMethod.Post, new { role = "form", enctype = "multipart/form-data" }))
@@ -16,29 +16,29 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.Label("التصنيف", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("CATEGORY", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <select id="fk_categoryID" name="fk_cat" class="form-control">
-                <option value="-1">اختر تصنيف</option>
+                <option value="-1">CHOOSE CATEGORY</option>
             </select>
         </div>
     </div>
     <div class="form-group">
-        @Html.Label("الاسم باللغه العربية", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("NAME IN ARABIC", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.Label("الاسم باللغه الانجليزية", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("NAME IN ENGLISH", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.name_en, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.name_en, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.Label("الصوره", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("IMAGE ", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
 
             <input type="file" name="img" id="img" class="form-control" />
@@ -55,13 +55,13 @@
         </div>*@
     <div class="form-group">
         <div class="  col-md-12">
-            <input type="button" value="إضافة" onclick="Validtion()" class="btn-new-style" />
+            <input type="button" value="ADD " onclick="Validtion()" class="btn-new-style" />
             <input type="submit" id="btnSave" style="display:none" value="اضافة" class="btn-new-style" />
         </div>
     </div>
     <div class="form-group">
         <div class="  col-md-12 text-center">
-            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black" })
+            @Html.ActionLink("BACK TO HOME", "Index", null, new { @class = "btn-black" })
 
         </div>
     </div>
@@ -104,13 +104,13 @@
             var flg = true;
 
             if ($("#name").val() == "") {
-                toastr.error('من فضلك ادخل اسم التصنيف');
+                toastr.error('Please enter the category name');
                 $("#name").focus();
                 flg = false;
                 return false;
             }
             if ($("#img").val() == "") {
-                toastr.error('من فضلك ادخل صورة التصنيف ');
+                toastr.error('Please enter a category image ');
                 $("#img").focus();
                 flg = false;
                 return false;

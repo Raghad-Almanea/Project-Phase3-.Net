@@ -6,13 +6,13 @@
 
 <div class="login-content">
     <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
-    <h4 class="title-form">    تفعيل رقم الجوال  </h4>
+    <h4 class="title-form">    Activate the mobile number  </h4>
     <div class="input-group">
-        <input type="text"  id="Code" placeholder="  ادخل  كود التفعيل  " class="form-control">
+        <input type="text"  id="Code" placeholder="  Enter the activation code  " class="form-control">
 
     </div>
 
-    <a @*href="index.html"*@ onclick="ConfirmCode()" class="btn-site w-100">    تفعيل   </a>
+    <a @*href="index.html"*@ onclick="ConfirmCode()" class="btn-site w-100">    activation   </a>
 
 
 </div>
@@ -26,7 +26,7 @@
             var Code = $("#Code").val();
 
             if ($("#Code").val() == "") {
-                toastr.error("من فضلك ادخل كود التحقق ");
+                toastr.error("Please enter the verification code ");
                 ScrollItem("#Code");
                 return false;
             }

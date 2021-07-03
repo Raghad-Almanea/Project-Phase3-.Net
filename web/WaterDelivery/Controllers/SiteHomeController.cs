@@ -177,7 +177,7 @@ namespace WaterDelivery.Controllers
                         return Json(new
                         {
                             key = 1,
-                            msg = creatMessage(currentUser.lang, "تم اضافة المنتج الى المفضلة بنجاح ", "The product has been successfully added to your favorites ")
+                            msg = creatMessage(currentUser.lang, "The product has been successfully added to your favourites ", "The product has been successfully added to your favorites ")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     else
@@ -187,7 +187,7 @@ namespace WaterDelivery.Controllers
                         return Json(new
                         {
                             key = 1,
-                            msg = creatMessage(currentUser.lang, "تم ازالة المنتج من المفضلة بنجاح ", "The product has been removed from your favorites ")
+                            msg = creatMessage(currentUser.lang, "The product has been removed from the favourites successfully ", "The product has been removed from your favorites ")
                         }, JsonRequestBehavior.AllowGet);
                     }
                 }
@@ -215,7 +215,7 @@ namespace WaterDelivery.Controllers
                     var setting = db.Setting.FirstOrDefault();
                     if (points < setting.PointsPerRiyal)
                     {
-                        return Json(new { key = 0, msg = creatMessage(client.lang, "اقل عدد نقاط للتحويل هو  " + setting.PointsPerRiyal, "The minimum points to transfer are " + setting.PointsPerRiyal) });
+                        return Json(new { key = 0, msg = creatMessage(client.lang, "The minimum number of points to transfer is  " + setting.PointsPerRiyal, "The minimum points to transfer are " + setting.PointsPerRiyal) });
                     }
                     else
                     {
@@ -224,7 +224,7 @@ namespace WaterDelivery.Controllers
                         client.wallet += riyalWalletPoints;
                         client.Points = remaining;
                         db.SaveChanges();
-                        return Json(new { key = 1, points = client.Points, wallet = Math.Round(client.wallet, 2), msg = creatMessage(client.lang, "تم تحويل النقاط بنجاح ", "The points transferred successfully") });
+                        return Json(new { key = 1, points = client.Points, wallet = Math.Round(client.wallet, 2), msg = creatMessage(client.lang, "Points transferred successfully ", "The points transferred successfully") });
                     }
 
                 }
@@ -361,7 +361,7 @@ namespace WaterDelivery.Controllers
             }
             else
             {
-                return Json(new { key = 0, msg = "حدث خطا ما" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Something went wrong" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -375,19 +375,19 @@ namespace WaterDelivery.Controllers
 
                 if (order == null)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 if (order.type == 3)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 var check_product = db.Product.FirstOrDefault(p => p.Id == productId);
 
                 if (check_product.all_qty == 0)
                 {
-                    return Json(new { key = 0, msg = $" عفوا  { check_product.name}   غير متوفر حاليا .. " }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = $" Sorry { check_product.name} is currently unavailable.. " }, JsonRequestBehavior.AllowGet);
                 }
                 //InCrease Qty in Order
                 var orderinfo = db.OrderInfo.Where(x => x.fk_orderID == orderId && x.fk_product == productId).FirstOrDefault();
@@ -397,7 +397,7 @@ namespace WaterDelivery.Controllers
                     {
                         if (check_product.all_qty < orderinfo.qty + 1)
                         {
-                            return Json(new { key = 0, msg = $" عفوا  { check_product.name}   غير متوفر بهذه الكمية حاليا .. " }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 0, msg = $" Sorry { check_product.name} is currently not available in this quantity.. " }, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
@@ -415,12 +415,12 @@ namespace WaterDelivery.Controllers
                                 order.net_total = total + order.delivary;
                                 db.SaveChanges();
 
-                                return Json(new { key = 1, msg = "تم تغيير كمية المنتج بنجاح.." }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = 1, msg = "Product quantity changed successfully.." }, JsonRequestBehavior.AllowGet);
 
                             }
                             else
                             {
-                                return Json(new { key = 0, msg = "المنتج " + check_product.name + " لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = 0, msg = "Product " + check_product.name + " does not exist anymore" }, JsonRequestBehavior.AllowGet);
                             }
                         }
                     }
@@ -440,7 +440,7 @@ namespace WaterDelivery.Controllers
                             order.net_total = total + order.delivary;
                             db.SaveChanges();
 
-                            return Json(new { key = 1, msg = "تم تغيير كمية المنتج بنجاح.." }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 1, msg = "Product quantity changed successfully.." }, JsonRequestBehavior.AllowGet);
 
                         }
                         else
@@ -457,13 +457,13 @@ namespace WaterDelivery.Controllers
 
                             if (order.total != 0)
                             {
-                                return Json(new { key = 2, msg = "تم ازالة المنتج من الطلب.." }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = 2, msg = "The product has been removed from the order.." }, JsonRequestBehavior.AllowGet);
                             }
                             else
                             {
                                 db.Order.Remove(order);
                                 db.SaveChanges();
-                                return Json(new { key = 3, msg = "تم حذف الطلب بالكامل ...." }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = 3, msg = "The request has been completely removed ...." }, JsonRequestBehavior.AllowGet);
                             }
 
                         }
@@ -485,12 +485,12 @@ namespace WaterDelivery.Controllers
                 var order = db.Order.FirstOrDefault(x => x.Id == orderId && x.fk_userID == UserId);
                 if (order == null)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 if (order.type == 3)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 var orderinfo = db.OrderInfo.Where(x => x.fk_orderID == orderId && x.fk_product == productId).FirstOrDefault();
@@ -511,10 +511,10 @@ namespace WaterDelivery.Controllers
                     {
                         db.Order.Remove(order);
                         db.SaveChanges();
-                        return Json(new { key = 2, msg = "تم حذف الطلب بنجاح.." }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 2, msg = "The request has been successfully deleted.." }, JsonRequestBehavior.AllowGet);
 
                     }
-                    return Json(new { key = 1, Count = CountOrderInfo, msg = "تم حذف المنتح بنجاح.." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, Count = CountOrderInfo, msg = "The request has been successfully deleted.." }, JsonRequestBehavior.AllowGet);
 
                 }
             }
@@ -532,12 +532,12 @@ namespace WaterDelivery.Controllers
                 var order = db.Order.Where(x => x.Id == orderId && x.fk_userID == UserId).FirstOrDefault();
                 if (order == null)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 if (order.type == 3)
                 {
-                    return Json(new { key = 0, msg = "هذا الطلب لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This request is no longer available" }, JsonRequestBehavior.AllowGet);
                 }
 
                 var orderinfo = db.OrderInfo.Where(x => x.fk_orderID == orderId).ToList();
@@ -549,7 +549,7 @@ namespace WaterDelivery.Controllers
                     db.SaveChanges();
 
 
-                    return Json(new { key = 1, msg = "تم حذف الطلب بنجاح.." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, msg = "The request has been successfully deleted.." }, JsonRequestBehavior.AllowGet);
 
                 }
             }
@@ -577,7 +577,7 @@ namespace WaterDelivery.Controllers
             //Check Is Email
             if (!IsValidEmail(Email))
             {
-                return Json(new { key = 0, msg = "برجاء ادخال بريد الكترونى صحيح" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Please enter a valid email" }, JsonRequestBehavior.AllowGet);
             }
             Complaints contact = new Complaints
             {
@@ -587,7 +587,7 @@ namespace WaterDelivery.Controllers
             };
             db.Complaints.Add(contact);
             db.SaveChanges();
-            return Json(new { key = 1, msg = "تم الارسال ينجاح.." }, JsonRequestBehavior.AllowGet);
+            return Json(new { key = 1, msg = "Sent is successful" }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -606,16 +606,16 @@ namespace WaterDelivery.Controllers
                     db.SaveChanges();
                     var CountCart = db.Cart.Where(x => x.fk_userID == UserId).Count();
 
-                    return Json(new { key = 1, CountCart = CountCart, msg = "تم حذف المنتج من السلة" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, CountCart = CountCart, msg = "The product has been removed from the basket" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { key = 0, msg = "حدث خطا ما " }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Something went wrong " }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
-                return Json(new { key = 0, msg = "حدث خطا ما " }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Something went wrong " }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -648,7 +648,7 @@ namespace WaterDelivery.Controllers
                     var check_product = db.Product.FirstOrDefault(p => p.Id == productId);
                     if (check_product.all_qty == 0)
                     {
-                        return Json(new { key = 0, msg = $" عفوا  { check_product.name}   غير متوفر حاليا .. " }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = $" Sorry { check_product.name} is currently unavailable.. " }, JsonRequestBehavior.AllowGet);
                     }
                     var cartfound = db.Cart.FirstOrDefault(x => x.fk_productID == productId && x.fk_userID == UserId);
                     if (cartfound != null)
@@ -667,7 +667,7 @@ namespace WaterDelivery.Controllers
                         db.Cart.Add(cart);
                         db.SaveChanges();
                     }
-                    return Json(new { key = 1, msg = $" تم اضافة { check_product.name}   الى السلة بنجاح .. " }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, msg = $" { check_product.name} has been successfully added to the cart.. " }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -678,26 +678,25 @@ namespace WaterDelivery.Controllers
                         {
                             cartfound.qty = cartfound.qty - 1;
                             db.SaveChanges();
-                            return Json(new { key = 0, msg = "تم تغيير كمية المنتج بالسلة بنجاح.." }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 0, msg = "The product quantity in the basket has been changed successfully.." }, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
                             db.Cart.Remove(cartfound);
                             db.SaveChanges();
-                            return Json(new { key = 0, msg = "تم ازالة المنتج من السلة بنجاح.." }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 0, msg = "The product has been removed from the cart successfully.." }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     else
                     {
-                        return Json(new { key = 0, msg = "تم ازالة المنتج من السلة بنجاح.." }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = "The product has been removed from the cart successfully.." }, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
             else
             {
-                return Json(new { key = 0, msg = "يرجى تسجيل الدخول اولا .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = " Sign in first .." }, JsonRequestBehavior.AllowGet);
             }
-            //return Json(new { key = 0, msg = "يرجى تسجيل الدخول اولا .." }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -767,7 +766,7 @@ namespace WaterDelivery.Controllers
             {
                 if (Lat == "" && Lng == "" && Address == "" && previousLocationId == 0)
                 {
-                    return Json(new { key = 0, msg = "برجاء تحديد الموقع .." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Please select a location .." }, JsonRequestBehavior.AllowGet);
                 }
                 double Delivery = db.Setting.Select(x => x.delivery).FirstOrDefault();
                 double total = db.Cart.Include(x => x.fk_product).Where(x => x.fk_userID == UserId).Select(x => x.qty * x.fk_product.price).DefaultIfEmpty(0).Sum();
@@ -804,7 +803,7 @@ namespace WaterDelivery.Controllers
 
                     if (client.wallet < total)
                     {
-                        return Json(new { key = 0, msg = creatMessage(client.lang, "رصيد المحفظة غير كافي لاتمام عملية الدفع", "Your wallet balance not enough to complete the payment process") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(client.lang, "Your wallet balance not enough to complete the payment process", "Your wallet balance not enough to complete the payment process") }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
@@ -818,7 +817,7 @@ namespace WaterDelivery.Controllers
                 var cart = db.Cart.Where(x => x.fk_userID == UserId).ToList();
                 if (cart.Count == 0)
                 {
-                    return Json(new { key = 0, msg = "برجاء اضافة منتجات الى العربة" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Please add products to the cart" }, JsonRequestBehavior.AllowGet);
                 }
 
                 // check order's products qty
@@ -828,11 +827,11 @@ namespace WaterDelivery.Controllers
 
                     if (check_product.all_qty == 0)
                     {
-                        return Json(new { key = 0, msg = "المنتج " + check_product.name + " لم يعد موجود" }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = "product " + check_product.name + " no longer exists" }, JsonRequestBehavior.AllowGet);
                     }
                     if (item.qty > check_product.all_qty)
                     {
-                        return Json(new { key = 0, msg = "الحد الاقصى لمنتج " + check_product.name + " هو " + check_product.all_qty }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = "Maximum product" + check_product.name + "is" + check_product.all_qty }, JsonRequestBehavior.AllowGet);
                     }
                 }
 
@@ -869,14 +868,13 @@ namespace WaterDelivery.Controllers
                         lng = Lng,
                         address = Address,
                         fk_userID = UserId,
-                        title = "العنوان الحالى",
+                        title = "current address",
                         is_used = true,
                     };
                     db.AddressUser.Add(newaddress);
                     db.SaveChanges();
                 }
 
-                // هنعمل اشعار لكل المندوبين
                 var Providers = db.Provider.Where(x => x.active == true).ToList();
                 foreach (var item in Providers)
                 {
@@ -885,10 +883,10 @@ namespace WaterDelivery.Controllers
                     notify.fk_provider = item.id;
                     notify.order_id = order.Id;
                     notify.order_type = order.type;
-                    notify.text = "تم اضافة الطلب رقم " + order.Id + " بنجاح";
+                    notify.text = "Order No. has been added " + order.Id + " succesfuly";
 
                     db.Notify.Add(notify);
-                    SendPushNotification(item.id, order.Id, order.type, "هناك طلب جديد فى قائمة الطلبات برجاء الاطلاع", 2);
+                    SendPushNotification(item.id, order.Id, order.type, "There is a new request in the list of requests, please see", 2);
                 }
                 db.SaveChanges();
 
@@ -896,7 +894,7 @@ namespace WaterDelivery.Controllers
                 {
                     key = 1,
                     order_id = order.Id,
-                    msg = "تم اضافة الطلب بنجاح"
+                    msg = "The request has been successfully added"
                 }, JsonRequestBehavior.AllowGet);
             }
 
@@ -962,13 +960,13 @@ namespace WaterDelivery.Controllers
 
                 if (phone != null || phone_provider != null)
                 {
-                    return Json(new { key = 0, msg = "عذرا هذا الجوال موجود بالفعل" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Sorry, this phone already exists" }, JsonRequestBehavior.AllowGet);
                 }
                 var ChkName = (from st in db.Client where st.user_name == Name && st.id != UserDB.id select st).FirstOrDefault();
 
                 if (ChkName != null)
                 {
-                    return Json(new { key = 0, msg = "عذرا هذا الاسم موجود بالفعل" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Sorry, this name already exists" }, JsonRequestBehavior.AllowGet);
                 }
 
 
@@ -990,11 +988,11 @@ namespace WaterDelivery.Controllers
                     UserDB.img = BaisUrlHoste + "Content/Img/User/" + extension;
                 }
                 db.SaveChanges();
-                return Json(new { key = 1, msg = "تم التعديل بنجاح.." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, msg = "Edited successfully.." }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new { key = 0, msg = "تم التحقق من البيانات .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Data Verified .." }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -1006,13 +1004,13 @@ namespace WaterDelivery.Controllers
             {
                 if (UserDB.password != OldPassword)
                 {
-                    return Json(new { key = 0, msg = "يرجى التحقق من كلمة المرور القديمة .." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "Please check your old password .." }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     UserDB.password = NewPassword;
                     db.SaveChanges();
-                    return Json(new { key = 1, msg = "تم تغيير كلمة المرور .." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, msg = "password checked .." }, JsonRequestBehavior.AllowGet);
                 }
             }
             else

@@ -93,7 +93,7 @@
                             </button>
                         </li>
                         <li>
-                            <h4 class="page-title">لوحة تحكم - Laptops</h4>
+                            <h4 class="page-title">Dash board - Laptops</h4>
                         </li>
                     </ul>
 
@@ -162,7 +162,7 @@
                     <ul>
                         <li style="display:none" class="text-muted menu-title">Navigation</li>
                         <li>
-                            <a href="~/Home/Index" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i> <span> لوحه التحكم </span> </a>
+                            <a href="~/Home/Index" class="waves-effect"><i class="fa fa-home" aria-hidden="true"></i> <span> dash board </span> </a>
                         </li>
 
 
@@ -170,13 +170,13 @@
                         @if (User.IsInRole("ادمن") || User.IsInRole("تصنيفات"))
                         {
                             <li>
-                                <a href="~/Categories/Index" class="waves-effect"><i class="fa fa-window-maximize" aria-hidden="true"></i> <span> التصنيفات </span> </a>
+                                <a href="~/Categories/Index" class="waves-effect"><i class="fa fa-window-maximize" aria-hidden="true"></i> <span> category </span> </a>
                             </li>
                         }
                         @if (User.IsInRole("ادمن") || User.IsInRole("تصنيفات"))
                         {
                             <li>
-                                <a href="~/SubCategories/Index" class="waves-effect"><i class="fa fa-window-restore" aria-hidden="true"></i> <span> التصنيفات الفرعيه </span> </a>
+                                <a href="~/SubCategories/Index" class="waves-effect"><i class="fa fa-window-restore" aria-hidden="true"></i> <span> subcategory </span> </a>
                             </li>
                         }
                         @*@if (User.IsInRole("ادمن") || User.IsInRole("اعلانات"))
@@ -189,14 +189,14 @@
                         @if (User.IsInRole("ادمن") || User.IsInRole("منتجات") || User.IsInRole("تاجر"))
                         {
                             <li>
-                                <a href="~/Products/Index" class="waves-effect"><i class="fa fa-product-hunt" aria-hidden="true"></i> <span> المنتجات </span> </a>
+                                <a href="~/Products/Index" class="waves-effect"><i class="fa fa-product-hunt" aria-hidden="true"></i> <span> Products </span> </a>
                             </li>
                         }
 
                         @if (User.IsInRole("ادمن") || User.IsInRole("مستخدمين"))
                         {
                             <li>
-                                <a href="~/Clients/Index" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> <span> العملاء  </span> </a>
+                                <a href="~/Clients/Index" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> <span> Customers  </span> </a>
                             </li>
 
                         }
@@ -206,7 +206,7 @@
                         {
                             <li>
                                 <a href="~/Orders/Index" class="waves-effect">
-                                    <i class="fa fa-first-order" aria-hidden="true"></i> <span> الطلبات </span>
+                                    <i class="fa fa-first-order" aria-hidden="true"></i> <span> Orders </span>
                                 </a>
                             </li>
 
@@ -279,7 +279,7 @@
             </li>*@
                             <li>
 
-                                <a href="~/Account/Register" class="waves-effect"><i class="zmdi zmdi-accounts-add"></i> <span> اضافه مستخدم</span> </a>
+                                <a href="~/Account/Register" class="waves-effect"><i class="zmdi zmdi-accounts-add"></i> <span> add new user </span> </a>
                             </li>
 
                             <!--<li class="has_sub">-->
@@ -438,31 +438,31 @@
                 buttons: [
                     {
                         extend: 'excel',
-                        text: 'استخراج كصفحة اكسيل'
+                        text: 'Extract as excel page'
                     },
                     {
                         extend: 'print',
-                        text: 'طباعة الصفحة الحالية'
+                        text: 'Print current page'
                     }
                 ],
                 "language": {
-                    "sProcessing": "جارٍ التحميل...",
-                    "sLengthMenu": "أظهر _MENU_ مدخلات",
-                    "sZeroRecords": "لم يعثر على أية سجلات",
-                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sProcessing": "loading...",
+                    "sLengthMenu": "Show _MENU_ Input",
+                    "sZeroRecords": "No records found",
+                    "sInfo": "Show _START_ to _END_ out of _TOTAL_ entry",
+                    "sInfoEmpty": "Displays 0 to 0 out of 0 records",
+                    "sInfoFiltered": "(Selected from the sum of _MAX_ entered)",
                     "sInfoPostFix": "",
-                    "sSearch": "ابحث:",
+                    "sSearch": "search:",
                     "sUrl": "",
                     "oPaginate": {
-                        "sFirst": "الأول",
-                        "sPrevious": "السابق",
-                        "sNext": "التالي",
-                        "sLast": "الأخير"
+                        "sFirst": "first",
+                        "sPrevious": "Previous"
+                        "sNext": "next",
+                        "sLast": "last"
                     }
                 },
-                //"order": [[0, "desc"]]
+               
                 "order": []
 
 
@@ -475,26 +475,7 @@
         }
 
         $(document).ready(function () {
-            //$('#datatable-responsive').DataTable({
-            //    "language": {
-            //        "sProcessing": "جارٍ التحميل...",
-            //        "sLengthMenu": "أظهر _MENU_ مدخلات",
-            //        "sZeroRecords": "لم يعثر على أية سجلات",
-            //        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-            //        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-            //        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
-            //        "sInfoPostFix": "",
-            //        "sSearch": "ابحث:",
-            //        "sUrl": "",
-            //        "oPaginate": {
-            //            "sFirst": "الأول",
-            //            "sPrevious": "السابق",
-            //            "sNext": "التالي",
-            //            "sLast": "الأخير"
-            //        }
-            //    },
-            //    "order": []
-            //});
+        
 
             table1 = addDatatable();
 
@@ -539,7 +520,7 @@
     <script type="text/javascript">
 
         function InWork() {
-            toastr.error('جارى العمل عليها ..');
+            toastr.error('Working on it ..');
         }
 
         function ScrollItem(ID) {

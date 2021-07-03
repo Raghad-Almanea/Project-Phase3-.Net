@@ -25,16 +25,16 @@
                     <thead>
                         <tr>
                             <th style="text-align:center">
-                                اسم التاجر
+                                Merchant name
                             </th>
                             <th style="text-align:center">
-                                المدينة
+                                CITY
                             </th>
                             <th style="text-align:center">
-                                صورة التاجر
+                                Merchant's photo
                             </th>
                             <th style="text-align:center">
-                                المندوبين
+                                delegates
                             </th>
 
                         </tr>
@@ -61,7 +61,7 @@
                                 <img src="~/Content/Img/User/@item.img" height="60" width="60" />
                             </td>
                             <td>
-                                @Html.ActionLink("المندوبين", "Index", "Providers", new { FkUser = item.userId }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                @Html.ActionLink("delegates", "Index", "Providers", new { FkUser = item.userId }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
                             </td>
 
 

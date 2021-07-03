@@ -242,7 +242,7 @@ namespace WaterDelivery.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "كلمة المرور القديمة غير صحيحة");
+                ModelState.AddModelError(string.Empty, "The old password is incorrect");
             }
             //AddErrors(result);
             return View(model);

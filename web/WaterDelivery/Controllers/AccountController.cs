@@ -91,7 +91,7 @@ namespace WaterDelivery.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "تأكد من البريد الالكتروني و كلمة المرور");
+                    ModelState.AddModelError("", "Check your email and password");
                     return View(model);
             }
         }
@@ -172,7 +172,7 @@ namespace WaterDelivery.Controllers
                 ApplicationUser userEmail = context.Users.FirstOrDefault(u => u.Email == model.Email);
                 if (userEmail != null)
                 {
-                    ModelState.AddModelError("Email", "البريد الالكتروني مسجل من قبل");
+                    ModelState.AddModelError("Email", "Email is already registered");
                     return View(model);
                 }
 
@@ -305,7 +305,7 @@ namespace WaterDelivery.Controllers
                     var email = db.Users.FirstOrDefault(x => x.Email == model.Email);
                     if (email == null)
                     {
-                        ModelState.AddModelError("Email", "يرجى التاكد من البريد الالكترونى");
+                        ModelState.AddModelError("Email", "Please check the email");
                         return View(model);
                     }
                 }
@@ -347,7 +347,7 @@ namespace WaterDelivery.Controllers
 
             using (var message = new MailMessage("moamlatna@gmail.com", Email))
             {
-                message.Subject = "تغيير كلمة المرور";
+                message.Subject = "change Password";
                 message.Body = body;
                 message.IsBodyHtml = true;
                 smtp.Send(message);

@@ -8,9 +8,7 @@ namespace WaterDelivery.ViewModels
     public class OrderViewModel
     {
         public int Id { get; set; }
-        // وقت التوصيل
         public string date { get; set; }
-        // وقت الطلب
         public DateTime date_time { get; set; }
 
         public string user_name { get; set; }

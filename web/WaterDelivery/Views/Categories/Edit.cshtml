@@ -9,7 +9,7 @@
     <div class="col-sm-12">
         <div class="card-box" style="padding: 80px 20px 40px;">
 
-            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">تعديل</h2>
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">edit</h2>
 
             <div class="row">
 
@@ -24,46 +24,46 @@
                     @Html.HiddenFor(model => model.is_active)
                     @Html.HiddenFor(model => model.date)
                     <div class="form-group">
-                        @Html.Label("اسم التصنيف باللغه العربية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("category name in Arabic", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.Label("اسم التصنيف باللغه الانجليزية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label(" category name in English", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.name_en, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.name_en, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        @Html.Label(" صورة التصنيف القديمة", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                    <!--<div class="form-group">
+                        @Html.Label(" old category picture", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">-->
 
-                            <img src="@Model.img" height="100px" width="200px" />
+                            @*<img src="@Model.img" height="100px" width="200px" />*@
 
-                            @Html.ValidationMessageFor(model => model.img, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                            @*@Html.ValidationMessageFor(model => model.img, "", new { @class = "text-danger" })*@
+                        <!--</div>
+                    </div>-->
 
                     @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
-                    <div class="form-group">
-                        @Html.Label("صورة التصنيف الجديدة ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                    <!--<div class="form-group">-->
+                        @*@Html.Label("صورة التصنيف الجديدة ", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <!--<div class="col-md-10">
                             <input type="file" name="img" id="img" class="form-control" />
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <div class=" col-md-12">
-                            <input type="button" value="حفظ" onclick="Validtion()" class="btn-new-style" />
+                            <input type="button" value="save" onclick="Validtion()" class="btn-new-style" />
                             <input type="submit" id="btnSave" style="display:none" value="حفظ" class="btn-new-style" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="  col-md-12 text-center">
-                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black  m-b-5" })
+                            @Html.ActionLink("back to home", "Index", null, new { @class = "btn-black  m-b-5" })
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
             var flg = true;
 
             if ($("#name").val() == "") {
-                toastr.error('من فضلك ادخل اسم التصنيف');
+                toastr.error('please enter the name of the categoty');
                 $("#name").focus();
                 flg = false;
                 return false;

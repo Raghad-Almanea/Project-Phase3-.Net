@@ -15,7 +15,7 @@
 
 
 
-                <h2 style="text-align:center">اضافة مستخدم</h2>
+                <h2 style="text-align:center">add user</h2>
 
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                 {
@@ -23,25 +23,25 @@
                     <hr />
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.Label("البريد الالكترونى", new { @class = "col-md-2 control-label" })
+                        @Html.Label("email", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.Label("اسم  المستخدم", new { @class = "col-md-2 control-label" })
+                        @Html.Label("user name", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.Label("صورة شخصية", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("personal image", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <input type="file" name="Img" id="Img" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.Label("المدينة", new { @class = "col-md-2 control-label" })
+                        @Html.Label("city", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             <select id="FkCity" name="city" class=" form-control">
                                 @if (ViewBag.ListCities != null)
@@ -56,27 +56,27 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.Label("كلمة المرور", new { @class = "col-md-2 control-label" })
+                        @Html.Label("password", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.Label(" تاكيد كلمة المرور  ", new { @class = "col-md-2 control-label" })
+                        @Html.Label(" confirm password  ", new { @class = "col-md-2 control-label" })
                         <div class="col-md-10">
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class=" col-md-12">
-                            <input type="submit" value="اضافة" onclick="Validtion()" class="btn-new-style" />
+                            <input type="submit" value="add" onclick="Validtion()" class="btn-new-style" />
 
                         </div>
                     </div>
 
                 }
                 <div>
-                    @Html.ActionLink("العودة الى الرئيسية", "Index", "Permissions", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
+                    @Html.ActionLink("back to home", "Index", "Permissions", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
                 </div>
                 <!-- -------------------------------------------------------------------------------------------------- -->
 
@@ -93,31 +93,31 @@
             debugger;
             var flg = true;
             if ($("#Email").val() == "") {
-                toastr.error('من فضلك  ادخل البريد الالكترونى');
+                toastr.error('please enter email');
                 $("#Email").focus();
                 flg = false;
                 return false;
             }
             if ($("#Password").val() == "") {
-                toastr.error("من فضلك ادخل   كلمة المرور ");
+                toastr.error("please enter passworf ");
                 $("#Password").focus();
                 flg = false;
                 return false;
             }
             if ($("#Password").val().length < 6) {
-                toastr.error("يجب الا تقل  كلمة المرور عن  ستة احرف ");
+                toastr.error("Password must not be less than six characters ");
                 $("#Password").focus();
                 flg = false;
                 return false;
             }
             if ($("#ConfirmPassword").val() == "") {
-                toastr.error("من فضلك ادخل تاكيد كلمة المرور ");
+                toastr.error("Please enter confirm password ");
                 $("#ConfirmPassword").focus();
                 flg = false;
                 return false;
             }
             if ($("#Password").val() != $("#ConfirmPassword").val()) {
-                toastr.error("كلمتا المرور غير متطابقتان ");
+                toastr.error("The two passwords do not match ");
                 $("#ConfirmPassword").focus();
                 flg = false;
                 return false;
@@ -138,7 +138,7 @@
                         if (result.key == 1) {
                             window.location.href = "Permissions/Index";
                         } else {
-                            toastr.error("البريد الالكترونى مسجل من قبل ");
+                            toastr.error("Email is already registered ");
                             $("#Email").focus();
 
 

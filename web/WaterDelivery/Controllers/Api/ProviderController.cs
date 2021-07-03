@@ -35,7 +35,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(User.lang, "من فضلك ادخل الاسم", "Please enter your Name")
+                            msg = creatMessage(User.lang, "Please enter your Name", "Please enter your Name")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -45,7 +45,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(User.lang, "من فضلك ادخل رقم الجوال", "Please enter your phone number")
+                            msg = creatMessage(User.lang, "Please enter your phone number", "Please enter your phone number")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     var phone = (from st in db.Provider where st.phone == User.phone select st).SingleOrDefault();
@@ -54,44 +54,17 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(User.lang, "عذرا هذا الجوال موجود بالفعل", "Sorry this mobile is already present")
+                            msg = creatMessage(User.lang, "Sorry this mobile is already present", "Sorry this mobile is already present")
                         }, JsonRequestBehavior.AllowGet);
                     }
-                    ////email
-                    //if (User.email == null)
-                    //{
-                    //    return Json(new
-                    //    {
-                    //        key = 0,
-                    //        msg = creatMessage(User.lang, "من فضلك ادخل البريد الالكترونى", "Please enter your email")
-                    //    }, JsonRequestBehavior.AllowGet);
-                    //}
-                    //bool checkemail = IsValidEmail(User.email);
-                    //if (!checkemail)
-                    //{
-                    //    return Json(new
-                    //    {
-                    //        key = 0,
-                    //        msg = creatMessage(User.lang, "تاكد من ان البريد اللاكترونى مكتوب بشكل صحيح", "Make sure your e-mail is written correctly")
-                    //    }, JsonRequestBehavior.AllowGet);
-                    //}
-                    //var email = (from st in db.Provider where st.email == User.email select st).SingleOrDefault();
-                    //if (email != null)
-                    //{
-                    //    return Json(new
-                    //    {
-                    //        key = 0,
-                    //        msg = creatMessage(User.lang, "عذرا هذا البريد الالكترونى موجود بالفعل", "Sorry this email is already present")
-                    //    }, JsonRequestBehavior.AllowGet);
-                    //}
-
+                   
                     //Password
                     if (User.password == null)
                     {
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(User.lang, "من فضلك ادخل  كلمه المرور", "Please enter your password")
+                            msg = creatMessage(User.lang, "Please enter your password", "Please enter your password")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -146,7 +119,7 @@ namespace WaterDelivery.Controllers.Api
 
                     //Send Massage to phone
 
-                    string s = SendMessageText("كود التحقق ", User.phone, User.code);
+                    string s = SendMessageText("verfication code ", User.phone, User.code);
 
 
                     return Json(new
@@ -164,7 +137,7 @@ namespace WaterDelivery.Controllers.Api
                             city_id = city.Id,
                             city_name = city.name
                         },
-                        msg = creatMessage(User.lang, "تم التسجيل بنجاح", "successfully registered"),
+                        msg = creatMessage(User.lang, "successfully registered", "successfully registered"),
                         status = false,
                         User.code
                     }, JsonRequestBehavior.AllowGet);
@@ -196,7 +169,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل كود التحقق", "Please enter your verification code")
+                            msg = creatMessage(userModel.lang, "Please enter your verification code", "Please enter your verification code")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -210,17 +183,17 @@ namespace WaterDelivery.Controllers.Api
                             return Json(new
                             {
                                 key = 1,
-                                msg = creatMessage(codeuser.lang, "تم تفعيل الدخول بنجاح", "Logged in successfully")
+                                msg = creatMessage(codeuser.lang, "Logged in successfully", "Logged in successfully")
                             }, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
-                            return Json(new { key = 0, msg = creatMessage(codeuser.lang, "برجاء ادخال الكود بشكل صحيح", "Please enter the code correctly") }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 0, msg = creatMessage(codeuser.lang, "Please enter the code correctly", "Please enter the code correctly") }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     else
                     {
-                        return Json(new { key = 0, msg = creatMessage(codeuser.lang, "عذرا هذا الهاتف غير مسجل لدينا", "Sorry this phone is not registered") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(codeuser.lang, "Sorry this phone is not registered", "Sorry this phone is not registered") }, JsonRequestBehavior.AllowGet);
 
                     }
 
@@ -252,7 +225,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك تاكد من البيانات", "Please verify the data")
+                            msg = creatMessage(userModel.lang, " Please verify the data", "Please verify the data")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     var codeuser = (from st in db.Provider where st.id == userModel.user_id select st).SingleOrDefault();
@@ -268,13 +241,13 @@ namespace WaterDelivery.Controllers.Api
                         {
                             key = 1,
                             code = new { code = code, user_id = codeuser.id, phone = codeuser.phone },
-                            msg = creatMessage(codeuser.lang, "تم ارسال الكود الى رقم هاتفك", "Code sent"),
+                            msg = creatMessage(codeuser.lang, "Code sent", "Code sent"),
                             // status = "active",
                         }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "عذرا رقم الهاتف غير مسجل لدينا", "Sorry phone number is not registered") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "Sorry phone number is not registered", "Sorry phone number is not registered") }, JsonRequestBehavior.AllowGet);
                     }
 
 
@@ -289,139 +262,7 @@ namespace WaterDelivery.Controllers.Api
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-        //[HttpPost]
-        //public ActionResult sign_in(userModel userModel)
-        //{
-        //    try
-        //    {
-
-        //        using (ApplicationDbContext db = new ApplicationDbContext())
-        //        {
-        //            var checkuser = (from st in db.Provider where st.phone == userModel.phone select st).SingleOrDefault();
-        //            if(checkuser !=null)
-        //            {
-        //                #region validation
-        //                if (checkuser == null)
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        msg = creatMessage(userModel.lang, "من فضلك  تاكد من رقم الهاتف", "Please enter your phone number")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                if (userModel.phone == "")
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        msg = creatMessage(userModel.lang, "من فضلك ادخل رقم الهاتف", "Please enter your phone number")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                if (userModel.password == "")
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        msg = creatMessage(userModel.lang, "من فضلك ادخل  كلمة المرور ", "Please enter your  password")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                if (userModel.password != checkuser.password)
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        msg = creatMessage(userModel.lang, "من فضلك تاكد من كلمة المرور ", "Please sure your  password")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                if (checkuser.active == false && checkuser.active_code == true)
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        data = new { },
-        //                        status = "blocked",
-        //                        msg = creatMessage(checkuser.lang, "هذا الحساب مغلق من قبل الادمن", "This account is closed by the addict")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                if (checkuser.active_code == false)
-        //                {
-        //                    return Json(new
-        //                    {
-        //                        key = 0,
-        //                        data = new
-        //                        {
-        //                            checkuser.id,
-        //                            checkuser.code,
-        //                            active_code = checkuser.active_code,
-        //                        },
-
-        //                        msg = creatMessage(userModel.lang, "هذا الحساب لم يفعل بعد", "This account is not active")
-        //                    }, JsonRequestBehavior.AllowGet);
-        //                }
-        //                #endregion
-
-        //                // add new device
-        //                checkuser.lang = userModel.lang;
-        //                db.SaveChanges();
-        //                var check_device_id = (from st in db.Device_Id where st.device_id == userModel.device_id && st.fk_user == checkuser.id select st).Any();
-
-        //                // get city data
-        //                var city = db.City.FirstOrDefault(c => c.Id == checkuser.fk_city);
-
-        //                if (!check_device_id)
-        //                {
-        //                    Device_Id d = new Device_Id()
-        //                    {
-        //                        device_id = userModel.device_id,
-        //                        fk_user = checkuser.id
-        //                    };
-        //                    db.Device_Id.Add(d);
-        //                    db.SaveChanges();
-        //                }
-        //                return Json(new
-        //                {
-        //                    key = 1,
-        //                    data = new
-        //                    {
-        //                        checkuser.user_name,
-        //                        //checkuser.email,
-        //                        checkuser.phone,
-        //                        checkuser.id,
-        //                        device_id = userModel.device_id ?? "",
-        //                        img = checkuser.img,
-        //                        checkuser.national_id_img,
-        //                        checkuser.drive_licence_img,
-        //                        checkuser.lang,
-        //                        city.Id,
-        //                        city.name
-
-        //                    },
-        //                    status = true,
-        //                    notification = checkuser.notification,
-        //                    msg = creatMessage(checkuser.lang, "تم تسجيل الدخول بنجاح", "Logged in successfully")
-        //                }, JsonRequestBehavior.AllowGet);
-        //            }
-        //            else
-        //            {
-
-        //            }
-
-
-
-
-
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new
-        //        {
-        //            key = 0,
-        //            msg = ex.Message
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+     
 
         [HttpPost]
         public ActionResult GetDataOfUser(userModel userModel)
@@ -480,13 +321,13 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل رقم الهاتف", "Plaese enter your phone number")
+                            msg = creatMessage(userModel.lang, " Plaese enter your phone number", "Plaese enter your phone number")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     var codeuser = (from st in db.Provider where st.phone == userModel.phone select st).SingleOrDefault();
                     if (codeuser == null)
                     {
-                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "عذرا رقم الهاتف غير مسجل لدينا", "Sorry phone number is not registered") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "Sorry phone number is not registered", "Sorry phone number is not registered") }, JsonRequestBehavior.AllowGet);
 
                     }
                     if (codeuser.active == false)
@@ -496,7 +337,7 @@ namespace WaterDelivery.Controllers.Api
                             key = 0,
                             data = new { },
                             status = "blocked",
-                            msg = creatMessage(codeuser.lang, "هذا الحساب مغلق من قبل الادمن", "This account is closed by the addict")
+                            msg = creatMessage(codeuser.lang, "This account is closed by the admin", "This account is closed by the addict")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     else
@@ -509,7 +350,7 @@ namespace WaterDelivery.Controllers.Api
                         {
                             key = 1,
                             code = new { code = code, id = codeuser.id },
-                            msg = creatMessage(codeuser.lang, "تم ارسال الكود الى رقم هاتفك", "Code sent")
+                            msg = creatMessage(codeuser.lang, "Code sent", "Code sent")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -537,7 +378,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل كود التحقق", "Please enter your verification code")
+                            msg = creatMessage(userModel.lang, "Please enter your verification code", "Please enter your verification code")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     if (userModel.current_pass == "")
@@ -545,7 +386,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل كلمة المرور الجديدة ", "Please enter your new password")
+                            msg = creatMessage(userModel.lang, "Please enter your new password ", "Please enter your new password")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     try
@@ -555,26 +396,26 @@ namespace WaterDelivery.Controllers.Api
                         {
                             if (codeuser.code != userModel.code)
                             {
-                                return Json(new { key = 0, msg = creatMessage(codeuser.lang, " كود التحقق غير صحيح", "  Invalid verification code") }, JsonRequestBehavior.AllowGet);
+                                return Json(new { key = 0, msg = creatMessage(codeuser.lang, " Invalid verification code", "  Invalid verification code") }, JsonRequestBehavior.AllowGet);
                             }
 
                             codeuser.password = userModel.current_pass;
                             db.SaveChanges();
 
 
-                            return Json(new { key = 1, msg = creatMessage(codeuser.lang, "تم تغيير كلمة المرور بنجاح", "Password changed successfully") }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 1, msg = creatMessage(codeuser.lang, "Password changed successfully", "Password changed successfully") }, JsonRequestBehavior.AllowGet);
                         }
 
 
 
                         else
                         {
-                            return Json(new { key = 0, msg = creatMessage(userModel.lang, "حدث خطا ما", "Something went wrong") }, JsonRequestBehavior.AllowGet);
+                            return Json(new { key = 0, msg = creatMessage(userModel.lang, "Something went wrong", "Something went wrong") }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     catch (Exception)
                     {
-                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "حدث خطا ما", "Something went wrong") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "Something went wrong", "Something went wrong") }, JsonRequestBehavior.AllowGet);
                     }
                 }
 
@@ -603,7 +444,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "عذرا لم يتم العثور على هذا المقدم ", "Sorry this User was not found")
+                            msg = creatMessage(userModel.lang, "Sorry this User was not found ", "Sorry this User was not found")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     if (userModel.old_password == null)
@@ -611,7 +452,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل كلمة المرور القديمة ", "Please enter your old password")
+                            msg = creatMessage(userModel.lang, "Please enter your old password ", "Please enter your old password")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     if (userModel.new_password == null)
@@ -619,7 +460,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "من فضلك ادخل كلمة المرور الجديدة  ", "Please enter your new password")
+                            msg = creatMessage(userModel.lang, " Please enter your new password  ", "Please enter your new password")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     var codeuser = (from st in db.Provider where st.id == userModel.user_id select st).SingleOrDefault();
@@ -630,7 +471,7 @@ namespace WaterDelivery.Controllers.Api
                             return Json(new
                             {
                                 key = 0,
-                                msg = creatMessage(codeuser.lang, "من فضلك ادخل كلمة المرور القديمة بشكل صحيح", "Please enter the old password correctly")
+                                msg = creatMessage(codeuser.lang, " Please enter the old password correctly", "Please enter the old password correctly")
                             }, JsonRequestBehavior.AllowGet);
                         }
                         else
@@ -640,7 +481,7 @@ namespace WaterDelivery.Controllers.Api
                                 return Json(new
                                 {
                                     key = 0,
-                                    msg = creatMessage(codeuser.lang, "من فضلك ادخل كلمة المرور القديمة ", "Please enter your old password")
+                                    msg = creatMessage(codeuser.lang, " Please enter your old password ", "Please enter your old password")
                                 }, JsonRequestBehavior.AllowGet);
                             }
                             if (userModel.new_password == "")
@@ -648,18 +489,18 @@ namespace WaterDelivery.Controllers.Api
                                 return Json(new
                                 {
                                     key = 0,
-                                    msg = creatMessage(codeuser.lang, "من فضلك ادخل كلمة المرور الجديدة ", "Please enter your new password")
+                                    msg = creatMessage(codeuser.lang, "Please enter your new password ", "Please enter your new password")
                                 }, JsonRequestBehavior.AllowGet);
                             }
                             codeuser.password = userModel.new_password;
                             db.SaveChanges();
                         }
 
-                        return Json(new { key = 1, msg = creatMessage(codeuser.lang, "تم تغيير كلمة المرور بنجاح", "Password changed successfully") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 1, msg = creatMessage(codeuser.lang, "Password changed successfully", "Password changed successfully") }, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
-                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "حدث خطا ما", "Something went wrong") }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = creatMessage(userModel.lang, "Something went wrong", "Something went wrong") }, JsonRequestBehavior.AllowGet);
                     }
 
                 }
@@ -687,7 +528,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 0,
-                            msg = creatMessage(userModel.lang, "عذرا لم يتم العثور على هذا المستخدم ", "Sorry this User was not found")
+                            msg = creatMessage(userModel.lang, "Sorry this User was not found ", "Sorry this User was not found")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     var Userdata = (from st in db.Provider where st.id == User.id select st).SingleOrDefault();
@@ -713,7 +554,7 @@ namespace WaterDelivery.Controllers.Api
                                 return Json(new
                                 {
                                     key = 0,
-                                    msg = creatMessage(Userdata.lang, "عذرا رقم الهاتف مسجل من قبل", "Sorry this phone number is already registered")
+                                    msg = creatMessage(Userdata.lang, "Sorry this phone number is already registered", "Sorry this phone number is already registered")
                                 }, JsonRequestBehavior.AllowGet);
                             }
                             else
@@ -721,22 +562,7 @@ namespace WaterDelivery.Controllers.Api
                                 Userdata.phone = User.phone;
                             }
                         }
-                        //if (User.email != null)
-                        //{
-                        //    var chekemail = (from st in db.Provider where (st.email == User.email && st.id != User.id) select st).SingleOrDefault();
-                        //    if (chekemail != null)
-                        //    {
-                        //        return Json(new
-                        //        {
-                        //            key = 0,
-                        //            msg = creatMessage(Userdata.lang, "عذرا هذا البريد الالكترونى مسجل من قبل", "Sorry this email is already registered")
-                        //        }, JsonRequestBehavior.AllowGet);
-                        //    }
-                        //    else
-                        //    {
-                        //        Userdata.email = User.email;
-                        //    }
-                        //}
+                  
 
                         // add new imgae
                         var file = Request.Files["Img"];
@@ -819,7 +645,7 @@ namespace WaterDelivery.Controllers.Api
                             typeuser = 1
 
                         },
-                        msg = creatMessage(Userdata.lang, "تم تعديل البيانات بنجاح", "Data modified successfully")
+                        msg = creatMessage(Userdata.lang, "Data modified successfully", "Data modified successfully")
                     }, JsonRequestBehavior.AllowGet);
 
 
@@ -856,7 +682,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 1,
-                            msg = creatMessage(userModel.lang, "تم تسجيل الخروج بنجاح", "Logged out successfully"),
+                            msg = creatMessage(userModel.lang, "Logged out successfully", "Logged out successfully"),
                         }, JsonRequestBehavior.AllowGet);
                     }
                     else
@@ -927,12 +753,12 @@ namespace WaterDelivery.Controllers.Api
                 {
                     provider.notification = false;
                     context.SaveChanges();
-                    return Json(new { key = 1, notification = provider.notification, msg = "تم قفل الاشعارات بنجاح " }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, notification = provider.notification, msg = "Notifications closed successfully " }, JsonRequestBehavior.AllowGet);
                 }
 
                 provider.notification = true;
                 context.SaveChanges();
-                return Json(new { key = 1, notification = provider.notification, msg = "تم تشغيل الاشعارات بنجاح " }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, notification = provider.notification, msg = "Notifications opened successfully " }, JsonRequestBehavior.AllowGet);
 
             }
 
@@ -973,18 +799,7 @@ namespace WaterDelivery.Controllers.Api
 
                                   }).ToList().OrderByDescending(x => x.Id);
 
-                    //var clients = db.Client.Where(x => x.active == true).ToList();
-                    //foreach (var item in clients)
-                    //{
-                    //    Notify notify = new Notify();
-                    //    notify.date = DateTime.Now;
-                    //    notify.fk_user = item.id;
-                    //    notify.text = "تم الموافقة على الطلب";
-
-                    //    db.Notify.Add(notify);
-                    //    db.SaveChanges();
-                    //    //SendPushNotification(item.id, notify.text, 1);
-                    //}
+                   
 
                     return Json(new
                     {
@@ -1038,19 +853,6 @@ namespace WaterDelivery.Controllers.Api
 
                                    }).ToList().OrderByDescending(x => x.Id);
 
-                    // هنعمل اشعار للعميل
-                    //var client = db.Client.Where(x => x.active == true && x.id == fk_user).ToList();
-                    //foreach (var item in client)
-                    //{
-                    //    Notify notify = new Notify();
-                    //    notify.date = DateTime.Now;
-                    //    notify.fk_user = item.id;
-                    //    notify.text = "تم الموافقة على الطلب";
-
-                    //    db.Notify.Add(notify);
-                    //    db.SaveChanges();
-                    //    SendPushNotification(item.id, notify.text, 1);
-                    //}
 
 
                     return Json(new
@@ -1089,7 +891,7 @@ namespace WaterDelivery.Controllers.Api
 
                     if (order.fk_providerID != fk_providerId && order.type > (int)Order_type.New)
                     {
-                        return Json(new { key = 0, msg = "تم الموافقة على الطلب من قبل مندوب آخر" }, JsonRequestBehavior.AllowGet);
+                        return Json(new { key = 0, msg = "The request was approved by another representative" }, JsonRequestBehavior.AllowGet);
                     }
                     if (order.type == (int)Order_type.New)
                     {
@@ -1108,7 +910,7 @@ namespace WaterDelivery.Controllers.Api
                         notify.fk_user = fk_user;
                         notify.order_id = fk_order;
                         notify.order_type = order.type;
-                        notify.text = "تم استلام الطلب رقم " + fk_order;
+                        notify.text = "Order No. has been received " + fk_order;
                         notify.type = 1;
                         db.Notify.Add(notify);
                         db.SaveChanges();
@@ -1118,7 +920,7 @@ namespace WaterDelivery.Controllers.Api
                         {
                             key = 1,
                             order_id = order.Id,
-                            msg = creatMessage("ar", "تم الموافقة على الطلب بنجاح", "The order accepted successfully")
+                            msg = creatMessage("ar", "The order accepted successfully", "The order accepted successfully")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -1130,7 +932,7 @@ namespace WaterDelivery.Controllers.Api
                         notify.fk_user = fk_user;
                         notify.order_id = fk_order;
                         notify.order_type = order.type;
-                        notify.text = "تم تسليم الطلب رقم " + fk_order + " بنجاح";
+                        notify.text = "Order No. has been submitted " + fk_order + " successfully";
                         notify.type = 1;
                         db.Notify.Add(notify);
                         db.SaveChanges();
@@ -1140,7 +942,7 @@ namespace WaterDelivery.Controllers.Api
                         {
                             key = 1,
                             order_id = order.Id,
-                            msg = creatMessage("ar", "تم تسليم الطلب بنجاح", "The order delivered successfully")
+                            msg = creatMessage("ar", "The request has been successfully submitted", "The order delivered successfully")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -1153,7 +955,7 @@ namespace WaterDelivery.Controllers.Api
                         notify.fk_user = fk_user;
                         notify.order_id = fk_order;
                         notify.order_type = order.type;
-                        notify.text = "تم انهاء الطلب رقم " + fk_order + " بنجاح";
+                        notify.text = "The order number " + fk_order + " has been completed successfully";
                         notify.type = 1;
                         db.Notify.Add(notify);
                         db.SaveChanges();
@@ -1162,7 +964,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 1,
-                            msg = creatMessage("ar", "تم انهاء الطلب بنجاح", "The order was finished successfully")
+                            msg = creatMessage("ar", "The order was finished successfully", "The order was finished successfully")
                         }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -1170,7 +972,7 @@ namespace WaterDelivery.Controllers.Api
                     return Json(new
                     {
                         key = 1,
-                        msg = creatMessage("ar", " تم استلام الطلب جاري العمل ... ", "The order is in progress")
+                        msg = creatMessage("ar", " The order is in progress ... ", "The order is in progress")
                     }, JsonRequestBehavior.AllowGet);
 
 
@@ -1200,9 +1002,9 @@ namespace WaterDelivery.Controllers.Api
                     var orderFound = db.Order.Where(x => x.Id == order_id).ToList().Select(x => new
                     {
                         x.Id,
-                        provider_name = x.fk_provider == null ? "لا يوجد" : x.fk_provider.user_name,
-                        provider_img = x.fk_provider == null ? "لا يوجد" : x.fk_provider.img,
-                        provider_phone = x.fk_provider == null ? "لا يوجد" : x.fk_provider.phone,
+                        provider_name = x.fk_provider == null ? "there is no " : x.fk_provider.user_name,
+                        provider_img = x.fk_provider == null ? "there is no" : x.fk_provider.img,
+                        provider_phone = x.fk_provider == null ? "there is no" : x.fk_provider.phone,
                         delivary_time = x.delivary_time,
                         x.date,
                         stutes = x.type,
@@ -1246,59 +1048,6 @@ namespace WaterDelivery.Controllers.Api
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-        //public ActionResult GetOrderInfo(int user_id, int order_id)
-        //{
-        //    try
-        //    {
-        //        using (ApplicationDbContext db = new ApplicationDbContext())
-        //        {
-        //            var orderInfo = ((from orderinf in db.OrderInfo
-        //                              join order in db.Order on orderinf.fk_orderID equals order.Id
-        //                              where orderinf.fk_orderID == order_id && order.fk_providerID == user_id
-        //                              select new { orderinf, order }).ToList().Select(x => new
-        //                              {
-        //                                  order_id = x.order.Id,
-        //                                  user_id = x.order.fk_user.id,
-        //                                  x.order.fk_user.user_name,
-        //                                  x.order.fk_user.img,
-        //                                  x.order.fk_user.phone,
-        //                                  delivary_time = x.order.delivary_time,
-        //                                  x.order.date,
-        //                                  x.order.type,
-        //                                  x.order.delivary,
-        //                                  total = x.order.total + x.order.delivary,
-        //                                  x.order.address,
-        //                                  x.order.lat,
-        //                                  x.order.lng,
-        //                                  productList = (from o in db.OrderInfo
-        //                                                 join product in db.Product on o.fk_product equals product.Id
-        //                                                 where o.fk_orderID == x.order.Id
-        //                                                 select new
-        //                                                 {
-        //                                                     product_id = product.Id,
-        //                                                     product_img = product.img,
-        //                                                     product_name = product.name,
-        //                                                     product_price = product.price,
-        //                                                     product_qty = o.qty
-
-        //                                                 }
-        //                                    ).ToList()
-        //                              })).ToList();
-
-
-        //            return Json(new { key = 1, order = orderInfo }, JsonRequestBehavior.AllowGet);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new
-        //        {
-        //            key = 0,
-        //            msg = ex.Message
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
         [HttpPost]
         public ActionResult GetCurrentActiveOrders(int user_id)
         {
@@ -1306,15 +1055,6 @@ namespace WaterDelivery.Controllers.Api
             {
                 using (ApplicationDbContext db = new ApplicationDbContext())
                 {
-                    //var myOrders = db.OrderInfo.Where(o => o.fk_order.fk_providerID == user_id && (o.fk_order.type >= (int)Order_type.accept_deleget && o.fk_order.type != (int)Order_type.Deleget_Diliverd)).AsEnumerable().DistinctBy(oi => oi.fk_orderID)
-                    //    .Select(order => new
-                    //    {
-                    //        user_img = order.fk_order.fk_user.img,
-                    //        order.fk_order.fk_user.user_name,
-                    //        order.fk_order.fk_user.phone,
-                    //        order.fk_orderID,
-
-                    //    }).ToList().OrderByDescending(o => o.fk_orderID);
                     var myOrders = (from st in db.Order
                                     join client in db.Client on st.fk_userID equals client.id
                                     where
@@ -1363,19 +1103,6 @@ namespace WaterDelivery.Controllers.Api
             {
                 using (ApplicationDbContext db = new ApplicationDbContext())
                 {
-                    //var myOrders = db.OrderInfo.
-                    //    Where(o => o.fk_order.fk_providerID == user_id && o.fk_order.type == (int)Order_type.Deleget_confirm).AsEnumerable().DistinctBy(oi => oi.fk_orderID)
-                    //    .Select(order => new
-                    //    {
-                    //        user_img = order.fk_order.fk_user.img,
-                    //        user_name = order.fk_order.fk_user.user_name,
-                    //        phone = order.fk_order.fk_user.phone,
-                    //        fk_orderID = order.fk_orderID,
-                    //        date = order.fk_order.date,
-                    //        total = order.fk_order.total + order.fk_order.delivary
-
-
-                    //    }).ToList().OrderByDescending(o => o.fk_orderID);
 
                     var myOrders = (from st in db.Order
                                     join client in db.Client on st.fk_userID equals client.id
@@ -1471,7 +1198,7 @@ namespace WaterDelivery.Controllers.Api
                             return Json(new
                             {
                                 key = 0,
-                                msg = creatMessage(lang, "من فضلك ادخل الحقول الفارغه", " Please enter blank fields")
+                                msg = creatMessage(lang, "Please enter blank fields", " Please enter blank fields")
                             }, JsonRequestBehavior.AllowGet);
                         }
                         db.Complaints.Add(complaints);
@@ -1481,7 +1208,7 @@ namespace WaterDelivery.Controllers.Api
                         return Json(new
                         {
                             key = 1,
-                            msg = creatMessage(lang, "تم الارسال بنجاح", " successful")
+                            msg = creatMessage(lang, "successful", " successful")
                         }, JsonRequestBehavior.AllowGet);
                     }
                     catch (Exception ex)

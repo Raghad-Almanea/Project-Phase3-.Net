@@ -12,26 +12,26 @@
             <div class="row">
 
                 <!-- -------------------------------------------------------------------------------------------------- -->
-                <h2 style="text-align:center">تعديل بيانات المستخدم</h2>
+                <h2 style="text-align:center">Edit user Profile</h2>
 
 
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
                 <div class="form-group row">
-                    @Html.Label("البريد الالكترونى", new { @class = "col-md-2 control-label" })
+                    @Html.Label("email", new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    @Html.Label("اسم  المستخدم", new { @class = "col-md-2 control-label" })
+                    @Html.Label("user name", new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    @Html.Label("تعديل كلمة المرور", new { @class = "col-md-2 control-label" })
+                    @Html.Label("edit password", new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         <a href="~/Manage/ChangePassword" class="btn btn-default btn-block">تعديل الباسورد</a>
                     </div>
@@ -39,14 +39,14 @@
                 @if (Model.Img != null)
                 {
                     <div class="form-group row">
-                        @Html.Label("الصورة القديمه", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("old image ", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <img width="70px" src="~/Content/Img/User/@Model.Img" />
                         </div>
                     </div>
                 }
                 <div class="form-group row">
-                    @Html.Label("صورة ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("image ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <input type="file" name="Img" id="Img" class="form-control" />
                     </div>
@@ -56,14 +56,14 @@
 
                 <div class="form-group row">
                     <div class=" col-md-12">
-                        <input type="button" value="حفظ" onclick="Validtion()" class="btn-new-style" />
+                        <input type="button" value="save" onclick="Validtion()" class="btn-new-style" />
 
                     </div>
                 </div>
 
 
                 <div class="row">
-                    @Html.ActionLink("العودة الى الرئيسية", "Index", "Home", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
+                    @Html.ActionLink("back to home", "Index", "Home", null, new { @class = "btn btn-black waves-effect waves-light m-b-5" })
                 </div>
                 <!-- -------------------------------------------------------------------------------------------------- -->
 
@@ -86,13 +86,13 @@
             }
             var flg = true;
             if ($("#Email").val() == "") {
-                $("#Email").notify("من فضلك  ادخل البريد الالكترونى   ");
+                $("#Email").notify("Please enter your email   ");
                 $("#Email").focus();
                 flg = false;
                 return false;
             }
             if ($("#FullName").val() == "") {
-                $("#FullName").notify("من فضلك  ادخل اسم  المستخدم   ");
+                $("#FullName").notify("Please enter your name   ");
                 $("#FullName").focus();
                 flg = false;
                 return false;
@@ -114,7 +114,7 @@
                         if (result.key == 1) {
                             window.location.href = "/Home/Index";
                         } else if (result.key == 0) {
-                            $("#Email").notify("البريد الالكترونى مسجل من قبل ");
+                            $("#Email").notify("the email already exit ");
                             $("#Email").focus();
                         }
 

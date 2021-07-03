@@ -16,17 +16,17 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>التصنيف الرئيسي</h4>
+                            <h4>main category</h4>
                             <select id="mainCat" name="mainCat" class="form-control" onchange="GetByMainCat()">
-                                <option value="0">الكل</option>
+                                <option value="0">All</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
-                            <h4>التصنيف الفرعي</h4>
+                            <h4>Subcategory</h4>
                             <select id="subCat" name="subCat" class="form-control" onchange="GetByMainCat()">
-                                <option value="0">الكل</option>
-                            </select>
+                                <option value="0">All<option>
+</select>
                         </div>
 
 
@@ -35,50 +35,48 @@
                     <!-- -------------------------------------------------------------------------------------------------- -->
 
                     <p>
-                        @Html.ActionLink("اضافة منتج جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                        @Html.ActionLink("Add a new product", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
                     </p>
 
 
-                    <h2 style="text-align:center">المنتجات</h2>
+                    <h2 style="text-align:center">Products</h2>
 
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th style="text-align:center">
-                                    الاسم
+                                    name
                                 </th>
                                 <th style="text-align:center">
-                                    الصورة
+                                    image
                                 </th>
                                 @*<th style="text-align:center">
                                         الفرع
                                     </th>*@
                                 <th style="text-align:center">
-                                    التصنيف الرئيسى
+main category                                </th>
+                                <th style="text-align:center">
+subcategory                                </th>
+                                <th style="text-align:center">
+                                    price
                                 </th>
                                 <th style="text-align:center">
-                                    التصنيف الفرعى
+                                    the description
                                 </th>
                                 <th style="text-align:center">
-                                    السعر
+                                    Quantity
                                 </th>
                                 <th style="text-align:center">
-                                    الوصف
+                                    Status
                                 </th>
                                 <th style="text-align:center">
-                                    الكمية
+                                    Status change
                                 </th>
                                 <th style="text-align:center">
-                                    الحالة
+                                    edit
                                 </th>
                                 <th style="text-align:center">
-                                    تغيير الحالة
-                                </th>
-                                <th style="text-align:center">
-                                    تعديل
-                                </th>
-                                <th style="text-align:center">
-                                    حذف
+                                    delete
                                 </th>
                             </tr>
                         </thead>
@@ -116,23 +114,23 @@
                                         @{
                                             if (item.is_active == true)
                                             {
-                                                <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                                <label id="@item.Id" style="color:green;font-size: 17px;">active</label>
                                             }
                                             else
                                             {
-                                                <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                                <label id="@item.Id" style="color:red;font-size: 17px;">not active</label>
                                             }
                                         }
                                     </td>
 
                                     <td>
-                                        <input type="button" value="تغير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                                        <input type="button" value="CHANGE STATUS" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
                                     </td>
                                     <td>
-                                        @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                        @Html.ActionLink("edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
                                     </td>
                                     <td>
-                                        <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
+                                        <input type="button" value="delete" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
                                     </td>
 
                                 </tr>
@@ -195,10 +193,10 @@
 
                     if (result.data == true) {
                         $('#' + id).css('color', 'green');
-                        $('#' + id).html('مفعل');
+                        $('#' + id).html('active');
                     } else if (result.data == false) {
                         $('#' + id).css('color', 'red');
-                        $('#' + id).html('غير مفعل');
+                        $('#' + id).html('not active');
 
                     }
                 },
@@ -223,13 +221,13 @@
 
         function Delete(id) {
             Swal.fire({
-                title: 'هل انت متاكد من حذف هذا المنتج ؟',
+                title: 'Are you sure to delete this product ؟',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                cancelButtonText: 'اغلاق',
-                confirmButtonText: 'حذف',
+                cancelButtonText: 'close ',
+                confirmButtonText: 'delete',
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -243,7 +241,7 @@
                                 Swal.fire({
                                     position: 'success',
                                     type: 'success',
-                                    title: 'تم الحذف بنجاح..',
+                                    title: 'Deleted successfully..',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })

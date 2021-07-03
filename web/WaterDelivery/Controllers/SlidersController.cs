@@ -46,7 +46,7 @@ namespace WaterDelivery.Controllers
                     int count = db.Slider.Where(c => c.type == 2).ToList().Count();
                     if (count >= 1)
                     {
-                        ViewBag.Msg = "لا يمكن اضافة اكثر من مساحة اعلانية";
+                        ViewBag.Msg = "It is not possible to add more than one ad space";
                         return View();
                     }
                 }
@@ -106,7 +106,7 @@ namespace WaterDelivery.Controllers
                     int count = db.Slider.Where(c => c.type == 2 && c.Id != slider.Id).ToList().Count();
                     if (count >= 1)
                     {
-                        ViewBag.Msg = "لا يمكن اضافة اكثر من مساحة اعلانية";
+                        ViewBag.Msg = "It is not possible to add more than one ad space";
                         Slider advert = db.Slider.Find(slider.Id);
                         return View(advert);
                     }

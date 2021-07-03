@@ -11,9 +11,9 @@
         <div class="sec-padd cart-page">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/SiteHome/Index"> الرئيسية</a></li>
+                    <li class="breadcrumb-item"><a href="/SiteHome/Index"> HOME </a></li>
 
-                    <li class="breadcrumb-item active" aria-current="page">  تعديل الطلب</li>
+                    <li class="breadcrumb-item active" aria-current="page">  EDIT ORDER</li>
                 </ol>
             </nav>
             <div class="row">
@@ -41,7 +41,7 @@
                                                     <i class="fa fa-trash-o text-red"></i>
                                                     حذف
                                                 </button>
-                                                <h6 class="text-gray"> الكمية </h6>
+                                                <h6 class="text-gray"> Quantity </h6>
 
                                                 <div class="info-qty d-flex">
                                                     <a onclick="InCreaseEdit(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
@@ -72,19 +72,19 @@
                     <div class="cart-summery">
                         <ul>
                             <li>
-                                <label>    السعر الاجمالى  </label>
+                                <label>    price  </label>
                                 <span id="total" class="">
 
                                 </span>
                             </li>
                             <li>
-                                <label> رسوم الشحن </label>
+                                <label> delviery fee  </label>
                                 <span id="Delivery" class="">
 
                                 </span>
                             </li>
                             <li>
-                                <label>   المجموع </label>
+                                <label>   total </label>
                                 <span id="netTotal" class="">
 
                                 </span>
@@ -180,10 +180,9 @@
         function GetCostOrder() {
             $.post("/SiteHome/GetCostOrder", {  orderId :@ViewBag.OrderNumber  }, function (data) {
                 if (data.key == 1) {
-                    $('#total').html(data.Order.Totat + " ر.س");
-                    $('#netTotal').html(data.Order.Net_totat + " ر.س");
-                    $('#Delivery').html(data.Order.Delivery + " ر.س");
-
+                    $('#total').html(data.Order.Totat + "SR");
+                    $('#netTotal').html(data.Order.Net_totat + "SR");
+                    $('#Delivery').html(data.Order.Delivery++ "SR");
                     //GetCostOrder();
                 }
             });

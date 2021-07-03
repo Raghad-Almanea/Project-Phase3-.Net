@@ -7,33 +7,6 @@
     HttpCookie reqCookies = Request.Cookies["userInfo"];
 
 }
-@*int UserId;
-        bool IsAuthenticated = false;
-        var user = null;
-    }*@
-@*@{
-        if (Request.Cookies["userInfo"] != null)
-        {
-
-            string Values = Request.Cookies["UserId"].Value;
-
-            bool success = Int32.TryParse(Values, out UserId);
-            if (success)
-            {
-                UserId = Convert.ToInt32(Values);
-                user = db.Client.Where(x => x.id == UserId).FirstOrDefault();
-                if (user != null)
-                {
-                    IsAuthenticated = true;
-                }
-            }
-            else
-            {
-                UserId = 0;
-            }
-
-        }
-    }*@
 
 
 <!doctype html>
@@ -103,15 +76,15 @@
                     <div class="col-md-2">
                         <ul class="top-nav d-flex justify-content-between">
                             <li>
-                                <a href="~/SiteHome/Index"> الرئيسية</a>
+                                <a href="~/SiteHome/Index"> Home </a>
                             </li>
                             @if (reqCookies != null)
                             {
                                 <li>
-                                    <a href="~/SiteHome/MyOrders">  طلباتي</a>
+                                    <a href="~/SiteHome/MyOrders">  Orders </a>
                                 </li>
                                 <li>
-                                    <a href="~/SiteHome/MyFavorites">  المفضلة</a>
+                                    <a href="~/SiteHome/MyFavorites">  Favorites</a>
                                 </li>
 
                             }
@@ -120,7 +93,7 @@
                     </div>
                     <div class="col-md-5 padd-0 ">
                         <div class="top-search">
-                            <input type="text" id="autosearch" class="form-control  autosearch" placeholder="ابحث  هنا  ">
+                            <input type="text" id="autosearch" class="form-control  autosearch" placeholder="search here  ">
                             <button>
                                 <i class="icofont-search"></i>
                             </button>
@@ -139,8 +112,8 @@
                                     <img src="~/Content/Img/User/generic-user.png" alt="">
 
                                     <div>
-                                        <h6> مرحباً ، تسجيل دخول</h6>
-                                        <h5> حسابي</h5>
+                                        <h6> Welcome ، Login </h6>
+                                        <h5> my account </h5>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
@@ -148,8 +121,8 @@
                                     <a class="btn-site" href="/Site/login">
                                         تسجيل الدخول
                                     </a>
-                                    <p class="text-gray"> لاتمتلك حساب</p>
-                                    <a href="/Site/Register" class="text-blue"> انشى حساب الان</a>
+                                    <p class="text-gray"> don't have an account</p>
+                                    <a href="/Site/Register" class="text-blue"> Create an account now</a>
 
                                 </div>
                             </div>
@@ -171,8 +144,8 @@
                                         <a class="toplink-flex dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src="@user.img" alt="">
                                             <div>
-                                                <h6> مرحباً ،@user.user_name</h6>
-                                                <h5> حسابي</h5>
+                                                <h6> Hello ،@user.user_name</h6>
+                                                <h5> my account</h5>
                                             </div>
                                         </a>
                                         <ul class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
@@ -196,8 +169,8 @@
                                     <a class="toplink-flex" href="/SiteHome/Cart">
                                         <img src="~/Content/Site/imgs/shopping-cart.png" alt="">
                                         <div>
-                                            <h6>    عربة التسوق    </h6>
-                                            <h5> <span id="cart-price">0</span> ر.س</h5>
+                                            <h6>    Shopping cart    </h6>
+                                            <h5> <span id="cart-price">0</span>SR</h5>
                                         </div>
                                         <span id="cart-count" class="cart-num">
                                             0
@@ -208,34 +181,7 @@
 
 
                         }
-                        <!-- after login -->
-                        <!--
-                           <div class="dropdown">
-                            <a class="toplink-flex dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <img src="imgs/profile.png" alt="">
-                             <div>
-                                <h6> مرحباً ، تسجيل دخول</h6>
-                                <h5> حسابي</h5>
-                             </div>
-                            </a>
-                            <ul class="dropdown-menu login-menu" aria-labelledby="dropdownMenuButton">
-
-                                <li>
-                                    <a href="profile.html">
-                                     الحساب
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login.html" class="text-red">
-                                         تسجيل خروج
-
-                                    </a>
-                                </li>
-
-                            </ul>
-                          </div>
-                        -->
+                       
 
 
 

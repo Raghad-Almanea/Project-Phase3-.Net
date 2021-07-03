@@ -22,20 +22,16 @@
                     <thead>
                     <tr>
                         <th style="text-align:center">
-                            اسم الفرع
+name of the branch                        </th>
+                        <th style="text-align:center">
+                            status
                         </th>
                         <th style="text-align:center">
-                            الحالة
-                        </th>
+status change                        </th>
                         <th style="text-align:center">
-                            تغيير الحالة
+                            edit
                         </th>
-                        <th style="text-align:center">
-                            تعديل
-                        </th>
-                        @*<th style="text-align:center">
-                                    حذف
-                                </th>*@
+                      
                     </tr>
                     </thead>
                     <tbody style="text-align:center">
@@ -50,20 +46,24 @@
                                 @{
                                     if (item.is_active == true)
                                     {
-                                        <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                                                <label id="@item.Id" style="color:green;font-size: 17px;">
+                                                                    Enabled
+                                                                </label>
                                     }
                                     else
                                     {
-                                        <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                            <label id="@item.Id" style="color:red;font-size: 17px;">
+                                disabled
+                            </label>
                                     }
                                 }
                             </td>
 
                             <td>
-                                <input type="button" value="تغير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                                <input type="button" value="change staus" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
                             </td>
                             <td>
-                                @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
                             </td>
                             @*<td>
                                         <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
@@ -94,10 +94,10 @@
 
                     if (result.data == true) {
                         $('#' + id).css('color', 'green');
-                        $('#' + id).html('مفعل');
+                        $('#' + id).html('Enabled');
                     } else if (result.data == false) {
                         $('#' + id).css('color', 'red');
-                        $('#' + id).html('غير مفعل');
+                        $('#' + id).html('Not enabled');
 
                     }
                 },

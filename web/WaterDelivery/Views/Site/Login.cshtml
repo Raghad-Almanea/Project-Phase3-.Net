@@ -6,20 +6,20 @@
 
 <div class="login-content">
     <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
-    <h4 class="title-form">تسجيل الدخول</h4>
+    <h4 class="title-form">Login</h4>
     <div class="input-group">
-        <input type="text" onkeypress="return isNumberKey(event)"  id="Phone" name="Phone" placeholder="رقم الجوال" class="form-control">
+        <input type="text" onkeypress="return isNumberKey(event)"  id="Phone" name="Phone" placeholder="Mobile number" class="form-control">
         <span><img src="~/Content/Site/imgs/phone-call.png" width="20"></span>
     </div>
     <div class="input-group">
-        <input type="password"  id="Password" name="Password"  placeholder=" كلمة المرور  " class="form-control">
+        <input type="password"  id="Password" name="Password"  placeholder=" Password  " class="form-control">
         <span><img src="~/Content/Site/imgs/Group 3.png" width="16"></span>
     </div>
-    <a href="~/Site/ForgetPassword" class="like-line"> هل نسيت كلمة المرور؟</a>
-    <a @*href="index.html"*@ onclick="Login()" class="btn-site w-100"> تسجيل دخول </a>
-    <a href="~/SiteHome/Index" class="btn-site-bord w-100">  الدخول كزائر   </a>
+    <a href="~/Site/ForgetPassword" class="like-line"> did you forget your password؟</a>
+    <a @*href="index.html"*@ onclick="Login()" class="btn-site w-100"> Login </a>
+    <a href="~/SiteHome/Index" class="btn-site-bord w-100">  guest   </a>
 
-    <a href="~/Site/Register" class="like-line m-auto"> ليس لديك حساب؟    </a>
+    <a href="~/Site/Register" class="like-line m-auto"> You don't have an account ?    </a>
 </div>
 
 
@@ -42,13 +42,13 @@
 
 
             if ($("#Phone").val() == "") {
-                toastr.error("من فضلك ادخل رقم الهاتف ");
+                toastr.error("Please enter the phone number ");
                 ScrollItem("#Phone");
                 return false;
             }
 
             if ($("#Password").val() == "") {
-                toastr.error("من فضلك ادخل كلمة المرور ");
+                toastr.error("Please enter the password ");
                 ScrollItem("#Password");
                 return false;
             }

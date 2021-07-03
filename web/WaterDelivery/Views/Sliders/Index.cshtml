@@ -14,29 +14,27 @@
                 <!-- -------------------------------------------------------------------------------------------------- -->
 
                 <p>
-                    @Html.ActionLink("اضافة اعلان جديد", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
+                    @Html.ActionLink("ADD NEW ADS", "Create", null, new { @class = "btn btn-success btn-rounded w-md waves-effect waves-light m-b-5" })
                 </p>
-                <h2 style="text-align:center">الاعلانات</h2>
+                <h2 style="text-align:center">ADS</h2>
 
                 <table id="datatable-responsiveSliders" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th style="text-align:center">
-                                الصورة
+                                IMAGE
                             </th>
                             <th style="text-align:center">
-                                نوع الاعلان
-                            </th>
+ADS TYPE                            </th>
 
 
                             <th style="text-align:center">
-                                الحالة
+                                STATUS
                             </th>
                             <th style="text-align:center">
-                                تغيير الحالة
-                            </th>
+STATUS CHANGE                            </th>
                             <th style="text-align:center">
-                                تعديل
+                                EDIT
                             </th>
                             @*<th style="text-align:center">
                                     حذف
@@ -54,11 +52,11 @@
                                 <td>
                                     @if (item.type == 1)
                                     {
-                                        <p>سلايدر</p>
+                                        <p>SLIDER</p>
                                     }
                                     @if (item.type == 2)
                                     {
-                                        <p>مساحة اعلانية</p>
+                                        <p>ADS TYPE</p>
                                     }
                                 </td>
 
@@ -66,20 +64,20 @@
                                     @{
                                         if (item.IsActive == true)
                                         {
-                                            <label id="@item.Id" style="color:green;font-size: 17px;">مفعل</label>
+                                            <label id="@item.Id" style="color:green;font-size: 17px;">ACTIVE</label>
                                         }
                                         else
                                         {
-                                            <label id="@item.Id" style="color:red;font-size: 17px;">غير مفعل</label>
+                                <label id="@item.Id" style="color:red;font-size: 17px;">INACTIVE </label>
                                         }
                                     }
                                 </td>
 
                                 <td>
-                                    <input type="button" value="تغيير الحالة" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
+                                    <input type="button" value="CHANGE STATUS" onclick="Validtion('@item.Id')" class="btn btn-purple btn-rounded" />
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
+                                    @Html.ActionLink("EDIT", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-rounded w-md waves-effect waves-light m-b-5" })
                                 </td>
                                 @*<td>
                                         <input type="button" value="حذف" class="btn btn-danger btn-rounded" id="@item.Id" onclick="Delete('@item.Id')" />
@@ -105,20 +103,20 @@
                 dom: 'frtip',
 
                 "language": {
-                    "sProcessing": "جارٍ التحميل...",
-                    "sLengthMenu": "أظهر _MENU_ مدخلات",
-                    "sZeroRecords": "لم يعثر على أية سجلات",
-                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sProcessing": "LOADING...",
+                    "sLengthMenu": "show _MENU_ input",
+                    "sZeroRecords": "No records found",
+                    "sInfo": "Show _START_ to _END_ out of _TOTAL_ entry",
+                    "sInfoEmpty": "Displays 0 to 0 out of 0 records",
+                    "sInfoFiltered": "(selected from sum of _MAX_ entered)",
                     "sInfoPostFix": "",
-                    "sSearch": "ابحث:",
+                    "sSearch": "Search:",
                     "sUrl": "",
                     "oPaginate": {
-                        "sFirst": "الأول",
-                        "sPrevious": "السابق",
-                        "sNext": "التالي",
-                        "sLast": "الأخير"
+                        "sFirst": "first",
+                        "sPrevious": "prev",
+                        "sNext": "next",
+                        "sLast": "last"
                     }
                 },
                 //"order": [[0, "desc"]]
@@ -141,10 +139,10 @@
 
                     if (result.data == true) {
                         $('#' + id).css('color', 'green');
-                        $('#' + id).html('مفعل');
+                        $('#' + id).html('ACTIVE');
                     } else if (result.data == false) {
                         $('#' + id).css('color', 'red');
-                        $('#' + id).html('غير مفعل');
+                        $('#' + id).html('INACTIVE');
 
                     }
                     location.reload();
@@ -156,42 +154,7 @@
         }
 
 
-                //function Delete(id) {
-                //    Swal.fire({
-                //        title: 'هل انت متاكد من حذف هذا الصنف ؟',
-                //        type: 'warning',
-                //        showCancelButton: true,
-                //        confirmButtonColor: '#d33',
-                //        cancelButtonColor: '#3085d6',
-                //        cancelButtonText: 'اغلاق',
-                //        confirmButtonText: 'حذف',
-                //    }).then((result) => {
-                //        if (result.value) {
-                //            $.ajax({
-                //                url: "/Categories/Delete",
-                //                type: "POST",
-                //                dataType: "json",
-                //                data: {
-                //                    id: id
-                //                }, success: function (result) {
-                //                    if (result.key = 1) {
-                //                        Swal.fire({
-                //                            position: 'success',
-                //                            type: 'success',
-                //                            title: 'تم الحذف بنجاح..',
-                //                            showConfirmButton: false,
-                //                            timer: 1500
-                //                        })
-                //                    }
-                //                    $("#" + id).closest("tr").remove();
-                //                },
-                //                failure: function (info) {
-
-                //                }
-                //            })
-                //        }
-                //    })
-                //}
+            
 
 
     </script>

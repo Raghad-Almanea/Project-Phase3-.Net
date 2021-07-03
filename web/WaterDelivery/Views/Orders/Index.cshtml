@@ -12,7 +12,7 @@
             <div class="row">
 
                 <!-- -------------------------------------------------------------------------------------------------- -->
-                <h2 style="text-align:center">الطلبات</h2>
+                <h2 style="text-align:center">Orders</h2>
                 @*<select id="branches" class="form-control" style="margin: 10px" onchange="GetOrdersByBranch()">
                         <option value="0">اختر فرع</option>
                     </select>*@
@@ -21,41 +21,35 @@
                     <thead>
                         <tr>
                             <th style="text-align:center">
-                                رقم الطلب
+Orders num                            </th>
+                            <th style="text-align:center">
+User name                            </th>
+                            <th style="text-align:center">
+Phone number                            </th>
+                            <th style="text-align:center">
+                                Delegate name
                             </th>
                             <th style="text-align:center">
-                                اسم المستخدم
+order name                            </th>
+                            <th style="text-align:center">
+deliver time                            </th>
+                            <th style="text-align:center">
+                                address
                             </th>
                             <th style="text-align:center">
-                                رقم الهاتف
+                                address
                             </th>
                             <th style="text-align:center">
-                                اسم المندوب
+                                order details
                             </th>
                             <th style="text-align:center">
-                                وقت الطلب
+                                order price
                             </th>
                             <th style="text-align:center">
-                                وقت التوصيل
+                                order status 
                             </th>
                             <th style="text-align:center">
-                                العنوان
-                            </th>
-                            <th style="text-align:center">
-                                الموقع
-                            </th>
-                            <th style="text-align:center">
-                                تفاصيل الطلب
-                            </th>
-                            <th style="text-align:center">
-                                قيمة الطلب
-                            </th>
-                            <th style="text-align:center">
-                                حالة الطلب
-                            </th>
-                            <th style="text-align:center">
-                                تغير حاله الطلب
-                            </th>
+change order status                            </th>
                             @*<th style="text-align:center">
                                     حذف
                                 </th>*@
@@ -99,71 +93,71 @@
                                 @if (@item.order_status == 1)
                                 {
                                     <td>
-                                        جديد
+                                        new
                                     </td>
                                 }
                                 else if (@item.order_status == 2)
                                 {
-                                    <td>
-                                        تم الموافقة على الطلب من قبل المندوب
-                                    </td>
+                            <td>
+                                The request was approved by the representative
+                            </td>
                                 }
                                 else if (@item.order_status == 3)
                                 {
-                                    <td>
-                                        تم تجهيز الطلب
-                                    </td>
+                            <td>
+                                The order has been processed
+                            </td>
                                 }
                                 else if (@item.order_status == 4)
                                 {
-                                    <td>
-                                        المندوب قام بايصال الطلب
-                                    </td>
+                            <td>
+                                The representative delivered the request
+                            </td>
                                 }
                                 else if (@item.order_status == 5)
                                 {
-                                    <td>
-                                        العميل استلم الطلب
-                                    </td>
+                            <td>
+                                The customer received the order
+                            </td>
                                 }
                                 else
                                 {
-                                    <td>
-                                        @*قام المندوب بتوصيل الطلب*@
-                                        المندوب قام بايصال الطلب
-                                    </td>
+                            <td>
+                                @*قام المندوب بتوصيل الطلب*@
+                                The representative delivered the request
+                            </td>
                                 }
 
 
                                 @if (item.order_status == 2)
                                 {
                                     <td>
-                                        <input type="button" value="تجهيز الطلب" class="btn btn-danger btn-rounded" id="@item.Id" onclick="ChangeStutes('@item.Id')" />
+                                        <input type="button" value="Order processing" class="btn btn-danger btn-rounded" id="@item.Id" onclick="ChangeStutes('@item.Id')" />
                                     </td>
 
                                 }
                                 else if (item.order_status == 1)
                                 {
                                     <td>
-                                        <label style="color:red">يظهر الزر بعد موافقة المندوب  على الطلب</label>
+                                        <label style="color:red">The button appears after the delegate approves the request</label>
                                     </td>
                                 }
                                 else if (item.order_status > 1 && item.order_status < 6)
                                 {
                                     <td>
-                                        <label style="color:orange">تم تجهيز الطلب وفى انتظار انهائه من قبل المندوب</label>
+                                        <label style="color:orange">تم Preparing the request and waiting for it to be completed by the representative</label>
                                     </td>
                                 }
                                 else if (item.order_status == 6)
                                 {
                                     <td>
-                                        <label style="color:green">تم انهاء الطلب</label>
+                                        <label style="color:green">Request completed</label>
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        <label style="color:green">تم تقييم المندوب</label>
+                                        <label style="color:green">The delegate was evaluated</label>
                                     </td>
                                 }
                                 @*@if (@item.order_status == 4)
@@ -191,7 +185,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle" style="text-align:center;color:#096621;font-size:20px">بيانات المنتجات</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle" style="text-align:center;color:#096621;font-size:20px">product detailed</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -203,22 +197,22 @@
                     <tr>
 
                         <th style="text-align:center">
-                            اسم المنتج
+                            product name
                         </th>
                         <th style="text-align: center">
-                            صورة المنتج
+                            product image
                         </th>
                         <th style="text-align: center">
-                            سعر المنتج
+                            product price
                         </th>
                         <th style="text-align: center">
-                            الكمية
+                            count
                         </th>
                         <th style="text-align:center">
-                            التصنيف الرئيسى
+                            main category
                         </th>
                         <th style="text-align:center">
-                            التصنيف الفرعى
+                            Subcategory
                         </th>
                     </tr>
                 </thead>
@@ -230,7 +224,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">اغلاق</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">close</button>
 
             </div>
         </div>
@@ -241,7 +235,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">الموقع</h5>
+                <h5 class="modal-title" id="exampleModalLabel">address</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -251,7 +245,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
             </div>
         </div>
     </div>
@@ -261,30 +255,9 @@
     <script>
 
         $(document).ready(function () {
-            //var html = '';
-            //$.ajax({
-            //    url: "/Orders/GetBranches",
-            //    type: "GET",
-            //    dataType: "json",
-            //    success: function (data) {
-            //        for (var i = 0; i < data.length; i++) {
-            //            html += '<option value="' + data[i].Id + '">' + data[i].name + '</option>';
-            //        }
-
-            //        $('#branches').append(html);
-            //    },
-            //    failure: function (info) {
-
-            //    }
-            //});
-
-            //GetOrdersByBranch();
+        
         });
 
-        //function Filter(value) {
-        //    var table = $('#datatable-responsive').DataTable();
-        //    table.search(value).draw();
-        //}
 
         function GetOrdersByBranch() {
             var table2 = $('#datatable-responsive').DataTable();
@@ -292,7 +265,7 @@
             var html = '';
             var id = $('#branches :selected').val();
             var value = $('#branches :selected').html();
-            if (value == "اختر فرع") {
+            if (value == "Choose a branch") {
                 value = '';
             }
             $.ajax({
@@ -318,36 +291,36 @@
                             html += '<td>' +
                                 '<input type="button" onclick="ShowOrderDetails(' +
                                 data[i].Id +
-                                ')" value="عرض" class="btn btn-info" />' +
+                                ')" value="show" class="btn btn-info" />' +
                                 '</td>';
                             html += '<td>' + data[i].total + '</td>';
 
                             if (data[i].order_status == 1) {
-                                html += '<td>جديد</td>';
+                                html += '<td>new</td>';
                             }
                             if (data[i].order_status == 2) {
-                                html += '<td>تم الموافقة عليه</td>';
+                                html += '<td>approved</td>';
                             }
                             if (data[i].order_status == 3) {
-                                html += '<td>المندوب فى طريقه اليك</td>';
+                                html += '<td>The representative is on his way to you</td>';
                             }
                             if (data[i].order_status == 4) {
-                                html += '<td>منتهي</td>';
+                                html += '<td>Finished</td>';
                             }
 
 
                             if (data[i].is_active == true) {
                                 html += '<td>' +
-                                    '<label id="data[i].Id" style="color:green;font-size: 17px;">مفعل</label>' +
+                                    '<label id="data[i].Id" style="color:green;font-size: 17px;">enabled</label>' +
                                     '</td>';
                             } else {
                                 html += '<td>' +
-                                    '<label id="data[i].Id" style="color:red;font-size: 17px;">غير مفعل</label>' +
+                                    '<label id="data[i].Id" style="color:red;font-size: 17px;">disabled</label>' +
                                     '</td>';
                             }
 
                             html += '<td>' +
-                                '<input type="button" value="تغير الحالة" onclick="Validtion(' +
+                                '<input type="button" value="Status change" onclick="Validtion(' +
                                 data[i].Id +
                                 ')" class="btn btn-purple btn-rounded" />' +
                                 '</td>';
@@ -361,20 +334,20 @@
                         $('#tableBody').append(html);
                         var table1 = $('#datatable-responsive').DataTable({
                             "language": {
-                                "sProcessing": "جارٍ التحميل...",
-                                "sLengthMenu": "أظهر _MENU_ مدخلات",
-                                "sZeroRecords": "لم يعثر على أية سجلات",
-                                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
-                                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-                                "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                                "sProcessing": "loading...",
+                                "sLengthMenu": "Show _MENU_ Input",
+                                "sZeroRecords": "No records found",
+                                "sInfo": "Show _START_ to _END_ out of _TOTAL_ entry",
+                                "sInfoEmpty": "Displays 0 to 0 out of 0 records",
+                                "sInfoFiltered": "(picked from sum of _MAX_ entered))",
                                 "sInfoPostFix": "",
-                                "sSearch": "ابحث:",
+                                "sSearch": "search:",
                                 "sUrl": "",
                                 "oPaginate": {
-                                    "sFirst": "الأول",
-                                    "sPrevious": "السابق",
-                                    "sNext": "التالي",
-                                    "sLast": "الأخير"
+                                    "sFirst": "frist",
+                                    "sPrevious": "Previous",
+                                    "sNext": "next",
+                                    "sLast": "last"
                                 }
                             }
                         });
@@ -393,16 +366,16 @@
                         });
 
                         html += '<tr>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
-                        html += '<td> لايوجد  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
+                        html += '<td> there is no  </td>';
                         html += '<tr>';
                         $('#tableBody').empty();
                         $('#tableBody').append(html);
@@ -443,10 +416,10 @@
 
                     if (result.data == true) {
                         $('#' + id).css('color', 'green');
-                        $('#' + id).html('مفعل');
+                        $('#' + id).html('Enabled');
                     } else if (result.data == false) {
                         $('#' + id).css('color', 'red');
-                        $('#' + id).html('غير مفعل');
+                        $('#' + id).html('Not enabled');
 
                     }
                 },
@@ -468,12 +441,12 @@
                 success: function (data) {
                     if (data.length == 0) {
                         html += '<tr>';
-                        html += '<td>لا يوجد</td>';
-                        html += '<td>لا يوجد</td>';
-                        html += '<td>لا يوجد</td>';
-                        html += '<td>لا يوجد</td>';
-                        html += '<td>لا يوجد</td>';
-                        html += '<td>لا يوجد</td>';
+                        html += '<td> there is no </td>';
+                        html += '<td>there is no</td>';
+                        html += '<td>there is no</td>';
+                        html += '<td>there is no</td>';
+                        html += '<td>there is no</td>';
+                        html += '<td>there is no</td>';
                         html += '</tr>';
                     } else {
                         for (var i = 0; i < data.length; i++) {
@@ -528,42 +501,6 @@
 
 
 
-                                                //function Delete(id) {
-                                                //    Swal.fire({
-                                                //        title: 'هل انت متاكد من حذف هذا الصنف ؟',
-                                                //        type: 'warning',
-                                                //        showCancelButton: true,
-                                                //        confirmButtonColor: '#d33',
-                                                //        cancelButtonColor: '#3085d6',
-                                                //        cancelButtonText: 'اغلاق',
-                                                //        confirmButtonText: 'حذف',
-                                                //    }).then((result) => {
-                                                //        if (result.value) {
-                                                //            $.ajax({
-                                                //                url: "/Categories/Delete",
-                                                //                type: "POST",
-                                                //                dataType: "json",
-                                                //                data: {
-                                                //                    id: id
-                                                //                }, success: function (result) {
-                                                //                    if (result.key = 1) {
-                                                //                        Swal.fire({
-                                                //                            position: 'success',
-                                                //                            type: 'success',
-                                                //                            title: 'تم الحذف بنجاح..',
-                                                //                            showConfirmButton: false,
-                                                //                            timer: 1500
-                                                //                        })
-                                                //                    }
-                                                //                    $("#" + id).closest("tr").remove();
-                                                //                },
-                                                //                failure: function (info) {
-
-                                                //                }
-                                                //            })
-                                                //        }
-                                                //    })
-                                                //}
 
 
     </script>

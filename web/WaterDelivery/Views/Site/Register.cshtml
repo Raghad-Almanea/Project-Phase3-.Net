@@ -6,9 +6,9 @@
 
     <div class="login-content">
         <img src="~/Content/Site/imgs/logo.png" alt="" class="logo-form">
-        <h4 class="title-form">تسجيل  جديد</h4>
+        <h4 class="title-form">new Login</h4>
         <div class="input-group">
-            <input type="text" id="Name" name="Name" placeholder="الاسم  " class="form-control">
+            <input type="text" id="Name" name="Name" placeholder="name  " class="form-control">
 
         </div>
 
@@ -18,7 +18,7 @@
         </div>*@
 
         <div class="input-group">
-            <input onkeypress="return isNumberKey(event)" type="text" min="0" id="Phone" name="Phone" placeholder=" رقم الجوال  " class="form-control">
+            <input onkeypress="return isNumberKey(event)" type="text" min="0" id="Phone" name="Phone" placeholder=" phone number  " class="form-control">
         </div>
 
 
@@ -36,20 +36,20 @@
 
 
         <div class="input-group">
-            <input type="password" id="Password" name="Password" placeholder=" كلمة المرور  " class="form-control">
+            <input type="password" id="Password" name="Password" placeholder=" password  " class="form-control">
 
         </div>
         <div class="input-group">
-            <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="  تأكيد كلمة  المرور " class="form-control">
+            <input type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="  confirm password " class="form-control">
 
         </div>
         <div class="input-group">
             <input type="checkbox" id="chk" name="chk">
-            <label for="chk " class="d-flex">الموافقة على <a href="~/SiteHome/Conditions" class="like-line m-auto">الشروط والاحكام</a>  </label>
+            <label for="chk " class="d-flex">الموافقة على <a href="~/SiteHome/Conditions" class="like-line m-auto">Terms and Conditions</a>  </label>
         </div>
 
-        <a @*href="active-phone.html"*@ onclick="Register()" class="btn-site w-100">    تسجيل </a>
-        <a href="~/Site/Login" class="like-line m-auto">  تسجيل دخول     </a>
+        <a @*href="active-phone.html"*@ onclick="Register()" class="btn-site w-100">    Register </a>
+        <a href="~/Site/Login" class="like-line m-auto">  Login     </a>
     </div>
 
 @section Scripts {
@@ -79,26 +79,26 @@
 
 
             if ($("#Name").val() == "") {
-                toastr.error("من فضلك ادخل اسم المستخدم ");
+                toastr.error("Please enter your username ");
                 ScrollItem("#Name");
                 return false;
             }
 
             if ($("#Email").val() == "") {
-                toastr.error("من فضلك ادخل البريد الالكترونى ");
+                toastr.error("Please enter your email ");
                 ScrollItem("#Email");
                 return false;
             }
 
             if ($("#Phone").val() == "") {
-                toastr.error("من فضلك ادخل رقم الهاتف ");
+                toastr.error("Please enter the phone number ");
                 ScrollItem("#Phone");
                 return false;
             }
 
 
             if (Phone.length < 10) {
-                toastr.error("يرجى الا يقل رقم الهاتف عن 10 ارقام ");
+                toastr.error("Please, the phone number should not be less than 10 digits ");
                 ScrollItem("#Phone");
                 return false;
             }
@@ -111,32 +111,32 @@
            
 
             if ($("#Password").val() == "") {
-                toastr.error("من فضلك ادخل كلمة المرور ");
+                toastr.error("Please enter the password ");
                 ScrollItem("#Password");
                 return false;
             }
 
             if (Password.length < 6) {
-                toastr.error("يرجى الا تقل كلمة المرور عن 6 ارقام ");
+                toastr.error("Please, the password should not be less than 6 digits ");
                 ScrollItem("#Phone");
                 return false;
             }
 
             if ($("#ConfirmPassword").val() == "") {
-                toastr.error("من فضلك ادخل كلمة المرور ");
+                toastr.error("Please enter the password ");
                 ScrollItem("#ConfirmPassword");
                 return false;
             }
 
             if (Password != ConfirmPassword) {
-                toastr.error("كلمتا المرور غير متطابقتين");
+                toastr.error("The two passwords do not match");
                 ScrollItem("#ConfirmPassword");
                 return false;
             }
 
             if ($("#chk").prop('checked') == false) {
               
-                toastr.error("يرجى الموافقة على الشروط والأحكام");
+                toastr.error("Please agree to the terms and conditions");
                 return false;
             }
 

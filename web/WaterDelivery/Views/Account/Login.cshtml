@@ -9,7 +9,7 @@
 {
 
     <div class="text-center">
-        <h4 class="new-title font-bold m-b-30">تسجيل دخول</h4>
+        <h4 class="new-title font-bold m-b-30">Login</h4>
     </div>
     @Html.AntiForgeryToken()
 
@@ -18,24 +18,24 @@
     <div class="form-group">
 
         <div class="col-md-12">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "البريد الالكترونى" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "email" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
 
         <div class="col-md-12">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "كلمة المرور" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "passworf" })
             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
         </div>
         <p>
-            @Html.ActionLink("هل نسيت كلمة المرور؟", "ForgotPassword", new { @class = "form-span" })
+            @Html.ActionLink("did you forget your password؟", "ForgotPassword", new { @class = "form-span" })
         </p>
     </div>
 
     <div class="form-group">
         <div class="  col-md-12">
-            <input type="submit" value="دخول" class=" btn-new-style " />
+            <input type="submit" value="go" class=" btn-new-style " />
         </div>
     </div>
 

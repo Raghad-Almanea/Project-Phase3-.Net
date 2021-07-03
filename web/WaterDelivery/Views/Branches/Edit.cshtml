@@ -25,7 +25,7 @@
                     @Html.HiddenFor(model => model.date)
 
                     <div class="form-group">
-                        @Html.Label("اسم الفرع", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.Label("branch name", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -34,13 +34,13 @@
 
                     <div class="form-group">
                         <div class=" col-md-12">
-                            <input type="button" value="حفظ" onclick="Validtion()" class="btn-new-style" />
-                            <input type="submit" id="btnSave" style="display:none" value="حفظ" class="btn-new-style" />
+                            <input type="button" value="save" onclick="Validtion()" class="btn-new-style" />
+                            <input type="submit" id="btnSave" style="display:none" value="save" class="btn-new-style" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="  col-md-12 text-center">
-                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn-black  m-b-5" })
+                            @Html.ActionLink("back to home", "Index", null, new { @class = "btn-black  m-b-5" })
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             var flg = true;
 
             if ($("#name").val() == "") {
-                toastr.error('من فضلك ادخل اسم الفرع');
+                toastr.error('please enter the name of the branch');
                 $("#name").focus();
                 flg = false;
                 return false;

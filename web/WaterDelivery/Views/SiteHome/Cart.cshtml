@@ -9,9 +9,9 @@
         <div class="sec-padd cart-page">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/SiteHome/Index"> الرئيسية</a></li>
+                    <li class="breadcrumb-item"><a href="/SiteHome/Index"> HOME </a></li>
 
-                    <li class="breadcrumb-item active" aria-current="page">  السلة</li>
+                    <li class="breadcrumb-item active" aria-current="page">  basket</li>
                 </ol>
             </nav>
 
@@ -27,16 +27,16 @@
                                     <img src="@product.Img">
                                     <div class="cart-info">
                                         <h5 class="name"> @product.Name</h5>
-                                        <h5 class="name">  @product.Price رس </h5>
+                                        <h5 class="name">  @product.Price SR </h5>
                                     </div>
                                     <div>
                                         
                                         <button onclick="DeleteProduct(@product.ProductId)" class="cart-fav">
                                             <i class="fa fa-trash-o text-red"></i>
-                                            حذف
+                                            delete
                                         </button>
 
-                                        <h6 class="text-gray"> الكمية </h6>
+                                        <h6 class="text-gray"> Quantity </h6>
 
                                         <div class="info-qty d-flex">
                                             <a onclick="InCrease(@product.ProductId ,1)" class="qty-up " id="qty-up-@product.ProductId">
@@ -59,13 +59,13 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="~/SiteHome/ConfirmOrder" class="btn-site w-60"> تنفيذ طلبك</a>
+                    <a href="~/SiteHome/ConfirmOrder" class="btn-site w-60"> Execution of your order</a>
                 </div>
             }
             else
             {
                 <div class="empty-box">
-                    <h5> لا يوجد منتجات بالسلة</h5>
+                    <h5> No products in the basket</h5>
                     <img src="~/Content/Site/imgs/empty.png" />
 
                 </div>

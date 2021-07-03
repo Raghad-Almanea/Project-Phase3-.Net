@@ -10,9 +10,9 @@
     <div class="check-page sec-padd">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"> الرئيسية</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> <a href="~/Views/SiteHome/MyOrders.cshtml">  السله</a></li>
-                <li class="breadcrumb-item active" aria-current="page">  تنفيذ الطلب</li>
+                <li class="breadcrumb-item"><a href="index.html"> Home </a></li>
+                <li class="breadcrumb-item active" aria-current="page"> <a href="~/Views/SiteHome/MyOrders.cshtml">  basket</a></li>
+                <li class="breadcrumb-item active" aria-current="page">  Execution of the request</li>
             </ol>
         </nav>
 
@@ -23,32 +23,32 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="cart-box">
-                    <h6 class="text-blue font-15">  اختار الموقع  </h6>
+                    <h6 class="text-blue font-15">  Choose the location  </h6>
                     <div class="form-group d-flex">
-                        <label for="">موقعك الحالي</label>
+                        <label for="">current location </label>
                         <input id="ChkLocation" type="checkbox">
                     </div>
                     <div class="form-group d-flex">
-                        <label for="">موقع  اخر</label>
+                        <label for="">anther location </label>
                         <button id="btn" data-toggle="modal" data-target="#map-modal">
                             <i class="fa fa-map-marker"></i>
                         </button>
                     </div>
 
                     <div class="form-group d-flex">
-                        <input id="Address2" type="text" placeholder="موقع اخر" class="form-control" readonly>
+                        <input id="Address2" type="text" placeholder="anther location" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">
-                        <select id="previousLocation" class="form-control" aria-placeholder="موقع سابق">
+                        <select id="previousLocation" class="form-control" aria-placeholder="previous Location">
 
                             @if ((int)ViewBag.PerviousAddress.Count == 0)
                             {
-                                <option value="0" disabled selected>لايوجد مواقع سابقة</option>
+                            <option value="0" disabled selected>There are no previous location </option>
                             }
                             else
                             {
-                                <option selected value="0"> موقع سابق </option>
+                        <option selected value="0"> previous Location </option>
                                 foreach (var item in ViewBag.PerviousAddress as List<AddressViewModel>)
                                 {
                                     <option value="@item.Id">@item.address</option>
@@ -65,7 +65,7 @@
 
                 <div class="Payment-method">
 
-                    <h6>طريقه الدفع</h6>
+                    <h6>Payment-method</h6>
 
                     <div id="p1">
 
@@ -74,8 +74,8 @@
                                 <img src="~/Content/Site/imgs/money.png" />
                                 <span class="d-flex flex-column m-3">
 
-                                    <span>نقدا</span>
-                                    <span class="text-gray">الدفع عند الاستلام</span>
+                                    <span>cash </span>
+                                    <span class="text-gray">Paiement when recieving</span>
 
                                 </span>
 
@@ -119,47 +119,47 @@
                 <div class="cart-summery">
                     <ul>
                         <li>
-                            <label>     السعر الأجمالى  </label>
+                            <label>      total price  </label>
                             <span class="">
-                                @Model.total ر.س
+                                @Model.total SR
                             </span>
                         </li>
                         <li>
-                            <label>     ضريبة القيمة المضافة  </label>
+                            <label>     value added tax  </label>
                             <span class="">
                                 @Model.vat %
                             </span>
                         </li>
                         <li>
-                            <label> رسوم الشحن </label>
+                            <label> Shipping fee </label>
                             <span class="">
-                                @Model.Delivery ر.س
+                                @Model.Delivery SR
                             </span>
                         </li>
                         <li>
-                            <label> المجموع  </label>
+                            <label> TOTAL  </label>
                             <span class="">
-                                @Model.net_total ر.س
+                                @Model.net_total SR
                             </span>
                         </li>
                     </ul>
                 </div>
                 <div class="ConfirmOrder_btnradio">
 
-                    <h6>أوقات التوصيل</h6>
+                    <h6>Delivery times</h6>
 
                     <div class="d-flex justify-content-around flex-wrap flex-column align-items-center" id="delivary_time">
 
                         <label>
-                            <input id="delivary_time1" name="delivary_time" type="radio" value="8 صباحا - 3 مساء" />
+                            <input id="delivary_time1" name="delivary_time" type="radio" value=" 8 am - 3 pm"" />
                             <span class="lay"></span>
-                            <span>8 صباحا - 3 مساء</span>
+                            <span> 8 AM - 3 PM</span>
 
                         </label>
                         <label>
-                            <input id="delivary_time2" name="delivary_time" type="radio" value="3 مساء - 10 مساء" />
+                            <input id="delivary_time2" name="delivary_time" type="radio" value="3 pm - 10" />
                             <span class="lay"></span>
-                            <span>3 مساء - 10 مساء</span>
+                            <span>  3 PM - 10 PM </span>
 
                         </label>
                     </div>
@@ -170,7 +170,7 @@
 
 
         <div class="text-center">
-            <a onclick="AddOrder()" class="btn-site w-60" @*data-toggle="modal" data-target="#checkmodal"*@>  تنفيذ طلبك</a>
+            <a onclick="AddOrder()" class="btn-site w-60" @*data-toggle="modal" data-target="#checkmodal"*@>  Execution of your order</a>
         </div>
     </div>
 </div>
@@ -184,7 +184,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">       تحديد الموقع  </h5>
+                <h5 class="modal-title" id="exampleModalLabel">       detect location  </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -205,9 +205,9 @@
             <div class="modal-body checkedbody ">
 
                 <img src="~/Content/Site/imgs/checked.png">
-                <h4> شكرا لك</h4>
-                <h5> تم إتمام العملية بنجاح</h5>
-                <a class="btn-site" href="/SiteHome/Index"> إستمر بالتسوق </a>
+                <h4> THANL YOU </h4>
+                <h5> Operation completed successfully</h5>
+                <a class="btn-site" href="/SiteHome/Index"> keep shopping </a>
             </div>
         </div>
     </div>

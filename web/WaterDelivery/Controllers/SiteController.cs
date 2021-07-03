@@ -34,7 +34,7 @@ namespace WaterDelivery.Controllers
             {
                 if (checkuser.active == false && checkuser.active_code == true)
                 {
-                    return Json(new { key = 0, msg = "هذا الحساب مغلق من قبل الادمن" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 0, msg = "This account is locked by the admin" }, JsonRequestBehavior.AllowGet);
                 }
                 else if (checkuser.active_code == false)
                 {
@@ -46,7 +46,7 @@ namespace WaterDelivery.Controllers
                     userInfo.Expires = now.AddMonths(2);
                     Response.Cookies.Add(userInfo);
 
-                    return Json(new { key = 2, msg = "هذا الحساب لم يفعل بعد" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 2, msg = "This account has not yet been activated" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 { 
@@ -59,13 +59,13 @@ namespace WaterDelivery.Controllers
                     userInfo.Expires = now.AddMonths(2);
                     Response.Cookies.Add(userInfo);
 
-                    return Json(new { key = 1, msg = "تم التسجيل بنجاح .." }, JsonRequestBehavior.AllowGet);
+                    return Json(new { key = 1, msg = "successfully registered.." }, JsonRequestBehavior.AllowGet);
                    
                 }
             }
             else
             {
-                return Json(new { key = 0, msg = "يرجى التاكد من البيانات" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Please check the data" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -85,13 +85,13 @@ namespace WaterDelivery.Controllers
 
             if (phone != null || phone_provider != null)
             {
-                return Json(new { key = 0, msg = "عذرا هذا الجوال موجود بالفعل" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Sorry, this phone already exists" }, JsonRequestBehavior.AllowGet);
             }
             var ChkName = (from st in db.Client where st.user_name == model.Name select st).FirstOrDefault();
 
             if (ChkName != null)
             {
-                return Json(new { key = 0, msg = "عذرا هذا الاسم موجود بالفعل" }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Sorry, this name already exists" }, JsonRequestBehavior.AllowGet);
             }
 
             Client newclient = new Client
@@ -119,9 +119,9 @@ namespace WaterDelivery.Controllers
             Response.Cookies.Add(userInfo);
 
             //Send Massage to phone
-            string s = SendMessageText("كود التحقق ", newclient.phone, newclient.code);
+            string s = SendMessageText("Validation code ", newclient.phone, newclient.code);
 
-            return Json(new { key = 1, msg = "تم التسجيل بنجاح .." }, JsonRequestBehavior.AllowGet);
+            return Json(new { key = 1, msg = "successfully registered.." }, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -148,11 +148,11 @@ namespace WaterDelivery.Controllers
             {
                 ChkCode.active_code = true;
                 db.SaveChanges();
-                return Json(new { key = 1, msg = "تم التفعيل بنجاح .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, msg = "Activated successfully.." }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new { key = 0, msg = "يرجى التحقق من الكود .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Please check the code.." }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -181,12 +181,12 @@ namespace WaterDelivery.Controllers
                 Response.Cookies.Add(userInfo);
 
                 //Send Massage to phone
-                string s = SendMessageText("كود التحقق ", ChkPhone.phone, ChkPhone.code);
-                return Json(new { key = 1, msg = "تم ارسال كود التحقق بنجاح.." }, JsonRequestBehavior.AllowGet);
+                string s = SendMessageText("Validation code ", ChkPhone.phone, ChkPhone.code);
+                return Json(new { key = 1, msg = "Verification code has been sent successfully.." }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new { key = 0, msg = "يرجى التحقق من رقم الهاتف.." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Please check the phone number.." }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -205,11 +205,11 @@ namespace WaterDelivery.Controllers
 
             if (ChkCode != null)
             {
-                return Json(new { key = 1, msg = "تم التحقق من الكود .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, msg = "Code Verified .." }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(new { key = 0, msg = "يرجى التحقق من الكود .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Please check the code .." }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -234,12 +234,12 @@ namespace WaterDelivery.Controllers
                     Response.Cookies["userInfo"].Expires = DateTime.Now.AddDays(-1);
                 }
 
-                return Json(new { key = 1, msg = "تم تغيير كلمة المرور .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 1, msg = "Password changed .." }, JsonRequestBehavior.AllowGet);
 
             }
             else
             {
-                return Json(new { key = 0, msg = "حدث خطا ما .." }, JsonRequestBehavior.AllowGet);
+                return Json(new { key = 0, msg = "Something went wrong .." }, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="card-box" style="padding: 80px 20px 40px;">
 
-            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">اضافة منتج جديد</h2>
+            <h2 class="header-title m-t-0 m-b-30" style="text-align:center">add new products</h2>
 
             <div class="row">
 
@@ -21,39 +21,39 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.Label("اسم المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("products name", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("صورة المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("products image", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <input type="file" name="img" id="img" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("سعر المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("products price", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <input type="text" name="price" id="price" min="0" class="form-control" />
                                 @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("وصف المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("products description ", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <input type="text" name="description" id="description" min="0" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("مواصفات المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("product detials", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <textarea type="text" name="specification" id="specification" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.Label("كمية المنتج", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("product count", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <input type="number" name="all_qty" id="all_qty" min="0" class="form-control" />
                             </div>
@@ -69,19 +69,19 @@
                             </div>*@
 
                         <div class="form-group">
-                            @Html.Label("التصنيف الرئيسى", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("main category", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <select id="fk_cat" name="fk_cat" class="form-control">
-                                    <option value="-1">اختر تصنيف</option>
+                                    <option value="-1">Choose a category</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.Label("التصنيف الفرعى", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.Label("Subcategory", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 <select id="fk_categoryID" name="fk_categoryID" class="form-control">
-                                    <option value="-1">اختر تصنيف</option>
+                                    <option value="-1">Choose a category</option>
                                 </select>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            @Html.ActionLink("العودة الى الرئيسية", "Index", null, new { @class = "btn btn-black btn-rounded w-md waves-effect waves-light m-b-5" })
+                            @Html.ActionLink("back to home", "Index", null, new { @class = "btn btn-black btn-rounded w-md waves-effect waves-light m-b-5" })
 
                         </div>
 
@@ -111,49 +111,49 @@
             var flg = true;
 
             if ($("#name").val() == "") {
-                toastr.error('من فضلك ادخل اسم المنتج');
+                toastr.error('Please enter the product name');
                 $("#name").focus();
                 flg = false;
                 return false;
             }
             if ($("#img").val() == "") {
-                toastr.error('من فضلك ادخل صورة المنتج ');
+                toastr.error('Please enter a product picture ');
                 $("#img").focus();
                 flg = false;
                 return false;
             }
             if ($("#price").val() == "") {
-                toastr.error('من فضلك ادخل سعر المنتج ');
+                toastr.error('Please enter the product price ');
                 $("#price").focus();
                 flg = false;
                 return false;
             }
             if ($("#price").val() < 1) {
-                toastr.error('من فضلك ادخل سعر المنتج اكبر من 1');
+                toastr.error('Please enter product price greater than 1');
                 $("#price").focus();
                 flg = false;
                 return false;
             }
             if ($("#all_qty").val() == "") {
-                toastr.error('من فضلك ادخل كمية المنتج ');
+                toastr.error('Please enter product quantity  ');
                 $("#all_qty").focus();
                 flg = false;
                 return false;
             }
             if ($("#all_qty").val() < 0) {
-                toastr.error('من فضلك ادخل كمية المنتج اكبر من 0');
+                toastr.error('Please enter product quantity greater than 0');
                 $("#all_qty").focus();
                 flg = false;
                 return false;
             }
             if ($("#fk_cat").val() < 0 || $("#fk_cat").val() < '') {
-                toastr.error('من فضلك اختر التصنيف الرئيسى');
+                toastr.error('Please select the main category');
                 $("#fk_cat").focus();
                 flg = false;
                 return false;
             }
             if ($("#fk_categoryID").val() < 0 || $("#fk_categoryID").val() < '') {
-                toastr.error('من فضلك اختر التصنيف الفرعى');
+                toastr.error('Please select a subcategory');
                 $("#fk_categoryID").focus();
                 flg = false;
                 return false;
@@ -161,7 +161,7 @@
 
 
             if ($("#fk_categoryID").val() == -1) {
-                toastr.error('من فضلك اختر تصنيف ');
+                toastr.error('Please select a category ');
                 $("#fk_categoryID").focus();
                 flg = false;
                 return false;
@@ -174,22 +174,7 @@
 
         let options;
         $(document).ready(function () {
-            //$.ajax({
-            //    url: "/Products/GetBranches",
-            //    type: "GET",
-            //    dataType: "json",
-            //    success: function (data) {
-            //        var html = '';
-            //        for (var i = 0; i < data.length; i++) {
-            //            html += '<option value="' + data[i].Id + '">' + data[i].name + '</option>';
-            //        }
-
-            //        $('#fk_branch').append(html);
-            //    },
-            //    failure: function (info) {
-
-            //    }
-            //});
+         
 
             var fk_cat = '';
 
